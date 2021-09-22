@@ -1,0 +1,78 @@
+# ---> Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+transaction-logs/
+metastore_db/
+
+# ---> Java
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+!extras/*.tar.gz
+!extras/*.zip
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+
+# Ignore project files created by Eclipse
+.settings/
+.project
+.classpath
+
+# Ignore project files created by IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
+overlays/
+
+node/
+node_modules/
+generated/
+.yarn-offline-mirror
+
+# Mac noise
+.DS_Store
+
+# Please, not credentials here...
+credentials.yml
+
+cli/bin
+!builds/*
+
+*.lock
+
+# helm
+*.tar.gz
+*.tgz
+
+*launch.local.sh
+dist/
