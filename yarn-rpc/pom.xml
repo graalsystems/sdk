@@ -30,6 +30,14 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- for JUnit 5 -->
+        <dependency>
+            <groupId>uk.org.webcompere</groupId>
+            <artifactId>system-stubs-jupiter</artifactId>
+            <version>1.1.0</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

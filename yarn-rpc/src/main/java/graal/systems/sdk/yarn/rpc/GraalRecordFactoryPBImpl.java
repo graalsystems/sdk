@@ -37,13 +37,14 @@ public class GraalRecordFactoryPBImpl implements RecordFactory {
     public <T> T newRecordInstance(Class<T> clazz) {
 
         Constructor<?> constructor = cache.get(clazz);
+        String pbImplClassName = getPBImplClassName(clazz);
         if (constructor == null) {
             Class<?> pbClazz;
             try {
-                pbClazz = localConf.getClassByName(getPBImplClassName(clazz));
+                pbClazz = localConf.getClassByName(pbImplClassName);
             } catch (ClassNotFoundException e) {
                 throw new YarnRuntimeException("Failed to load class: ["
-                        + getPBImplClassName(clazz) + "]", e);
+                        + pbImplClassName + "]", e);
             }
             try {
                 constructor = pbClazz.getConstructor();
@@ -53,57 +54,61 @@ public class GraalRecordFactoryPBImpl implements RecordFactory {
                 throw new YarnRuntimeException("Could not find 0 argument constructor", e);
             }
         }
+
         try {
             Object retObject = constructor.newInstance();
 
-            Class<?> pbClazz = localConf.getClassByName(getPBImplClassName(clazz));
-            Field field = pbClazz.getDeclaredField("builder");
-            field.setAccessible(true);
+            Class<?> pbClazz = localConf.getClassByName(pbImplClassName);
 
-            String tenantId = System.getenv().get("GRAAL_TENANT");
-            String bridgeId = System.getenv().get("GRAAL_BRIDGE");
-            String projectId = System.getenv().get("GRAAL_PROJECT");
-            String jobId = System.getenv().get("GRAAL_JOB");
-            String runId = System.getenv().get("GRAAL_RUN");
+            if (pbImplClassName.endsWith("RequestPBImpl")) {
 
-            if (StringUtils.isNotBlank(tenantId)) {
-                UnknownFieldSet.Builder builder1 = UnknownFieldSet.newBuilder();
-                builder1.addField(100,
-                        UnknownFieldSet.Field.newBuilder()
-                                .addLengthDelimited(ByteString.copyFromUtf8(tenantId))
-                                .build());
-                if (StringUtils.isNotBlank(bridgeId)) {
-                    builder1.addField(101,
+                String tenantId = System.getenv().get("GRAAL_TENANT");
+                String bridgeId = System.getenv().get("GRAAL_BRIDGE");
+                String projectId = System.getenv().get("GRAAL_PROJECT");
+                String jobId = System.getenv().get("GRAAL_JOB");
+                String runId = System.getenv().get("GRAAL_RUN");
+
+                if (StringUtils.isNotBlank(tenantId)) {
+                    UnknownFieldSet.Builder builder1 = UnknownFieldSet.newBuilder();
+                    builder1 = builder1.addField(100,
                             UnknownFieldSet.Field.newBuilder()
-                                    .addLengthDelimited(ByteString.copyFromUtf8(bridgeId))
+                                    .addLengthDelimited(ByteString.copyFromUtf8(tenantId))
                                     .build());
-                    if (StringUtils.isNotBlank(projectId)) {
-                        builder1.addField(102,
+                    if (StringUtils.isNotBlank(bridgeId)) {
+                        builder1 = builder1.addField(101,
                                 UnknownFieldSet.Field.newBuilder()
-                                        .addLengthDelimited(ByteString.copyFromUtf8(projectId))
+                                        .addLengthDelimited(ByteString.copyFromUtf8(bridgeId))
                                         .build());
-                        if (StringUtils.isNotBlank(jobId)) {
-                            builder1.addField(103,
+                        if (StringUtils.isNotBlank(projectId)) {
+                            builder1 = builder1.addField(102,
                                     UnknownFieldSet.Field.newBuilder()
-                                            .addLengthDelimited(ByteString.copyFromUtf8(jobId))
+                                            .addLengthDelimited(ByteString.copyFromUtf8(projectId))
                                             .build());
-                            if (StringUtils.isNotBlank(runId)) {
-                                builder1.addField(104,
+                            if (StringUtils.isNotBlank(jobId)) {
+                                builder1 = builder1.addField(103,
                                         UnknownFieldSet.Field.newBuilder()
-                                                .addLengthDelimited(ByteString.copyFromUtf8(runId))
+                                                .addLengthDelimited(ByteString.copyFromUtf8(jobId))
                                                 .build());
+                                if (StringUtils.isNotBlank(runId)) {
+                                    builder1 = builder1.addField(104,
+                                            UnknownFieldSet.Field.newBuilder()
+                                                    .addLengthDelimited(ByteString.copyFromUtf8(runId))
+                                                    .build());
+                                }
                             }
                         }
                     }
+                    UnknownFieldSet unknownFields = builder1.build();
+
+                    Field field = pbClazz.getDeclaredField("builder");
+                    field.setAccessible(true);
+                    Object builder = field.get(retObject);
+
+                    Method setUnknownFields = builder.getClass().getMethod("setUnknownFields", UnknownFieldSet.class);
+                    setUnknownFields.setAccessible(true);
+                    setUnknownFields.invoke(builder, unknownFields);
                 }
-                UnknownFieldSet unknownFields = builder1.build();
-
-                Object builder = field.get(retObject);
-                Method setUnknownFields = builder.getClass().getMethod("setUnknownFields", UnknownFieldSet.class);
-                setUnknownFields.setAccessible(true);
-                setUnknownFields.invoke(builder, unknownFields);
             }
-
             return (T) retObject;
         } catch (InvocationTargetException e) {
             throw new YarnRuntimeException(e);

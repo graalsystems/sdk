@@ -13,10 +13,14 @@ import org.apache.parquet.crypto.KeyAccessDeniedException;
 import org.apache.parquet.crypto.ParquetCryptoRuntimeException;
 import org.apache.parquet.crypto.keytools.KeyToolkit;
 import org.apache.parquet.crypto.keytools.KmsClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 
 public class InternalKmsClient implements KmsClient {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(InternalKmsClient.class);
 
     private CloseableHttpClient client;
     private String kmsInstanceID;
