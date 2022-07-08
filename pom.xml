@@ -21,6 +21,7 @@
     <modules>
         <module>parquet-kms</module>
         <module>yarn-rpc</module>
+        <module>sasl</module>
     </modules>
 
     <dependencies>
