@@ -75,6 +75,11 @@ class Invoice(ModelNormal):
         return {
             'id': (str,),  # noqa: E501
             'created': (datetime,),  # noqa: E501
+            'start_period': (datetime,),  # noqa: E501
+            'end_period': (datetime,),  # noqa: E501
+            'currency': (str,),  # noqa: E501
+            'amount': (str,),  # noqa: E501
+            'metadata': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
         }
 
     @cached_property
@@ -85,6 +90,11 @@ class Invoice(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'created': 'created',  # noqa: E501
+        'start_period': 'start_period',  # noqa: E501
+        'end_period': 'end_period',  # noqa: E501
+        'currency': 'currency',  # noqa: E501
+        'amount': 'amount',  # noqa: E501
+        'metadata': 'metadata',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -135,6 +145,11 @@ class Invoice(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
             created (datetime): [optional]  # noqa: E501
+            start_period (datetime): [optional]  # noqa: E501
+            end_period (datetime): [optional]  # noqa: E501
+            currency (str): [optional]  # noqa: E501
+            amount (str): [optional]  # noqa: E501
+            metadata ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

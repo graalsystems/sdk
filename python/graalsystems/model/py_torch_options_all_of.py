@@ -76,6 +76,8 @@ class PyTorchOptionsAllOf(ModelNormal):
             'type': (str,),  # noqa: E501
             'module': (str,),  # noqa: E501
             'number_replicas': (float,),  # noqa: E501
+            'master_instance_type': (str,),  # noqa: E501
+            'worker_instance_type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +89,8 @@ class PyTorchOptionsAllOf(ModelNormal):
         'type': 'type',  # noqa: E501
         'module': 'module',  # noqa: E501
         'number_replicas': 'number_replicas',  # noqa: E501
+        'master_instance_type': 'master_instance_type',  # noqa: E501
+        'worker_instance_type': 'worker_instance_type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,6 +142,8 @@ class PyTorchOptionsAllOf(ModelNormal):
             type (str): [optional] if omitted the server will use the default value of "python"  # noqa: E501
             module (str): [optional]  # noqa: E501
             number_replicas (float): [optional]  # noqa: E501
+            master_instance_type (str): [optional]  # noqa: E501
+            worker_instance_type (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

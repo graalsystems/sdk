@@ -428,8 +428,6 @@ class AssignmentApi(object):
         def __find_role_assignments(
             self,
             x_tenant,
-            resource_type,
-            resource_id,
             **kwargs
         ):
             """Retrieve all assignments for a resource  # noqa: E501
@@ -437,15 +435,15 @@ class AssignmentApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.find_role_assignments(x_tenant, resource_type, resource_id, async_req=True)
+            >>> thread = api.find_role_assignments(x_tenant, async_req=True)
             >>> result = thread.get()
 
             Args:
                 x_tenant (str):
-                resource_type (str):
-                resource_id (str):
 
             Keyword Args:
+                resource_type (str): [optional]
+                resource_id (str): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -492,10 +490,6 @@ class AssignmentApi(object):
             kwargs['_host_index'] = kwargs.get('_host_index')
             kwargs['x_tenant'] = \
                 x_tenant
-            kwargs['resource_type'] = \
-                resource_type
-            kwargs['resource_id'] = \
-                resource_id
             return self.call_with_http_info(**kwargs)
 
         self.find_role_assignments = _Endpoint(
@@ -517,8 +511,6 @@ class AssignmentApi(object):
                 ],
                 'required': [
                     'x_tenant',
-                    'resource_type',
-                    'resource_id',
                 ],
                 'nullable': [
                 ],

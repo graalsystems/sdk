@@ -57,6 +57,10 @@ class Ticket(ModelNormal):
     """
 
     allowed_values = {
+        ('status',): {
+            'OPEN': "OPEN",
+            'CLOSED': "CLOSED",
+        },
     }
 
     validations = {
@@ -79,6 +83,8 @@ class Ticket(ModelNormal):
         lazy_import()
         return {
             'id': (str,),  # noqa: E501
+            'tenant_id': (str,),  # noqa: E501
+            'status': (str,),  # noqa: E501
             'title': (str,),  # noqa: E501
             'description': (str,),  # noqa: E501
             'details': (Details,),  # noqa: E501
@@ -94,6 +100,8 @@ class Ticket(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
+        'tenant_id': 'tenant_id',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'title': 'title',  # noqa: E501
         'description': 'description',  # noqa: E501
         'details': 'details',  # noqa: E501
@@ -149,6 +157,8 @@ class Ticket(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): [optional]  # noqa: E501
+            tenant_id (str): [optional]  # noqa: E501
+            status (str): [optional]  # noqa: E501
             title (str): [optional]  # noqa: E501
             description (str): [optional]  # noqa: E501
             details (Details): [optional]  # noqa: E501

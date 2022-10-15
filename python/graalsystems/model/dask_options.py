@@ -28,27 +28,33 @@ from graalsystems.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from graalsystems.model.airflow_options import AirflowOptions
     from graalsystems.model.bash_options import BashOptions
     from graalsystems.model.dask_options import DaskOptions
     from graalsystems.model.dask_options_all_of import DaskOptionsAllOf
+    from graalsystems.model.dbt_options import DbtOptions
+    from graalsystems.model.flink_options import FlinkOptions
     from graalsystems.model.hadoop_options import HadoopOptions
+    from graalsystems.model.knime_options import KnimeOptions
     from graalsystems.model.mx_net_options import MXNetOptions
     from graalsystems.model.options import Options
     from graalsystems.model.py_torch_options import PyTorchOptions
     from graalsystems.model.python_options import PythonOptions
-    from graalsystems.model.resources import Resources
     from graalsystems.model.spark_options import SparkOptions
     from graalsystems.model.tensorflow_options import TensorflowOptions
     from graalsystems.model.xgboost_options import XgboostOptions
+    globals()['AirflowOptions'] = AirflowOptions
     globals()['BashOptions'] = BashOptions
     globals()['DaskOptions'] = DaskOptions
     globals()['DaskOptionsAllOf'] = DaskOptionsAllOf
+    globals()['DbtOptions'] = DbtOptions
+    globals()['FlinkOptions'] = FlinkOptions
     globals()['HadoopOptions'] = HadoopOptions
+    globals()['KnimeOptions'] = KnimeOptions
     globals()['MXNetOptions'] = MXNetOptions
     globals()['Options'] = Options
     globals()['PyTorchOptions'] = PyTorchOptions
     globals()['PythonOptions'] = PythonOptions
-    globals()['Resources'] = Resources
     globals()['SparkOptions'] = SparkOptions
     globals()['TensorflowOptions'] = TensorflowOptions
     globals()['XgboostOptions'] = XgboostOptions
@@ -113,18 +119,24 @@ class DaskOptions(ModelComposed):
             'function_name': (str,),  # noqa: E501
             'number_workers': (float,),  # noqa: E501
             'number_workers_max': (float,),  # noqa: E501
+            'driver_instance_type': (str,),  # noqa: E501
+            'worker_instance_type': (str,),  # noqa: E501
             'env': ({str: (str,)},),  # noqa: E501
             'docker_image': (str,),  # noqa: E501
-            'resources': (Resources,),  # noqa: E501
+            'instance_type': (str,),  # noqa: E501
         }
 
     @cached_property
     def discriminator():
         lazy_import()
         val = {
+            'airflow': AirflowOptions,
             'bash': BashOptions,
             'dask': DaskOptions,
+            'dbt': DbtOptions,
+            'flink': FlinkOptions,
             'hadoop': HadoopOptions,
+            'knime': KnimeOptions,
             'mxnet': MXNetOptions,
             'python': PythonOptions,
             'pytorch': PyTorchOptions,
@@ -143,9 +155,11 @@ class DaskOptions(ModelComposed):
         'function_name': 'function_name',  # noqa: E501
         'number_workers': 'number_workers',  # noqa: E501
         'number_workers_max': 'number_workers_max',  # noqa: E501
+        'driver_instance_type': 'driver_instance_type',  # noqa: E501
+        'worker_instance_type': 'worker_instance_type',  # noqa: E501
         'env': 'env',  # noqa: E501
         'docker_image': 'docker_image',  # noqa: E501
-        'resources': 'resources',  # noqa: E501
+        'instance_type': 'instance_type',  # noqa: E501
     }
 
     required_properties = set([
@@ -201,9 +215,11 @@ class DaskOptions(ModelComposed):
             function_name (str): [optional]  # noqa: E501
             number_workers (float): [optional]  # noqa: E501
             number_workers_max (float): [optional]  # noqa: E501
+            driver_instance_type (str): [optional]  # noqa: E501
+            worker_instance_type (str): [optional]  # noqa: E501
             env ({str: (str,)}): [optional]  # noqa: E501
             docker_image (str): [optional]  # noqa: E501
-            resources (Resources): [optional]  # noqa: E501
+            instance_type (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

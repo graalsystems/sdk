@@ -22,6 +22,7 @@ from graalsystems.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from graalsystems.model.action import Action
 from graalsystems.model.error import Error
 from graalsystems.model.patch import Patch
 from graalsystems.model.ticket import Ticket
@@ -56,6 +57,7 @@ class TicketApi(object):
                 ticket (Ticket): The ticket to be created
 
             Keyword Args:
+                x_tenant (str): [optional]
                 challenge (str): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -119,6 +121,7 @@ class TicketApi(object):
             params_map={
                 'all': [
                     'ticket',
+                    'x_tenant',
                     'challenge',
                 ],
                 'required': [
@@ -139,14 +142,18 @@ class TicketApi(object):
                 'openapi_types': {
                     'ticket':
                         (Ticket,),
+                    'x_tenant':
+                        (str,),
                     'challenge':
                         (str,),
                 },
                 'attribute_map': {
+                    'x_tenant': 'X-Tenant',
                     'challenge': 'challenge',
                 },
                 'location_map': {
                     'ticket': 'body',
+                    'x_tenant': 'header',
                     'challenge': 'query',
                 },
                 'collection_format_map': {
@@ -290,6 +297,143 @@ class TicketApi(object):
             },
             api_client=api_client,
             callable=__delete_ticket_by_id
+        )
+
+        def __execute_action1(
+            self,
+            x_tenant,
+            ticket_id,
+            action,
+            **kwargs
+        ):
+            """Execute an action  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.execute_action1(x_tenant, ticket_id, action, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                x_tenant (str):
+                ticket_id (str): Id of the ticket
+                action (Action):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['x_tenant'] = \
+                x_tenant
+            kwargs['ticket_id'] = \
+                ticket_id
+            kwargs['action'] = \
+                action
+            return self.call_with_http_info(**kwargs)
+
+        self.execute_action1 = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/tickets/{ticketId}/actions',
+                'operation_id': 'execute_action1',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'ticket_id',
+                    'action',
+                ],
+                'required': [
+                    'x_tenant',
+                    'ticket_id',
+                    'action',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'ticket_id':
+                        (str,),
+                    'action':
+                        (Action,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'X-Tenant',
+                    'ticket_id': 'ticketId',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'ticket_id': 'path',
+                    'action': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [],
+                'content_type': [
+                    'application/vnd.graal.systems.v1.action+json'
+                ]
+            },
+            api_client=api_client,
+            callable=__execute_action1
         )
 
         def __find_ticket_by_id(

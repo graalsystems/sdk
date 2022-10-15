@@ -77,6 +77,7 @@ class Company(ModelNormal):
             'address': (str,),  # noqa: E501
             'city': (float,),  # noqa: E501
             'country': (str,),  # noqa: E501
+            'postal_code': (str,),  # noqa: E501
             'vat': (str,),  # noqa: E501
         }
 
@@ -90,6 +91,7 @@ class Company(ModelNormal):
         'address': 'address',  # noqa: E501
         'city': 'city',  # noqa: E501
         'country': 'country',  # noqa: E501
+        'postal_code': 'postal_code',  # noqa: E501
         'vat': 'vat',  # noqa: E501
     }
 
@@ -143,6 +145,7 @@ class Company(ModelNormal):
             address (str): [optional]  # noqa: E501
             city (float): [optional]  # noqa: E501
             country (str): [optional]  # noqa: E501
+            postal_code (str): [optional]  # noqa: E501
             vat (str): [optional]  # noqa: E501
         """
 

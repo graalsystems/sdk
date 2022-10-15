@@ -74,8 +74,9 @@ class TensorflowOptionsAllOf(ModelNormal):
         """
         return {
             'type': (str,),  # noqa: E501
+            'number_replicas': (str,),  # noqa: E501
             'module': (str,),  # noqa: E501
-            'number_replicas': (float,),  # noqa: E501
+            'replica_instance_type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +86,9 @@ class TensorflowOptionsAllOf(ModelNormal):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
-        'module': 'module',  # noqa: E501
         'number_replicas': 'number_replicas',  # noqa: E501
+        'module': 'module',  # noqa: E501
+        'replica_instance_type': 'replica_instance_type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +138,9 @@ class TensorflowOptionsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             type (str): [optional] if omitted the server will use the default value of "tensorflow"  # noqa: E501
+            number_replicas (str): [optional]  # noqa: E501
             module (str): [optional]  # noqa: E501
-            number_replicas (float): [optional]  # noqa: E501
+            replica_instance_type (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

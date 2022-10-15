@@ -74,10 +74,12 @@ class CostStats(ModelNormal):
         """
         return {
             'total': (float,),  # noqa: E501
+            'cumulative': ([float],),  # noqa: E501
             'budget': ([float],),  # noqa: E501
             'budget_lower_projection': ([float],),  # noqa: E501
             'budget_upper_projection': ([float],),  # noqa: E501
             'period': ([datetime],),  # noqa: E501
+            'projection_period': ([datetime],),  # noqa: E501
             'type': (str,),  # noqa: E501
             'by_type': ({str: (float,)},),  # noqa: E501
         }
@@ -89,10 +91,12 @@ class CostStats(ModelNormal):
 
     attribute_map = {
         'total': 'total',  # noqa: E501
+        'cumulative': 'cumulative',  # noqa: E501
         'budget': 'budget',  # noqa: E501
         'budget_lower_projection': 'budget_lower_projection',  # noqa: E501
         'budget_upper_projection': 'budget_upper_projection',  # noqa: E501
         'period': 'period',  # noqa: E501
+        'projection_period': 'projection_period',  # noqa: E501
         'type': 'type',  # noqa: E501
         'by_type': 'by_type',  # noqa: E501
     }
@@ -144,10 +148,12 @@ class CostStats(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             total (float): [optional]  # noqa: E501
+            cumulative ([float]): [optional]  # noqa: E501
             budget ([float]): [optional]  # noqa: E501
             budget_lower_projection ([float]): [optional]  # noqa: E501
             budget_upper_projection ([float]): [optional]  # noqa: E501
             period ([datetime]): [optional]  # noqa: E501
+            projection_period ([datetime]): [optional]  # noqa: E501
             type (str): [optional]  # noqa: E501
             by_type ({str: (float,)}): [optional]  # noqa: E501
         """

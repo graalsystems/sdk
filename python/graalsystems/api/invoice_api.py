@@ -286,6 +286,135 @@ class InvoiceApi(object):
             callable=__delete_invoice_by_id
         )
 
+        def __download_invoice_by_id(
+            self,
+            x_tenant,
+            invoice_id,
+            **kwargs
+        ):
+            """Download invoice by Id  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.download_invoice_by_id(x_tenant, invoice_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                x_tenant (str):
+                invoice_id (str): Id of the invoice
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                file_type
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['x_tenant'] = \
+                x_tenant
+            kwargs['invoice_id'] = \
+                invoice_id
+            return self.call_with_http_info(**kwargs)
+
+        self.download_invoice_by_id = _Endpoint(
+            settings={
+                'response_type': (file_type,),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/invoices/{invoiceId}?download',
+                'operation_id': 'download_invoice_by_id',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'invoice_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'invoice_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'invoice_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'X-Tenant',
+                    'invoice_id': 'invoiceId',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'invoice_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/octet-stream',
+                    'application/vnd.graal.systems.v1.error+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__download_invoice_by_id
+        )
+
         def __find_invoice_by_id(
             self,
             x_tenant,

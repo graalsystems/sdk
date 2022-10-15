@@ -94,6 +94,7 @@ class CronSchedule(ModelComposed):
             'type': (str,),  # noqa: E501
             'cron_expression': (str,),  # noqa: E501
             'timezone': (str,),  # noqa: E501
+            'infrastructure_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -111,6 +112,7 @@ class CronSchedule(ModelComposed):
         'type': 'type',  # noqa: E501
         'cron_expression': 'cron_expression',  # noqa: E501
         'timezone': 'timezone',  # noqa: E501
+        'infrastructure_id': 'infrastructure_id',  # noqa: E501
     }
 
     required_properties = set([
@@ -163,6 +165,7 @@ class CronSchedule(ModelComposed):
             type (str): [optional] if omitted the server will use the default value of "cron"  # noqa: E501
             cron_expression (str): [optional]  # noqa: E501
             timezone (str): [optional]  # noqa: E501
+            infrastructure_id (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

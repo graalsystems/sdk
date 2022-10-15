@@ -28,26 +28,32 @@ from graalsystems.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from graalsystems.model.airflow_options import AirflowOptions
     from graalsystems.model.bash_options import BashOptions
     from graalsystems.model.dask_options import DaskOptions
+    from graalsystems.model.dbt_options import DbtOptions
+    from graalsystems.model.flink_options import FlinkOptions
     from graalsystems.model.hadoop_options import HadoopOptions
+    from graalsystems.model.knime_options import KnimeOptions
     from graalsystems.model.mx_net_options import MXNetOptions
     from graalsystems.model.options import Options
     from graalsystems.model.py_torch_options import PyTorchOptions
     from graalsystems.model.python_options import PythonOptions
-    from graalsystems.model.resources import Resources
     from graalsystems.model.spark_options import SparkOptions
     from graalsystems.model.tensorflow_options import TensorflowOptions
     from graalsystems.model.tensorflow_options_all_of import TensorflowOptionsAllOf
     from graalsystems.model.xgboost_options import XgboostOptions
+    globals()['AirflowOptions'] = AirflowOptions
     globals()['BashOptions'] = BashOptions
     globals()['DaskOptions'] = DaskOptions
+    globals()['DbtOptions'] = DbtOptions
+    globals()['FlinkOptions'] = FlinkOptions
     globals()['HadoopOptions'] = HadoopOptions
+    globals()['KnimeOptions'] = KnimeOptions
     globals()['MXNetOptions'] = MXNetOptions
     globals()['Options'] = Options
     globals()['PyTorchOptions'] = PyTorchOptions
     globals()['PythonOptions'] = PythonOptions
-    globals()['Resources'] = Resources
     globals()['SparkOptions'] = SparkOptions
     globals()['TensorflowOptions'] = TensorflowOptions
     globals()['TensorflowOptionsAllOf'] = TensorflowOptionsAllOf
@@ -108,20 +114,25 @@ class TensorflowOptions(ModelComposed):
         lazy_import()
         return {
             'type': (str,),  # noqa: E501
+            'number_replicas': (str,),  # noqa: E501
             'module': (str,),  # noqa: E501
-            'number_replicas': (float,),  # noqa: E501
+            'replica_instance_type': (str,),  # noqa: E501
             'env': ({str: (str,)},),  # noqa: E501
             'docker_image': (str,),  # noqa: E501
-            'resources': (Resources,),  # noqa: E501
+            'instance_type': (str,),  # noqa: E501
         }
 
     @cached_property
     def discriminator():
         lazy_import()
         val = {
+            'airflow': AirflowOptions,
             'bash': BashOptions,
             'dask': DaskOptions,
+            'dbt': DbtOptions,
+            'flink': FlinkOptions,
             'hadoop': HadoopOptions,
+            'knime': KnimeOptions,
             'mxnet': MXNetOptions,
             'python': PythonOptions,
             'pytorch': PyTorchOptions,
@@ -135,11 +146,12 @@ class TensorflowOptions(ModelComposed):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
-        'module': 'module',  # noqa: E501
         'number_replicas': 'number_replicas',  # noqa: E501
+        'module': 'module',  # noqa: E501
+        'replica_instance_type': 'replica_instance_type',  # noqa: E501
         'env': 'env',  # noqa: E501
         'docker_image': 'docker_image',  # noqa: E501
-        'resources': 'resources',  # noqa: E501
+        'instance_type': 'instance_type',  # noqa: E501
     }
 
     required_properties = set([
@@ -190,11 +202,12 @@ class TensorflowOptions(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             type (str): [optional] if omitted the server will use the default value of "tensorflow"  # noqa: E501
+            number_replicas (str): [optional]  # noqa: E501
             module (str): [optional]  # noqa: E501
-            number_replicas (float): [optional]  # noqa: E501
+            replica_instance_type (str): [optional]  # noqa: E501
             env ({str: (str,)}): [optional]  # noqa: E501
             docker_image (str): [optional]  # noqa: E501
-            resources (Resources): [optional]  # noqa: E501
+            instance_type (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

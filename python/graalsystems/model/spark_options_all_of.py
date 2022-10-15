@@ -82,8 +82,12 @@ class SparkOptionsAllOf(ModelNormal):
             'libraries': ([str],),  # noqa: E501
             'conf': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
             'main_library': (Library,),  # noqa: E501
+            'py_files': ([Library],),  # noqa: E501
             'main_class_name': (str,),  # noqa: E501
             'loggers': ([str],),  # noqa: E501
+            'executor_instance_type': (str,),  # noqa: E501
+            'driver_instance_type': (str,),  # noqa: E501
+            'number_executors': (float,),  # noqa: E501
         }
 
     @cached_property
@@ -96,8 +100,12 @@ class SparkOptionsAllOf(ModelNormal):
         'libraries': 'libraries',  # noqa: E501
         'conf': 'conf',  # noqa: E501
         'main_library': 'main_library',  # noqa: E501
+        'py_files': 'py_files',  # noqa: E501
         'main_class_name': 'main_class_name',  # noqa: E501
         'loggers': 'loggers',  # noqa: E501
+        'executor_instance_type': 'executor_instance_type',  # noqa: E501
+        'driver_instance_type': 'driver_instance_type',  # noqa: E501
+        'number_executors': 'number_executors',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,8 +158,12 @@ class SparkOptionsAllOf(ModelNormal):
             libraries ([str]): [optional]  # noqa: E501
             conf ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
             main_library (Library): [optional]  # noqa: E501
+            py_files ([Library]): [optional]  # noqa: E501
             main_class_name (str): [optional]  # noqa: E501
             loggers ([str]): [optional]  # noqa: E501
+            executor_instance_type (str): [optional]  # noqa: E501
+            driver_instance_type (str): [optional]  # noqa: E501
+            number_executors (float): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

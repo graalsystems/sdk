@@ -28,23 +28,29 @@ from graalsystems.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from graalsystems.model.airflow_options import AirflowOptions
     from graalsystems.model.bash_options import BashOptions
     from graalsystems.model.dask_options import DaskOptions
+    from graalsystems.model.dbt_options import DbtOptions
+    from graalsystems.model.flink_options import FlinkOptions
     from graalsystems.model.hadoop_options import HadoopOptions
+    from graalsystems.model.knime_options import KnimeOptions
     from graalsystems.model.mx_net_options import MXNetOptions
     from graalsystems.model.py_torch_options import PyTorchOptions
     from graalsystems.model.python_options import PythonOptions
-    from graalsystems.model.resources import Resources
     from graalsystems.model.spark_options import SparkOptions
     from graalsystems.model.tensorflow_options import TensorflowOptions
     from graalsystems.model.xgboost_options import XgboostOptions
+    globals()['AirflowOptions'] = AirflowOptions
     globals()['BashOptions'] = BashOptions
     globals()['DaskOptions'] = DaskOptions
+    globals()['DbtOptions'] = DbtOptions
+    globals()['FlinkOptions'] = FlinkOptions
     globals()['HadoopOptions'] = HadoopOptions
+    globals()['KnimeOptions'] = KnimeOptions
     globals()['MXNetOptions'] = MXNetOptions
     globals()['PyTorchOptions'] = PyTorchOptions
     globals()['PythonOptions'] = PythonOptions
-    globals()['Resources'] = Resources
     globals()['SparkOptions'] = SparkOptions
     globals()['TensorflowOptions'] = TensorflowOptions
     globals()['XgboostOptions'] = XgboostOptions
@@ -98,7 +104,7 @@ class Options(ModelNormal):
         return {
             'env': ({str: (str,)},),  # noqa: E501
             'docker_image': (str,),  # noqa: E501
-            'resources': (Resources,),  # noqa: E501
+            'instance_type': (str,),  # noqa: E501
             'type': (str,),  # noqa: E501
         }
 
@@ -106,18 +112,26 @@ class Options(ModelNormal):
     def discriminator():
         lazy_import()
         val = {
+            'AirflowOptions': AirflowOptions,
             'BashOptions': BashOptions,
             'DaskOptions': DaskOptions,
+            'DbtOptions': DbtOptions,
+            'FlinkOptions': FlinkOptions,
             'HadoopOptions': HadoopOptions,
+            'KnimeOptions': KnimeOptions,
             'MXNetOptions': MXNetOptions,
             'PyTorchOptions': PyTorchOptions,
             'PythonOptions': PythonOptions,
             'SparkOptions': SparkOptions,
             'TensorflowOptions': TensorflowOptions,
             'XgboostOptions': XgboostOptions,
+            'airflow': AirflowOptions,
             'bash': BashOptions,
             'dask': DaskOptions,
+            'dbt': DbtOptions,
+            'flink': FlinkOptions,
             'hadoop': HadoopOptions,
+            'knime': KnimeOptions,
             'mxnet': MXNetOptions,
             'python': PythonOptions,
             'pytorch': PyTorchOptions,
@@ -132,7 +146,7 @@ class Options(ModelNormal):
     attribute_map = {
         'env': 'env',  # noqa: E501
         'docker_image': 'docker_image',  # noqa: E501
-        'resources': 'resources',  # noqa: E501
+        'instance_type': 'instance_type',  # noqa: E501
         'type': 'type',  # noqa: E501
     }
 
@@ -184,7 +198,7 @@ class Options(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             env ({str: (str,)}): [optional]  # noqa: E501
             docker_image (str): [optional]  # noqa: E501
-            resources (Resources): [optional]  # noqa: E501
+            instance_type (str): [optional]  # noqa: E501
             type (str): [optional]  # noqa: E501
         """
 

@@ -76,6 +76,9 @@ class MXNetOptionsAllOf(ModelNormal):
             'type': (str,),  # noqa: E501
             'module': (str,),  # noqa: E501
             'number_replicas': (float,),  # noqa: E501
+            'server_instance_type': (str,),  # noqa: E501
+            'worker_instance_type': (str,),  # noqa: E501
+            'scheduler_instance_type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +90,9 @@ class MXNetOptionsAllOf(ModelNormal):
         'type': 'type',  # noqa: E501
         'module': 'module',  # noqa: E501
         'number_replicas': 'number_replicas',  # noqa: E501
+        'server_instance_type': 'server_instance_type',  # noqa: E501
+        'worker_instance_type': 'worker_instance_type',  # noqa: E501
+        'scheduler_instance_type': 'scheduler_instance_type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,6 +144,9 @@ class MXNetOptionsAllOf(ModelNormal):
             type (str): [optional] if omitted the server will use the default value of "mxnet"  # noqa: E501
             module (str): [optional]  # noqa: E501
             number_replicas (float): [optional]  # noqa: E501
+            server_instance_type (str): [optional]  # noqa: E501
+            worker_instance_type (str): [optional]  # noqa: E501
+            scheduler_instance_type (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

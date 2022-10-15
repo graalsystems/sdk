@@ -75,7 +75,6 @@ class KubernetesTargetAllOf(ModelNormal):
         return {
             'type': (str,),  # noqa: E501
             'subtype': (str,),  # noqa: E501
-            'namespace': (str,),  # noqa: E501
             'mode': (str,),  # noqa: E501
             'context': (str,),  # noqa: E501
             'kubeconfig': (str,),  # noqa: E501
@@ -89,7 +88,6 @@ class KubernetesTargetAllOf(ModelNormal):
     attribute_map = {
         'type': 'type',  # noqa: E501
         'subtype': 'subtype',  # noqa: E501
-        'namespace': 'namespace',  # noqa: E501
         'mode': 'mode',  # noqa: E501
         'context': 'context',  # noqa: E501
         'kubeconfig': 'kubeconfig',  # noqa: E501
@@ -143,7 +141,6 @@ class KubernetesTargetAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             type (str): [optional] if omitted the server will use the default value of "kubernetes"  # noqa: E501
             subtype (str): [optional]  # noqa: E501
-            namespace (str): [optional]  # noqa: E501
             mode (str): [optional]  # noqa: E501
             context (str): [optional]  # noqa: E501
             kubeconfig (str): [optional]  # noqa: E501

@@ -78,6 +78,7 @@ class Contact(ModelNormal):
             'email': (str,),  # noqa: E501
             'password': (str,),  # noqa: E501
             'phone': (str,),  # noqa: E501
+            'country': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -91,6 +92,7 @@ class Contact(ModelNormal):
         'email': 'email',  # noqa: E501
         'password': 'password',  # noqa: E501
         'phone': 'phone',  # noqa: E501
+        'country': 'country',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,6 +146,7 @@ class Contact(ModelNormal):
             email (str): [optional]  # noqa: E501
             password (str): [optional]  # noqa: E501
             phone (str): [optional]  # noqa: E501
+            country (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

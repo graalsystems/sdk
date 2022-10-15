@@ -79,6 +79,8 @@ class DaskOptionsAllOf(ModelNormal):
             'function_name': (str,),  # noqa: E501
             'number_workers': (float,),  # noqa: E501
             'number_workers_max': (float,),  # noqa: E501
+            'driver_instance_type': (str,),  # noqa: E501
+            'worker_instance_type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -93,6 +95,8 @@ class DaskOptionsAllOf(ModelNormal):
         'function_name': 'function_name',  # noqa: E501
         'number_workers': 'number_workers',  # noqa: E501
         'number_workers_max': 'number_workers_max',  # noqa: E501
+        'driver_instance_type': 'driver_instance_type',  # noqa: E501
+        'worker_instance_type': 'worker_instance_type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,6 +151,8 @@ class DaskOptionsAllOf(ModelNormal):
             function_name (str): [optional]  # noqa: E501
             number_workers (float): [optional]  # noqa: E501
             number_workers_max (float): [optional]  # noqa: E501
+            driver_instance_type (str): [optional]  # noqa: E501
+            worker_instance_type (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
