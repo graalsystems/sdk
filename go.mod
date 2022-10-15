@@ -1,4 +1,4 @@
-module github.com/graalsystems/sdk/go
+module github.com/graalsystems/sdk
 
 go 1.19
 
