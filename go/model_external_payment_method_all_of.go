@@ -19,7 +19,6 @@ import (
 type ExternalPaymentMethodAllOf struct {
 	Type *string `json:"type,omitempty"`
 	Reference *string `json:"reference,omitempty"`
-	PaymentMethod *PaymentMethod `json:"payment_method,omitempty"`
 }
 
 // NewExternalPaymentMethodAllOf instantiates a new ExternalPaymentMethodAllOf object
@@ -107,38 +106,6 @@ func (o *ExternalPaymentMethodAllOf) SetReference(v string) {
 	o.Reference = &v
 }
 
-// GetPaymentMethod returns the PaymentMethod field value if set, zero value otherwise.
-func (o *ExternalPaymentMethodAllOf) GetPaymentMethod() PaymentMethod {
-	if o == nil || o.PaymentMethod == nil {
-		var ret PaymentMethod
-		return ret
-	}
-	return *o.PaymentMethod
-}
-
-// GetPaymentMethodOk returns a tuple with the PaymentMethod field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExternalPaymentMethodAllOf) GetPaymentMethodOk() (*PaymentMethod, bool) {
-	if o == nil || o.PaymentMethod == nil {
-		return nil, false
-	}
-	return o.PaymentMethod, true
-}
-
-// HasPaymentMethod returns a boolean if a field has been set.
-func (o *ExternalPaymentMethodAllOf) HasPaymentMethod() bool {
-	if o != nil && o.PaymentMethod != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPaymentMethod gets a reference to the given PaymentMethod and assigns it to the PaymentMethod field.
-func (o *ExternalPaymentMethodAllOf) SetPaymentMethod(v PaymentMethod) {
-	o.PaymentMethod = &v
-}
-
 func (o ExternalPaymentMethodAllOf) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Type != nil {
@@ -146,9 +113,6 @@ func (o ExternalPaymentMethodAllOf) MarshalJSON() ([]byte, error) {
 	}
 	if o.Reference != nil {
 		toSerialize["reference"] = o.Reference
-	}
-	if o.PaymentMethod != nil {
-		toSerialize["payment_method"] = o.PaymentMethod
 	}
 	return json.Marshal(toSerialize)
 }
