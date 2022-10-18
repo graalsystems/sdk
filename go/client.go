@@ -49,7 +49,7 @@ type APIClient struct {
 
 	// API Services
 
-	ActionApi *ActionApiService
+	//ActionApi *ActionApiService
 
 	ApplicationApi *ApplicationApiService
 
@@ -63,7 +63,7 @@ type APIClient struct {
 
 	CostApi *CostApiService
 
-	DataApi *DataApiService
+	//DataApi *DataApiService
 
 	EnvApi *EnvApiService
 
@@ -87,7 +87,7 @@ type APIClient struct {
 
 	JobApi *JobApiService
 
-	LibraryApi *LibraryApiService
+	//LibraryApi *LibraryApiService
 
 	MessageApi *MessageApiService
 
@@ -148,14 +148,14 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.ActionApi = (*ActionApiService)(&c.common)
+	//c.ActionApi = (*ActionApiService)(&c.common)
 	c.ApplicationApi = (*ApplicationApiService)(&c.common)
 	c.AssignmentApi = (*AssignmentApiService)(&c.common)
 	c.BridgeApi = (*BridgeApiService)(&c.common)
 	c.BucketApi = (*BucketApiService)(&c.common)
 	c.CatalogApi = (*CatalogApiService)(&c.common)
 	c.CostApi = (*CostApiService)(&c.common)
-	c.DataApi = (*DataApiService)(&c.common)
+	//c.DataApi = (*DataApiService)(&c.common)
 	c.EnvApi = (*EnvApiService)(&c.common)
 	c.EventApi = (*EventApiService)(&c.common)
 	c.FirewallApi = (*FirewallApiService)(&c.common)
@@ -167,7 +167,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.InstanceTypeApi = (*InstanceTypeApiService)(&c.common)
 	c.InvoiceApi = (*InvoiceApiService)(&c.common)
 	c.JobApi = (*JobApiService)(&c.common)
-	c.LibraryApi = (*LibraryApiService)(&c.common)
+	//c.LibraryApi = (*LibraryApiService)(&c.common)
 	c.MessageApi = (*MessageApiService)(&c.common)
 	c.NotificationApi = (*NotificationApiService)(&c.common)
 	c.PaymentmethodApi = (*PaymentmethodApiService)(&c.common)
