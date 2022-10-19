@@ -25,7 +25,7 @@ type Secret struct {
 	Created *time.Time `json:"created,omitempty"`
 	Updated *time.Time `json:"updated,omitempty"`
 	Labels *map[string]string `json:"labels,omitempty"`
-	Metadata *map[string]map[string]interface{} `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 }
 
 // NewSecret instantiates a new Secret object
@@ -270,9 +270,9 @@ func (o *Secret) SetLabels(v map[string]string) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *Secret) GetMetadata() map[string]map[string]interface{} {
+func (o *Secret) GetMetadata() map[string]interface{} {
 	if o == nil || o.Metadata == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Metadata
@@ -280,7 +280,7 @@ func (o *Secret) GetMetadata() map[string]map[string]interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Secret) GetMetadataOk() (*map[string]map[string]interface{}, bool) {
+func (o *Secret) GetMetadataOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -296,8 +296,8 @@ func (o *Secret) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]map[string]interface{} and assigns it to the Metadata field.
-func (o *Secret) SetMetadata(v map[string]map[string]interface{}) {
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *Secret) SetMetadata(v map[string]interface{}) {
 	o.Metadata = &v
 }
 

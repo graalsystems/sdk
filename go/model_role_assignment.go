@@ -27,7 +27,7 @@ type RoleAssignment struct {
 	TenantId *string `json:"tenant_id,omitempty"`
 	Created *time.Time `json:"created,omitempty"`
 	Updated *time.Time `json:"updated,omitempty"`
-	Metadata *map[string]map[string]interface{} `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 }
 
 // NewRoleAssignment instantiates a new RoleAssignment object
@@ -336,9 +336,9 @@ func (o *RoleAssignment) SetUpdated(v time.Time) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *RoleAssignment) GetMetadata() map[string]map[string]interface{} {
+func (o *RoleAssignment) GetMetadata() map[string]interface{} {
 	if o == nil || o.Metadata == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Metadata
@@ -346,7 +346,7 @@ func (o *RoleAssignment) GetMetadata() map[string]map[string]interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleAssignment) GetMetadataOk() (*map[string]map[string]interface{}, bool) {
+func (o *RoleAssignment) GetMetadataOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -362,8 +362,8 @@ func (o *RoleAssignment) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]map[string]interface{} and assigns it to the Metadata field.
-func (o *RoleAssignment) SetMetadata(v map[string]map[string]interface{}) {
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *RoleAssignment) SetMetadata(v map[string]interface{}) {
 	o.Metadata = &v
 }
 

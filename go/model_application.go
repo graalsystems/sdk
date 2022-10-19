@@ -27,7 +27,7 @@ type Application struct {
 	Description *string `json:"description,omitempty"`
 	Created *time.Time `json:"created,omitempty"`
 	Updated *time.Time `json:"updated,omitempty"`
-	Metadata *map[string]map[string]interface{} `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 	Locked *bool `json:"locked,omitempty"`
 }
 
@@ -337,9 +337,9 @@ func (o *Application) SetUpdated(v time.Time) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *Application) GetMetadata() map[string]map[string]interface{} {
+func (o *Application) GetMetadata() map[string]interface{} {
 	if o == nil || o.Metadata == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Metadata
@@ -347,7 +347,7 @@ func (o *Application) GetMetadata() map[string]map[string]interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetMetadataOk() (*map[string]map[string]interface{}, bool) {
+func (o *Application) GetMetadataOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -363,8 +363,8 @@ func (o *Application) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]map[string]interface{} and assigns it to the Metadata field.
-func (o *Application) SetMetadata(v map[string]map[string]interface{}) {
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *Application) SetMetadata(v map[string]interface{}) {
 	o.Metadata = &v
 }
 

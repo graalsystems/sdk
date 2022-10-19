@@ -29,7 +29,7 @@ type JobRun struct {
 	Created *time.Time `json:"created,omitempty"`
 	Updated *time.Time `json:"updated,omitempty"`
 	Parameters *[]string `json:"parameters,omitempty"`
-	Metadata *map[string]map[string]interface{} `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 }
 
 // NewJobRun instantiates a new JobRun object
@@ -402,9 +402,9 @@ func (o *JobRun) SetParameters(v []string) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *JobRun) GetMetadata() map[string]map[string]interface{} {
+func (o *JobRun) GetMetadata() map[string]interface{} {
 	if o == nil || o.Metadata == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Metadata
@@ -412,7 +412,7 @@ func (o *JobRun) GetMetadata() map[string]map[string]interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JobRun) GetMetadataOk() (*map[string]map[string]interface{}, bool) {
+func (o *JobRun) GetMetadataOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -428,8 +428,8 @@ func (o *JobRun) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]map[string]interface{} and assigns it to the Metadata field.
-func (o *JobRun) SetMetadata(v map[string]map[string]interface{}) {
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *JobRun) SetMetadata(v map[string]interface{}) {
 	o.Metadata = &v
 }
 

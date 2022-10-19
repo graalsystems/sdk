@@ -19,7 +19,7 @@ import (
 type SparkOptionsAllOf struct {
 	Type *string `json:"type,omitempty"`
 	Libraries *[]string `json:"libraries,omitempty"`
-	Conf *map[string]map[string]interface{} `json:"conf,omitempty"`
+	Conf *map[string]interface{} `json:"conf,omitempty"`
 	MainLibrary *Library `json:"main_library,omitempty"`
 	PyFiles *[]Library `json:"py_files,omitempty"`
 	MainClassName *string `json:"main_class_name,omitempty"`
@@ -115,9 +115,9 @@ func (o *SparkOptionsAllOf) SetLibraries(v []string) {
 }
 
 // GetConf returns the Conf field value if set, zero value otherwise.
-func (o *SparkOptionsAllOf) GetConf() map[string]map[string]interface{} {
+func (o *SparkOptionsAllOf) GetConf() map[string]interface{} {
 	if o == nil || o.Conf == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Conf
@@ -125,7 +125,7 @@ func (o *SparkOptionsAllOf) GetConf() map[string]map[string]interface{} {
 
 // GetConfOk returns a tuple with the Conf field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SparkOptionsAllOf) GetConfOk() (*map[string]map[string]interface{}, bool) {
+func (o *SparkOptionsAllOf) GetConfOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Conf == nil {
 		return nil, false
 	}
@@ -141,8 +141,8 @@ func (o *SparkOptionsAllOf) HasConf() bool {
 	return false
 }
 
-// SetConf gets a reference to the given map[string]map[string]interface{} and assigns it to the Conf field.
-func (o *SparkOptionsAllOf) SetConf(v map[string]map[string]interface{}) {
+// SetConf gets a reference to the given map[string]interface{} and assigns it to the Conf field.
+func (o *SparkOptionsAllOf) SetConf(v map[string]interface{}) {
 	o.Conf = &v
 }
 

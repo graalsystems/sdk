@@ -26,7 +26,7 @@ type Ticket struct {
 	Details *Details `json:"details,omitempty"`
 	Created *time.Time `json:"created,omitempty"`
 	Updated *time.Time `json:"updated,omitempty"`
-	Metadata *map[string]map[string]interface{} `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 }
 
 // NewTicket instantiates a new Ticket object
@@ -303,9 +303,9 @@ func (o *Ticket) SetUpdated(v time.Time) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *Ticket) GetMetadata() map[string]map[string]interface{} {
+func (o *Ticket) GetMetadata() map[string]interface{} {
 	if o == nil || o.Metadata == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Metadata
@@ -313,7 +313,7 @@ func (o *Ticket) GetMetadata() map[string]map[string]interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ticket) GetMetadataOk() (*map[string]map[string]interface{}, bool) {
+func (o *Ticket) GetMetadataOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -329,8 +329,8 @@ func (o *Ticket) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]map[string]interface{} and assigns it to the Metadata field.
-func (o *Ticket) SetMetadata(v map[string]map[string]interface{}) {
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *Ticket) SetMetadata(v map[string]interface{}) {
 	o.Metadata = &v
 }
 

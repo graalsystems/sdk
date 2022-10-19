@@ -30,7 +30,7 @@ type Workflow struct {
 	Notifications *Notifications `json:"notifications,omitempty"`
 	Parameters *[]string `json:"parameters,omitempty"`
 	Labels *map[string]string `json:"labels,omitempty"`
-	Metadata *map[string]map[string]interface{} `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 }
 
 // NewWorkflow instantiates a new Workflow object
@@ -435,9 +435,9 @@ func (o *Workflow) SetLabels(v map[string]string) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *Workflow) GetMetadata() map[string]map[string]interface{} {
+func (o *Workflow) GetMetadata() map[string]interface{} {
 	if o == nil || o.Metadata == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Metadata
@@ -445,7 +445,7 @@ func (o *Workflow) GetMetadata() map[string]map[string]interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Workflow) GetMetadataOk() (*map[string]map[string]interface{}, bool) {
+func (o *Workflow) GetMetadataOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -461,8 +461,8 @@ func (o *Workflow) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]map[string]interface{} and assigns it to the Metadata field.
-func (o *Workflow) SetMetadata(v map[string]map[string]interface{}) {
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *Workflow) SetMetadata(v map[string]interface{}) {
 	o.Metadata = &v
 }
 

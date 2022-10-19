@@ -27,7 +27,7 @@ type FirewallRule struct {
 	Ports *string `json:"ports,omitempty"`
 	Source *string `json:"source,omitempty"`
 	Target *string `json:"target,omitempty"`
-	Metadata *map[string]map[string]interface{} `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 }
 
 // NewFirewallRule instantiates a new FirewallRule object
@@ -336,9 +336,9 @@ func (o *FirewallRule) SetTarget(v string) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *FirewallRule) GetMetadata() map[string]map[string]interface{} {
+func (o *FirewallRule) GetMetadata() map[string]interface{} {
 	if o == nil || o.Metadata == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Metadata
@@ -346,7 +346,7 @@ func (o *FirewallRule) GetMetadata() map[string]map[string]interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FirewallRule) GetMetadataOk() (*map[string]map[string]interface{}, bool) {
+func (o *FirewallRule) GetMetadataOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -362,8 +362,8 @@ func (o *FirewallRule) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]map[string]interface{} and assigns it to the Metadata field.
-func (o *FirewallRule) SetMetadata(v map[string]map[string]interface{}) {
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *FirewallRule) SetMetadata(v map[string]interface{}) {
 	o.Metadata = &v
 }
 
