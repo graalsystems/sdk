@@ -194,8 +194,8 @@ func getServerVariables(ctx context.Context) (map[string]string, error) {
 func getServerOperationVariables(ctx context.Context, endpoint string) (map[string]string, error) {
 	osv := ctx.Value(ContextOperationServerVariables)
 	if osv != nil {
-		if operationVariables, ok := osv.(map[string]string); !ok {
-			return nil, reportError("ctx value of ContextOperationServerVariables has invalid type %T should be map[string]string", osv)
+		if operationVariables, ok := osv.(map[string]map[string]string); !ok {
+			return nil, reportError("ctx value of ContextOperationServerVariables has invalid type %T should be map[string]map[string]string", osv)
 		} else {
 			variables, ok := operationVariables[endpoint]
 			if ok {
