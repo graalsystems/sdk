@@ -12,8 +12,8 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from graalsystems.api_client import ApiClient, Endpoint as _Endpoint
-from graalsystems.model_utils import (  # noqa: F401
+from openapi_client.api_client import ApiClient, Endpoint as _Endpoint
+from openapi_client.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -22,14 +22,14 @@ from graalsystems.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from graalsystems.model.error import Error
-from graalsystems.model.job_run import JobRun
-from graalsystems.model.log_entry import LogEntry
-from graalsystems.model.metric import Metric
-from graalsystems.model.patch import Patch
-from graalsystems.model.run_with_job import RunWithJob
-from graalsystems.model.workflow import Workflow
-from graalsystems.model.workflow_run import WorkflowRun
+from openapi_client.model.error import Error
+from openapi_client.model.job_run import JobRun
+from openapi_client.model.log_entry import LogEntry
+from openapi_client.model.metric import Metric
+from openapi_client.model.patch import Patch
+from openapi_client.model.run_with_job import RunWithJob
+from openapi_client.model.workflow import Workflow
+from openapi_client.model.workflow_run import WorkflowRun
 
 
 class RunApi(object):
@@ -43,81 +43,7 @@ class RunApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-
-        def __create_run_for_job(
-            self,
-            x_tenant,
-            job_id,
-            job_run,
-            **kwargs
-        ):
-            """Create a run for a job  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.create_run_for_job(x_tenant, job_id, job_run, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                job_id (str): Id of the Job
-                job_run (JobRun): The run to be created
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                JobRun
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['job_id'] = \
-                job_id
-            kwargs['job_run'] = \
-                job_run
-            return self.call_with_http_info(**kwargs)
-
-        self.create_run_for_job = _Endpoint(
+        self.create_run_for_job_endpoint = _Endpoint(
             settings={
                 'response_type': (JobRun,),
                 'auth': [
@@ -180,84 +106,9 @@ class RunApi(object):
                     'application/vnd.graal.systems.v1.jobrun+json'
                 ]
             },
-            api_client=api_client,
-            callable=__create_run_for_job
+            api_client=api_client
         )
-
-        def __create_run_for_workflow(
-            self,
-            x_tenant,
-            workflow_id,
-            workflow_run,
-            **kwargs
-        ):
-            """Create a run for a workflow  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.create_run_for_workflow(x_tenant, workflow_id, workflow_run, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                workflow_id (str): Id of the Workflow
-                workflow_run (WorkflowRun): The run to be created
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                Workflow
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['workflow_id'] = \
-                workflow_id
-            kwargs['workflow_run'] = \
-                workflow_run
-            return self.call_with_http_info(**kwargs)
-
-        self.create_run_for_workflow = _Endpoint(
+        self.create_run_for_workflow_endpoint = _Endpoint(
             settings={
                 'response_type': (Workflow,),
                 'auth': [
@@ -320,84 +171,9 @@ class RunApi(object):
                     'application/vnd.graal.systems.v1.workflowrun+json'
                 ]
             },
-            api_client=api_client,
-            callable=__create_run_for_workflow
+            api_client=api_client
         )
-
-        def __delete_run_by_job_id_and_run_id(
-            self,
-            x_tenant,
-            job_id,
-            run_id,
-            **kwargs
-        ):
-            """Delete a run by a jobId and a runId  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.delete_run_by_job_id_and_run_id(x_tenant, job_id, run_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                job_id (str): Id of the Job
-                run_id (str): Id of the Run
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['job_id'] = \
-                job_id
-            kwargs['run_id'] = \
-                run_id
-            return self.call_with_http_info(**kwargs)
-
-        self.delete_run_by_job_id_and_run_id = _Endpoint(
+        self.delete_run_by_job_id_and_run_id_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -458,84 +234,9 @@ class RunApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__delete_run_by_job_id_and_run_id
+            api_client=api_client
         )
-
-        def __delete_run_by_workflow_id_and_run_id(
-            self,
-            x_tenant,
-            workflow_id,
-            run_id,
-            **kwargs
-        ):
-            """Delete a run by a workflowId and a runId  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.delete_run_by_workflow_id_and_run_id(x_tenant, workflow_id, run_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                workflow_id (str): Id of the Workflow
-                run_id (str): Id of the Run
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['workflow_id'] = \
-                workflow_id
-            kwargs['run_id'] = \
-                run_id
-            return self.call_with_http_info(**kwargs)
-
-        self.delete_run_by_workflow_id_and_run_id = _Endpoint(
+        self.delete_run_by_workflow_id_and_run_id_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -596,80 +297,9 @@ class RunApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__delete_run_by_workflow_id_and_run_id
+            api_client=api_client
         )
-
-        def __find_latest_runs(
-            self,
-            x_tenant,
-            number,
-            **kwargs
-        ):
-            """Find the latest runs  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.find_latest_runs(x_tenant, number, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                number (int): Number of runs
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [RunWithJob]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['number'] = \
-                number
-            return self.call_with_http_info(**kwargs)
-
-        self.find_latest_runs = _Endpoint(
+        self.find_latest_runs_endpoint = _Endpoint(
             settings={
                 'response_type': ([RunWithJob],),
                 'auth': [
@@ -724,84 +354,9 @@ class RunApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__find_latest_runs
+            api_client=api_client
         )
-
-        def __find_run_by_job_id_and_run_id(
-            self,
-            x_tenant,
-            job_id,
-            run_id,
-            **kwargs
-        ):
-            """Find the run by a jobId and a runId  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.find_run_by_job_id_and_run_id(x_tenant, job_id, run_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                job_id (str): Id of the Job
-                run_id (str): Id of the Run
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                JobRun
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['job_id'] = \
-                job_id
-            kwargs['run_id'] = \
-                run_id
-            return self.call_with_http_info(**kwargs)
-
-        self.find_run_by_job_id_and_run_id = _Endpoint(
+        self.find_run_by_job_id_and_run_id_endpoint = _Endpoint(
             settings={
                 'response_type': (JobRun,),
                 'auth': [
@@ -863,80 +418,9 @@ class RunApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__find_run_by_job_id_and_run_id
+            api_client=api_client
         )
-
-        def __find_runs_by_job_id(
-            self,
-            x_tenant,
-            job_id,
-            **kwargs
-        ):
-            """Find the runs for a job  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.find_runs_by_job_id(x_tenant, job_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                job_id (str): Id of the Job
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [JobRun]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['job_id'] = \
-                job_id
-            return self.call_with_http_info(**kwargs)
-
-        self.find_runs_by_job_id = _Endpoint(
+        self.find_runs_by_job_id_endpoint = _Endpoint(
             settings={
                 'response_type': ([JobRun],),
                 'auth': [
@@ -992,80 +476,9 @@ class RunApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__find_runs_by_job_id
+            api_client=api_client
         )
-
-        def __find_runs_by_workflow_id(
-            self,
-            x_tenant,
-            workflow_id,
-            **kwargs
-        ):
-            """Find the runs for a workflow  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.find_runs_by_workflow_id(x_tenant, workflow_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                workflow_id (str): Id of the Workflow
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [WorkflowRun]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['workflow_id'] = \
-                workflow_id
-            return self.call_with_http_info(**kwargs)
-
-        self.find_runs_by_workflow_id = _Endpoint(
+        self.find_runs_by_workflow_id_endpoint = _Endpoint(
             settings={
                 'response_type': ([WorkflowRun],),
                 'auth': [
@@ -1121,88 +534,9 @@ class RunApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__find_runs_by_workflow_id
+            api_client=api_client
         )
-
-        def __get_file(
-            self,
-            x_tenant,
-            job_id,
-            run_id,
-            filename,
-            **kwargs
-        ):
-            """Get file  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_file(x_tenant, job_id, run_id, filename, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                job_id (str): Id of the Job
-                run_id (str): Id of the Run
-                filename (str): Name of the file
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                file_type
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['job_id'] = \
-                job_id
-            kwargs['run_id'] = \
-                run_id
-            kwargs['filename'] = \
-                filename
-            return self.call_with_http_info(**kwargs)
-
-        self.get_file = _Endpoint(
+        self.get_file_endpoint = _Endpoint(
             settings={
                 'response_type': (file_type,),
                 'auth': [
@@ -1270,85 +604,9 @@ class RunApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__get_file
+            api_client=api_client
         )
-
-        def __get_logs(
-            self,
-            x_tenant,
-            job_id,
-            run_id,
-            **kwargs
-        ):
-            """Get logs  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_logs(x_tenant, job_id, run_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                job_id (str): Id of the Job
-                run_id (str): Id of the Run
-
-            Keyword Args:
-                cursor (str): The cursor. [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [LogEntry]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['job_id'] = \
-                job_id
-            kwargs['run_id'] = \
-                run_id
-            return self.call_with_http_info(**kwargs)
-
-        self.get_logs = _Endpoint(
+        self.get_logs_endpoint = _Endpoint(
             settings={
                 'response_type': ([LogEntry],),
                 'auth': [
@@ -1415,90 +673,9 @@ class RunApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__get_logs
+            api_client=api_client
         )
-
-        def __get_metrics_for_run(
-            self,
-            x_tenant,
-            job_id,
-            run_id,
-            metric,
-            **kwargs
-        ):
-            """Find the metrics for a run  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_metrics_for_run(x_tenant, job_id, run_id, metric, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                job_id (str): Id of the Job
-                run_id (str): Id of the Run
-                metric (str): The metric name
-
-            Keyword Args:
-                _from (datetime): [optional]
-                to (datetime): [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [Metric]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['job_id'] = \
-                job_id
-            kwargs['run_id'] = \
-                run_id
-            kwargs['metric'] = \
-                metric
-            return self.call_with_http_info(**kwargs)
-
-        self.get_metrics_for_run = _Endpoint(
+        self.get_metrics_for_run_endpoint = _Endpoint(
             settings={
                 'response_type': ([Metric],),
                 'auth': [
@@ -1576,84 +753,9 @@ class RunApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__get_metrics_for_run
+            api_client=api_client
         )
-
-        def __get_run_files(
-            self,
-            x_tenant,
-            job_id,
-            run_id,
-            **kwargs
-        ):
-            """Get files  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_run_files(x_tenant, job_id, run_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                job_id (str): Id of the Job
-                run_id (str): Id of the Run
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [str]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['job_id'] = \
-                job_id
-            kwargs['run_id'] = \
-                run_id
-            return self.call_with_http_info(**kwargs)
-
-        self.get_run_files = _Endpoint(
+        self.get_run_files_endpoint = _Endpoint(
             settings={
                 'response_type': ([str],),
                 'auth': [
@@ -1715,88 +817,9 @@ class RunApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__get_run_files
+            api_client=api_client
         )
-
-        def __update_run(
-            self,
-            x_tenant,
-            job_id,
-            run_id,
-            patch,
-            **kwargs
-        ):
-            """Update a run  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.update_run(x_tenant, job_id, run_id, patch, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                job_id (str): Id of the Job
-                run_id (str): Id of the Run
-                patch ([Patch]): The patch
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                JobRun
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['job_id'] = \
-                job_id
-            kwargs['run_id'] = \
-                run_id
-            kwargs['patch'] = \
-                patch
-            return self.call_with_http_info(**kwargs)
-
-        self.update_run = _Endpoint(
+        self.update_run_endpoint = _Endpoint(
             settings={
                 'response_type': (JobRun,),
                 'auth': [
@@ -1865,6 +888,1023 @@ class RunApi(object):
                     'application/json-patch+json;charset=UTF-8'
                 ]
             },
-            api_client=api_client,
-            callable=__update_run
+            api_client=api_client
         )
+
+    def create_run_for_job(
+        self,
+        x_tenant,
+        job_id,
+        job_run,
+        **kwargs
+    ):
+        """Create a run for a job  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_run_for_job(x_tenant, job_id, job_run, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            job_id (str): Id of the Job
+            job_run (JobRun): The run to be created
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            JobRun
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['job_id'] = \
+            job_id
+        kwargs['job_run'] = \
+            job_run
+        return self.create_run_for_job_endpoint.call_with_http_info(**kwargs)
+
+    def create_run_for_workflow(
+        self,
+        x_tenant,
+        workflow_id,
+        workflow_run,
+        **kwargs
+    ):
+        """Create a run for a workflow  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_run_for_workflow(x_tenant, workflow_id, workflow_run, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            workflow_id (str): Id of the Workflow
+            workflow_run (WorkflowRun): The run to be created
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Workflow
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['workflow_id'] = \
+            workflow_id
+        kwargs['workflow_run'] = \
+            workflow_run
+        return self.create_run_for_workflow_endpoint.call_with_http_info(**kwargs)
+
+    def delete_run_by_job_id_and_run_id(
+        self,
+        x_tenant,
+        job_id,
+        run_id,
+        **kwargs
+    ):
+        """Delete a run by a jobId and a runId  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_run_by_job_id_and_run_id(x_tenant, job_id, run_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            job_id (str): Id of the Job
+            run_id (str): Id of the Run
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['job_id'] = \
+            job_id
+        kwargs['run_id'] = \
+            run_id
+        return self.delete_run_by_job_id_and_run_id_endpoint.call_with_http_info(**kwargs)
+
+    def delete_run_by_workflow_id_and_run_id(
+        self,
+        x_tenant,
+        workflow_id,
+        run_id,
+        **kwargs
+    ):
+        """Delete a run by a workflowId and a runId  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_run_by_workflow_id_and_run_id(x_tenant, workflow_id, run_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            workflow_id (str): Id of the Workflow
+            run_id (str): Id of the Run
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['workflow_id'] = \
+            workflow_id
+        kwargs['run_id'] = \
+            run_id
+        return self.delete_run_by_workflow_id_and_run_id_endpoint.call_with_http_info(**kwargs)
+
+    def find_latest_runs(
+        self,
+        x_tenant,
+        number,
+        **kwargs
+    ):
+        """Find the latest runs  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.find_latest_runs(x_tenant, number, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            number (int): Number of runs
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [RunWithJob]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['number'] = \
+            number
+        return self.find_latest_runs_endpoint.call_with_http_info(**kwargs)
+
+    def find_run_by_job_id_and_run_id(
+        self,
+        x_tenant,
+        job_id,
+        run_id,
+        **kwargs
+    ):
+        """Find the run by a jobId and a runId  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.find_run_by_job_id_and_run_id(x_tenant, job_id, run_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            job_id (str): Id of the Job
+            run_id (str): Id of the Run
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            JobRun
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['job_id'] = \
+            job_id
+        kwargs['run_id'] = \
+            run_id
+        return self.find_run_by_job_id_and_run_id_endpoint.call_with_http_info(**kwargs)
+
+    def find_runs_by_job_id(
+        self,
+        x_tenant,
+        job_id,
+        **kwargs
+    ):
+        """Find the runs for a job  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.find_runs_by_job_id(x_tenant, job_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            job_id (str): Id of the Job
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [JobRun]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['job_id'] = \
+            job_id
+        return self.find_runs_by_job_id_endpoint.call_with_http_info(**kwargs)
+
+    def find_runs_by_workflow_id(
+        self,
+        x_tenant,
+        workflow_id,
+        **kwargs
+    ):
+        """Find the runs for a workflow  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.find_runs_by_workflow_id(x_tenant, workflow_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            workflow_id (str): Id of the Workflow
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [WorkflowRun]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['workflow_id'] = \
+            workflow_id
+        return self.find_runs_by_workflow_id_endpoint.call_with_http_info(**kwargs)
+
+    def get_file(
+        self,
+        x_tenant,
+        job_id,
+        run_id,
+        filename,
+        **kwargs
+    ):
+        """Get file  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_file(x_tenant, job_id, run_id, filename, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            job_id (str): Id of the Job
+            run_id (str): Id of the Run
+            filename (str): Name of the file
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            file_type
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['job_id'] = \
+            job_id
+        kwargs['run_id'] = \
+            run_id
+        kwargs['filename'] = \
+            filename
+        return self.get_file_endpoint.call_with_http_info(**kwargs)
+
+    def get_logs(
+        self,
+        x_tenant,
+        job_id,
+        run_id,
+        **kwargs
+    ):
+        """Get logs  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_logs(x_tenant, job_id, run_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            job_id (str): Id of the Job
+            run_id (str): Id of the Run
+
+        Keyword Args:
+            cursor (str): The cursor. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [LogEntry]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['job_id'] = \
+            job_id
+        kwargs['run_id'] = \
+            run_id
+        return self.get_logs_endpoint.call_with_http_info(**kwargs)
+
+    def get_metrics_for_run(
+        self,
+        x_tenant,
+        job_id,
+        run_id,
+        metric,
+        **kwargs
+    ):
+        """Find the metrics for a run  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_metrics_for_run(x_tenant, job_id, run_id, metric, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            job_id (str): Id of the Job
+            run_id (str): Id of the Run
+            metric (str): The metric name
+
+        Keyword Args:
+            _from (datetime): [optional]
+            to (datetime): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [Metric]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['job_id'] = \
+            job_id
+        kwargs['run_id'] = \
+            run_id
+        kwargs['metric'] = \
+            metric
+        return self.get_metrics_for_run_endpoint.call_with_http_info(**kwargs)
+
+    def get_run_files(
+        self,
+        x_tenant,
+        job_id,
+        run_id,
+        **kwargs
+    ):
+        """Get files  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_run_files(x_tenant, job_id, run_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            job_id (str): Id of the Job
+            run_id (str): Id of the Run
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [str]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['job_id'] = \
+            job_id
+        kwargs['run_id'] = \
+            run_id
+        return self.get_run_files_endpoint.call_with_http_info(**kwargs)
+
+    def update_run(
+        self,
+        x_tenant,
+        job_id,
+        run_id,
+        patch,
+        **kwargs
+    ):
+        """Update a run  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_run(x_tenant, job_id, run_id, patch, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            job_id (str): Id of the Job
+            run_id (str): Id of the Run
+            patch ([Patch]): The patch
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            JobRun
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['job_id'] = \
+            job_id
+        kwargs['run_id'] = \
+            run_id
+        kwargs['patch'] = \
+            patch
+        return self.update_run_endpoint.call_with_http_info(**kwargs)
+

@@ -12,8 +12,8 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from graalsystems.api_client import ApiClient, Endpoint as _Endpoint
-from graalsystems.model_utils import (  # noqa: F401
+from openapi_client.api_client import ApiClient, Endpoint as _Endpoint
+from openapi_client.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -22,10 +22,11 @@ from graalsystems.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from graalsystems.model.error import Error
-from graalsystems.model.infrastructure import Infrastructure
-from graalsystems.model.patch import Patch
-from graalsystems.model.target_info import TargetInfo
+from openapi_client.model.error import Error
+from openapi_client.model.infrastructure import Infrastructure
+from openapi_client.model.patch import Patch
+from openapi_client.model.services import Services
+from openapi_client.model.target_info import TargetInfo
 
 
 class InfrastructureApi(object):
@@ -39,77 +40,7 @@ class InfrastructureApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-
-        def __delete_infrastructure_by_id(
-            self,
-            x_tenant,
-            infrastructure_id,
-            **kwargs
-        ):
-            """Delete a infrastructure by an id  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.delete_infrastructure_by_id(x_tenant, infrastructure_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                infrastructure_id (str): Id of the infrastructure
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['infrastructure_id'] = \
-                infrastructure_id
-            return self.call_with_http_info(**kwargs)
-
-        self.delete_infrastructure_by_id = _Endpoint(
+        self.delete_infrastructure_by_id_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -164,80 +95,9 @@ class InfrastructureApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__delete_infrastructure_by_id
+            api_client=api_client
         )
-
-        def __find_capacity_by_infrastructure_by_id(
-            self,
-            x_tenant,
-            infrastructure_id,
-            **kwargs
-        ):
-            """Retrieve the capacity of an infrastructure  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.find_capacity_by_infrastructure_by_id(x_tenant, infrastructure_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                infrastructure_id (str): Id of the infrastructure
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                TargetInfo
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['infrastructure_id'] = \
-                infrastructure_id
-            return self.call_with_http_info(**kwargs)
-
-        self.find_capacity_by_infrastructure_by_id = _Endpoint(
+        self.find_capacity_by_infrastructure_by_id_endpoint = _Endpoint(
             settings={
                 'response_type': (TargetInfo,),
                 'auth': [
@@ -292,80 +152,9 @@ class InfrastructureApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__find_capacity_by_infrastructure_by_id
+            api_client=api_client
         )
-
-        def __find_infrastructure_by_infrastructure_id(
-            self,
-            x_tenant,
-            infrastructure_id,
-            **kwargs
-        ):
-            """Find infrastructure by Id  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.find_infrastructure_by_infrastructure_id(x_tenant, infrastructure_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                infrastructure_id (str): Id of the infrastructure
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                Infrastructure
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['infrastructure_id'] = \
-                infrastructure_id
-            return self.call_with_http_info(**kwargs)
-
-        self.find_infrastructure_by_infrastructure_id = _Endpoint(
+        self.find_infrastructure_by_infrastructure_id_endpoint = _Endpoint(
             settings={
                 'response_type': (Infrastructure,),
                 'auth': [
@@ -421,76 +210,9 @@ class InfrastructureApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__find_infrastructure_by_infrastructure_id
+            api_client=api_client
         )
-
-        def __find_infrastructures(
-            self,
-            x_tenant,
-            **kwargs
-        ):
-            """Retrieve all infrastructure  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.find_infrastructures(x_tenant, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [Infrastructure]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            return self.call_with_http_info(**kwargs)
-
-        self.find_infrastructures = _Endpoint(
+        self.find_infrastructures_endpoint = _Endpoint(
             settings={
                 'response_type': ([Infrastructure],),
                 'auth': [
@@ -539,80 +261,9 @@ class InfrastructureApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__find_infrastructures
+            api_client=api_client
         )
-
-        def __find_public_ips_by_infrastructure_id(
-            self,
-            x_tenant,
-            infrastructure_id,
-            **kwargs
-        ):
-            """Find public ips by infrastructure id  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.find_public_ips_by_infrastructure_id(x_tenant, infrastructure_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                infrastructure_id (str): Id of the infrastructure
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [str]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['infrastructure_id'] = \
-                infrastructure_id
-            return self.call_with_http_info(**kwargs)
-
-        self.find_public_ips_by_infrastructure_id = _Endpoint(
+        self.find_public_ips_by_infrastructure_id_endpoint = _Endpoint(
             settings={
                 'response_type': ([str],),
                 'auth': [
@@ -668,84 +319,66 @@ class InfrastructureApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__find_public_ips_by_infrastructure_id
+            api_client=api_client
         )
-
-        def __update_infrastructure(
-            self,
-            x_tenant,
-            infrastructure_id,
-            patch,
-            **kwargs
-        ):
-            """Update an infrastructure  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.update_infrastructure(x_tenant, infrastructure_id, patch, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                x_tenant (str):
-                infrastructure_id (str): Id of the infrastructure
-                patch ([Patch]): The patch
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                Infrastructure
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['x_tenant'] = \
-                x_tenant
-            kwargs['infrastructure_id'] = \
-                infrastructure_id
-            kwargs['patch'] = \
-                patch
-            return self.call_with_http_info(**kwargs)
-
-        self.update_infrastructure = _Endpoint(
+        self.find_services_by_infrastructure_by_id_endpoint = _Endpoint(
+            settings={
+                'response_type': (Services,),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/infrastructures/{infrastructureId}/services',
+                'operation_id': 'find_services_by_infrastructure_by_id',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'infrastructure_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'infrastructure_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'infrastructure_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'X-Tenant',
+                    'infrastructure_id': 'infrastructureId',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'infrastructure_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/vnd.graal.systems.v1.services+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.update_infrastructure_endpoint = _Endpoint(
             settings={
                 'response_type': (Infrastructure,),
                 'auth': [
@@ -808,6 +441,524 @@ class InfrastructureApi(object):
                     'application/json-patch+json;charset=UTF-8'
                 ]
             },
-            api_client=api_client,
-            callable=__update_infrastructure
+            api_client=api_client
         )
+
+    def delete_infrastructure_by_id(
+        self,
+        x_tenant,
+        infrastructure_id,
+        **kwargs
+    ):
+        """Delete a infrastructure by an id  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_infrastructure_by_id(x_tenant, infrastructure_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            infrastructure_id (str): Id of the infrastructure
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['infrastructure_id'] = \
+            infrastructure_id
+        return self.delete_infrastructure_by_id_endpoint.call_with_http_info(**kwargs)
+
+    def find_capacity_by_infrastructure_by_id(
+        self,
+        x_tenant,
+        infrastructure_id,
+        **kwargs
+    ):
+        """Retrieve the capacity of an infrastructure  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.find_capacity_by_infrastructure_by_id(x_tenant, infrastructure_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            infrastructure_id (str): Id of the infrastructure
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            TargetInfo
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['infrastructure_id'] = \
+            infrastructure_id
+        return self.find_capacity_by_infrastructure_by_id_endpoint.call_with_http_info(**kwargs)
+
+    def find_infrastructure_by_infrastructure_id(
+        self,
+        x_tenant,
+        infrastructure_id,
+        **kwargs
+    ):
+        """Find infrastructure by Id  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.find_infrastructure_by_infrastructure_id(x_tenant, infrastructure_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            infrastructure_id (str): Id of the infrastructure
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Infrastructure
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['infrastructure_id'] = \
+            infrastructure_id
+        return self.find_infrastructure_by_infrastructure_id_endpoint.call_with_http_info(**kwargs)
+
+    def find_infrastructures(
+        self,
+        x_tenant,
+        **kwargs
+    ):
+        """Retrieve all infrastructure  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.find_infrastructures(x_tenant, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [Infrastructure]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        return self.find_infrastructures_endpoint.call_with_http_info(**kwargs)
+
+    def find_public_ips_by_infrastructure_id(
+        self,
+        x_tenant,
+        infrastructure_id,
+        **kwargs
+    ):
+        """Find public ips by infrastructure id  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.find_public_ips_by_infrastructure_id(x_tenant, infrastructure_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            infrastructure_id (str): Id of the infrastructure
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [str]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['infrastructure_id'] = \
+            infrastructure_id
+        return self.find_public_ips_by_infrastructure_id_endpoint.call_with_http_info(**kwargs)
+
+    def find_services_by_infrastructure_by_id(
+        self,
+        x_tenant,
+        infrastructure_id,
+        **kwargs
+    ):
+        """Retrieve the services of an infrastructure  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.find_services_by_infrastructure_by_id(x_tenant, infrastructure_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            infrastructure_id (str): Id of the infrastructure
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Services
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['infrastructure_id'] = \
+            infrastructure_id
+        return self.find_services_by_infrastructure_by_id_endpoint.call_with_http_info(**kwargs)
+
+    def update_infrastructure(
+        self,
+        x_tenant,
+        infrastructure_id,
+        patch,
+        **kwargs
+    ):
+        """Update an infrastructure  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_infrastructure(x_tenant, infrastructure_id, patch, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            infrastructure_id (str): Id of the infrastructure
+            patch ([Patch]): The patch
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Infrastructure
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['infrastructure_id'] = \
+            infrastructure_id
+        kwargs['patch'] = \
+            patch
+        return self.update_infrastructure_endpoint.call_with_http_info(**kwargs)
+

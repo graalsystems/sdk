@@ -14,15 +14,15 @@
 __version__ = "1.0.0"
 
 # import ApiClient
-from graalsystems.api_client import ApiClient
+from openapi_client.api_client import ApiClient
 
 # import Configuration
-from graalsystems.configuration import Configuration
+from openapi_client.configuration import Configuration
 
 # import exceptions
-from graalsystems.exceptions import OpenApiException
-from graalsystems.exceptions import ApiAttributeError
-from graalsystems.exceptions import ApiTypeError
-from graalsystems.exceptions import ApiValueError
-from graalsystems.exceptions import ApiKeyError
-from graalsystems.exceptions import ApiException
+from openapi_client.exceptions import OpenApiException
+from openapi_client.exceptions import ApiAttributeError
+from openapi_client.exceptions import ApiTypeError
+from openapi_client.exceptions import ApiValueError
+from openapi_client.exceptions import ApiKeyError
+from openapi_client.exceptions import ApiException
