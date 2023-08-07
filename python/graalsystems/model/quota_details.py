@@ -12,7 +12,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -27,15 +27,15 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from openapi_client.exceptions import ApiAttributeError
+from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.details import Details
-    from openapi_client.model.issue_details import IssueDetails
-    from openapi_client.model.quota_details import QuotaDetails
-    from openapi_client.model.quota_details_all_of import QuotaDetailsAllOf
-    from openapi_client.model.subscription_details import SubscriptionDetails
+    from graalsystems.model.details import Details
+    from graalsystems.model.issue_details import IssueDetails
+    from graalsystems.model.quota_details import QuotaDetails
+    from graalsystems.model.quota_details_all_of import QuotaDetailsAllOf
+    from graalsystems.model.subscription_details import SubscriptionDetails
     globals()['Details'] = Details
     globals()['IssueDetails'] = IssueDetails
     globals()['QuotaDetails'] = QuotaDetails

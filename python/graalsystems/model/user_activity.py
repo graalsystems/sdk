@@ -12,7 +12,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -27,22 +27,18 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from openapi_client.exceptions import ApiAttributeError
+from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.activity import Activity
-    from openapi_client.model.job_activity import JobActivity
-    from openapi_client.model.project_activity import ProjectActivity
-    from openapi_client.model.user1 import User1
-    from openapi_client.model.user_activity import UserActivity
-    from openapi_client.model.user_activity1 import UserActivity1
+    from graalsystems.model.activity import Activity
+    from graalsystems.model.reaction import Reaction
+    from graalsystems.model.user1 import User1
+    from graalsystems.model.user_activity_all_of import UserActivityAllOf
     globals()['Activity'] = Activity
-    globals()['JobActivity'] = JobActivity
-    globals()['ProjectActivity'] = ProjectActivity
+    globals()['Reaction'] = Reaction
     globals()['User1'] = User1
-    globals()['UserActivity'] = UserActivity
-    globals()['UserActivity1'] = UserActivity1
+    globals()['UserActivityAllOf'] = UserActivityAllOf
 
 
 class UserActivity(ModelComposed):
@@ -70,6 +66,9 @@ class UserActivity(ModelComposed):
     """
 
     allowed_values = {
+        ('type',): {
+            'USER': "user",
+        },
     }
 
     validations = {
@@ -99,36 +98,29 @@ class UserActivity(ModelComposed):
         lazy_import()
         return {
             'actor': (User1,),  # noqa: E501
-            'target': (User1,),  # noqa: E501
+            'target': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
             'verb': (str,),  # noqa: E501
             'data': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'type': (str,),  # noqa: E501
             'id': (str,),  # noqa: E501
-            'tenant_id': (str,),  # noqa: E501
             'time': (datetime,),  # noqa: E501
+            'reactions_count': ([Reaction],),  # noqa: E501
+            'type': (str,),  # noqa: E501
         }
 
     @cached_property
     def discriminator():
-        lazy_import()
-        val = {
-            'job': JobActivity,
-            'project': ProjectActivity,
-            'user': UserActivity,
-        }
-        if not val:
-            return None
-        return {'type': val}
+        return None
+
 
     attribute_map = {
         'actor': 'actor',  # noqa: E501
         'target': 'target',  # noqa: E501
         'verb': 'verb',  # noqa: E501
         'data': 'data',  # noqa: E501
-        'type': 'type',  # noqa: E501
         'id': 'id',  # noqa: E501
-        'tenant_id': 'tenant_id',  # noqa: E501
         'time': 'time',  # noqa: E501
+        'reactions_count': 'reactions_count',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     read_only_vars = {
@@ -141,9 +133,8 @@ class UserActivity(ModelComposed):
 
         Keyword Args:
             actor (User1):
-            target (User1):
+            target (bool, date, datetime, dict, float, int, list, str, none_type):
             verb (str):
-            data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -174,10 +165,11 @@ class UserActivity(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): [optional] if omitted the server will use the default value of "user"  # noqa: E501
+            data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
-            tenant_id (str): [optional]  # noqa: E501
             time (datetime): [optional]  # noqa: E501
+            reactions_count ([Reaction]): [optional]  # noqa: E501
+            type (str): [optional] if omitted the server will use the default value of "user"  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -248,9 +240,8 @@ class UserActivity(ModelComposed):
 
         Keyword Args:
             actor (User1):
-            target (User1):
+            target (bool, date, datetime, dict, float, int, list, str, none_type):
             verb (str):
-            data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -281,10 +272,11 @@ class UserActivity(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): [optional] if omitted the server will use the default value of "user"  # noqa: E501
+            data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
-            tenant_id (str): [optional]  # noqa: E501
             time (datetime): [optional]  # noqa: E501
+            reactions_count ([Reaction]): [optional]  # noqa: E501
+            type (str): [optional] if omitted the server will use the default value of "user"  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -351,7 +343,7 @@ class UserActivity(ModelComposed):
           ],
           'allOf': [
               Activity,
-              UserActivity1,
+              UserActivityAllOf,
           ],
           'oneOf': [
           ],

@@ -12,7 +12,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -27,7 +27,7 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from openapi_client.exceptions import ApiAttributeError
+from graalsystems.exceptions import ApiAttributeError
 
 
 
@@ -82,7 +82,7 @@ class ValidationError(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'loc': ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}],),  # noqa: E501
+            'loc': ([bool, date, datetime, dict, float, int, list, str, none_type],),  # noqa: E501
             'msg': (str,),  # noqa: E501
             'type': (str,),  # noqa: E501
         }
@@ -109,7 +109,7 @@ class ValidationError(ModelNormal):
         """ValidationError - a model defined in OpenAPI
 
         Args:
-            loc ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]):
+            loc ([bool, date, datetime, dict, float, int, list, str, none_type]):
             msg (str):
             type (str):
 
@@ -198,7 +198,7 @@ class ValidationError(ModelNormal):
         """ValidationError - a model defined in OpenAPI
 
         Args:
-            loc ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]):
+            loc ([bool, date, datetime, dict, float, int, list, str, none_type]):
             msg (str):
             type (str):
 

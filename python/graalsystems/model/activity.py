@@ -12,7 +12,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -27,16 +27,12 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from openapi_client.exceptions import ApiAttributeError
+from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.job_activity import JobActivity
-    from openapi_client.model.project_activity import ProjectActivity
-    from openapi_client.model.user_activity import UserActivity
-    globals()['JobActivity'] = JobActivity
-    globals()['ProjectActivity'] = ProjectActivity
-    globals()['UserActivity'] = UserActivity
+    from graalsystems.model.reaction import Reaction
+    globals()['Reaction'] = Reaction
 
 
 class Activity(ModelNormal):
@@ -92,34 +88,22 @@ class Activity(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (str,),  # noqa: E501
-            'type': (str,),  # noqa: E501
             'data': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'tenant_id': (str,),  # noqa: E501
+            'id': (str,),  # noqa: E501
             'time': (datetime,),  # noqa: E501
+            'reactions_count': ([Reaction],),  # noqa: E501
         }
 
     @cached_property
     def discriminator():
-        lazy_import()
-        val = {
-            'JobActivity': JobActivity,
-            'ProjectActivity': ProjectActivity,
-            'UserActivity': UserActivity,
-            'job': JobActivity,
-            'project': ProjectActivity,
-            'user': UserActivity,
-        }
-        if not val:
-            return None
-        return {'type': val}
+        return None
+
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'type': 'type',  # noqa: E501
         'data': 'data',  # noqa: E501
-        'tenant_id': 'tenant_id',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'time': 'time',  # noqa: E501
+        'reactions_count': 'reactions_count',  # noqa: E501
     }
 
     read_only_vars = {
@@ -163,11 +147,10 @@ class Activity(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): [optional]  # noqa: E501
-            type (str): [optional]  # noqa: E501
             data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
-            tenant_id (str): [optional]  # noqa: E501
+            id (str): [optional]  # noqa: E501
             time (datetime): [optional]  # noqa: E501
+            reactions_count ([Reaction]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -249,11 +232,10 @@ class Activity(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): [optional]  # noqa: E501
-            type (str): [optional]  # noqa: E501
             data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
-            tenant_id (str): [optional]  # noqa: E501
+            id (str): [optional]  # noqa: E501
             time (datetime): [optional]  # noqa: E501
+            reactions_count ([Reaction]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

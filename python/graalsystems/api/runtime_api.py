@@ -12,8 +12,8 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.api_client import ApiClient, Endpoint as _Endpoint
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.api_client import ApiClient, Endpoint as _Endpoint
+from graalsystems.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -22,12 +22,12 @@ from openapi_client.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from openapi_client.model.build import Build
-from openapi_client.model.dependency import Dependency
-from openapi_client.model.error import Error
-from openapi_client.model.log_entry import LogEntry
-from openapi_client.model.runtime import Runtime
-from openapi_client.model.runtime_version import RuntimeVersion
+from graalsystems.model.build import Build
+from graalsystems.model.dependency import Dependency
+from graalsystems.model.error import Error
+from graalsystems.model.log_entry import LogEntry
+from graalsystems.model.runtime import Runtime
+from graalsystems.model.runtime_version import RuntimeVersion
 
 
 class RuntimeApi(object):

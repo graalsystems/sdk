@@ -12,7 +12,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -27,16 +27,16 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from openapi_client.exceptions import ApiAttributeError
+from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.cran_library import CranLibrary
-    from openapi_client.model.file_library import FileLibrary
-    from openapi_client.model.library import Library
-    from openapi_client.model.maven_library import MavenLibrary
-    from openapi_client.model.py_pi_library import PyPiLibrary
-    from openapi_client.model.py_pi_library_all_of import PyPiLibraryAllOf
+    from graalsystems.model.cran_library import CranLibrary
+    from graalsystems.model.file_library import FileLibrary
+    from graalsystems.model.library import Library
+    from graalsystems.model.maven_library import MavenLibrary
+    from graalsystems.model.py_pi_library import PyPiLibrary
+    from graalsystems.model.py_pi_library_all_of import PyPiLibraryAllOf
     globals()['CranLibrary'] = CranLibrary
     globals()['FileLibrary'] = FileLibrary
     globals()['Library'] = Library

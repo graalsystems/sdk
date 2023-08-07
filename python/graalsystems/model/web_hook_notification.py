@@ -12,7 +12,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -27,16 +27,16 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from openapi_client.exceptions import ApiAttributeError
+from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.azure_log_analytics_notification import AzureLogAnalyticsNotification
-    from openapi_client.model.event_hub_notification import EventHubNotification
-    from openapi_client.model.mail_notification import MailNotification
-    from openapi_client.model.notification import Notification
-    from openapi_client.model.web_hook_notification import WebHookNotification
-    from openapi_client.model.web_hook_notification_all_of import WebHookNotificationAllOf
+    from graalsystems.model.azure_log_analytics_notification import AzureLogAnalyticsNotification
+    from graalsystems.model.event_hub_notification import EventHubNotification
+    from graalsystems.model.mail_notification import MailNotification
+    from graalsystems.model.notification import Notification
+    from graalsystems.model.web_hook_notification import WebHookNotification
+    from graalsystems.model.web_hook_notification_all_of import WebHookNotificationAllOf
     globals()['AzureLogAnalyticsNotification'] = AzureLogAnalyticsNotification
     globals()['EventHubNotification'] = EventHubNotification
     globals()['MailNotification'] = MailNotification

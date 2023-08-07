@@ -12,7 +12,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -27,16 +27,16 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from openapi_client.exceptions import ApiAttributeError
+from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.credit_card_payment_method import CreditCardPaymentMethod
-    from openapi_client.model.external_payment_method import ExternalPaymentMethod
-    from openapi_client.model.payment_method import PaymentMethod
-    from openapi_client.model.sepa_payment_method import SepaPaymentMethod
-    from openapi_client.model.sepa_payment_method_all_of import SepaPaymentMethodAllOf
-    from openapi_client.model.trial_payment_method import TrialPaymentMethod
+    from graalsystems.model.credit_card_payment_method import CreditCardPaymentMethod
+    from graalsystems.model.external_payment_method import ExternalPaymentMethod
+    from graalsystems.model.payment_method import PaymentMethod
+    from graalsystems.model.sepa_payment_method import SepaPaymentMethod
+    from graalsystems.model.sepa_payment_method_all_of import SepaPaymentMethodAllOf
+    from graalsystems.model.trial_payment_method import TrialPaymentMethod
     globals()['CreditCardPaymentMethod'] = CreditCardPaymentMethod
     globals()['ExternalPaymentMethod'] = ExternalPaymentMethod
     globals()['PaymentMethod'] = PaymentMethod

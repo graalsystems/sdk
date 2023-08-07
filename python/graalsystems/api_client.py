@@ -21,10 +21,10 @@ from urllib.parse import quote
 from urllib3.fields import RequestField
 
 
-from openapi_client import rest
-from openapi_client.configuration import Configuration
-from openapi_client.exceptions import ApiTypeError, ApiValueError, ApiException
-from openapi_client.model_utils import (
+from graalsystems import rest
+from graalsystems.configuration import Configuration
+from graalsystems.exceptions import ApiTypeError, ApiValueError, ApiException
+from graalsystems.model_utils import (
     ModelNormal,
     ModelSimple,
     ModelComposed,

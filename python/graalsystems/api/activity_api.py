@@ -12,8 +12,8 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.api_client import ApiClient, Endpoint as _Endpoint
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.api_client import ApiClient, Endpoint as _Endpoint
+from graalsystems.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -22,8 +22,9 @@ from openapi_client.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from openapi_client.model.activity import Activity
-from openapi_client.model.http_validation_error import HTTPValidationError
+from graalsystems.model.activity import Activity
+from graalsystems.model.http_validation_error import HTTPValidationError
+from graalsystems.model.reaction import Reaction
 
 
 class ActivityApi(object):
@@ -37,14 +38,268 @@ class ActivityApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.get_timelines_v1_timelines_get_endpoint = _Endpoint(
+        self.activities_activity_id_reactions_get_endpoint = _Endpoint(
+            settings={
+                'response_type': ([Reaction],),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/activities/{activity_id}/reactions',
+                'operation_id': 'activities_activity_id_reactions_get',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'activity_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'activity_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'activity_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'activity_id': 'activity_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'activity_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.activities_activity_id_reactions_post_endpoint = _Endpoint(
+            settings={
+                'response_type': (bool, date, datetime, dict, float, int, list, str, none_type,),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/activities/{activity_id}/reactions',
+                'operation_id': 'activities_activity_id_reactions_post',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'activity_id',
+                    'x_user',
+                    'x_tenant',
+                    'reaction',
+                ],
+                'required': [
+                    'activity_id',
+                    'x_user',
+                    'x_tenant',
+                    'reaction',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'activity_id':
+                        (str,),
+                    'x_user':
+                        (str,),
+                    'x_tenant':
+                        (str,),
+                    'reaction':
+                        (Reaction,),
+                },
+                'attribute_map': {
+                    'activity_id': 'activity_id',
+                    'x_user': 'x-user',
+                    'x_tenant': 'x-tenant',
+                },
+                'location_map': {
+                    'activity_id': 'path',
+                    'x_user': 'header',
+                    'x_tenant': 'header',
+                    'reaction': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.activities_activity_id_reactions_reaction_id_delete_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/activities/{activity_id}/reactions/{reaction_id}',
+                'operation_id': 'activities_activity_id_reactions_reaction_id_delete',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'activity_id',
+                    'x_user',
+                    'x_tenant',
+                    'reaction_id',
+                ],
+                'required': [
+                    'activity_id',
+                    'x_user',
+                    'x_tenant',
+                    'reaction_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'activity_id':
+                        (str,),
+                    'x_user':
+                        (str,),
+                    'x_tenant':
+                        (str,),
+                    'reaction_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'activity_id': 'activity_id',
+                    'x_user': 'x-user',
+                    'x_tenant': 'x-tenant',
+                    'reaction_id': 'reaction_id',
+                },
+                'location_map': {
+                    'activity_id': 'path',
+                    'x_user': 'header',
+                    'x_tenant': 'header',
+                    'reaction_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.create_activity_activities_post_endpoint = _Endpoint(
+            settings={
+                'response_type': (Activity,),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/activities',
+                'operation_id': 'create_activity_activities_post',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'activity',
+                ],
+                'required': [
+                    'x_tenant',
+                    'activity',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'activity':
+                        (Activity,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'activity': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.get_activities_activities_get_endpoint = _Endpoint(
             settings={
                 'response_type': ([Activity],),
                 'auth': [
                     'internal'
                 ],
                 'endpoint_path': '/activities',
-                'operation_id': 'get_timelines_v1_timelines_get',
+                'operation_id': 'get_activities_activities_get',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -80,7 +335,7 @@ class ActivityApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'x_tenant': 'X-Tenant',
+                    'x_tenant': 'x-tenant',
                     'resource_id': 'resource_id',
                     'resource_type': 'resource_type',
                 },
@@ -101,20 +356,336 @@ class ActivityApi(object):
             api_client=api_client
         )
 
-    def get_timelines_v1_timelines_get(
+    def activities_activity_id_reactions_get(
+        self,
+        x_tenant,
+        activity_id,
+        **kwargs
+    ):
+        """Get users' reactions for a given activity  # noqa: E501
+
+        For each activity (within a defined tenant), retrieve all the reaction information. This information is made up of the names of the reactions and the list of the users who have used the given reaction.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.activities_activity_id_reactions_get(x_tenant, activity_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            activity_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [Reaction]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['activity_id'] = \
+            activity_id
+        return self.activities_activity_id_reactions_get_endpoint.call_with_http_info(**kwargs)
+
+    def activities_activity_id_reactions_post(
+        self,
+        activity_id,
+        x_user,
+        x_tenant,
+        reaction,
+        **kwargs
+    ):
+        """Insert users' reactions for a given activity  # noqa: E501
+
+        Insert a user's reaction to an activity. Each reaction increments the reaction counter and adds the user to the list of users who used that reaction.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.activities_activity_id_reactions_post(activity_id, x_user, x_tenant, reaction, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            activity_id (str):
+            x_user (str):
+            x_tenant (str):
+            reaction (Reaction):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            bool, date, datetime, dict, float, int, list, str, none_type
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['activity_id'] = \
+            activity_id
+        kwargs['x_user'] = \
+            x_user
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['reaction'] = \
+            reaction
+        return self.activities_activity_id_reactions_post_endpoint.call_with_http_info(**kwargs)
+
+    def activities_activity_id_reactions_reaction_id_delete(
+        self,
+        activity_id,
+        x_user,
+        x_tenant,
+        reaction_id,
+        **kwargs
+    ):
+        """Delete users' reactions for a given activity  # noqa: E501
+
+        Delete a user's reaction to an activity. Each reaction decrements (or deletes) the reaction counter and removes the user from the list of users who have used that reaction.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.activities_activity_id_reactions_reaction_id_delete(activity_id, x_user, x_tenant, reaction_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            activity_id (str):
+            x_user (str):
+            x_tenant (str):
+            reaction_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['activity_id'] = \
+            activity_id
+        kwargs['x_user'] = \
+            x_user
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['reaction_id'] = \
+            reaction_id
+        return self.activities_activity_id_reactions_reaction_id_delete_endpoint.call_with_http_info(**kwargs)
+
+    def create_activity_activities_post(
+        self,
+        x_tenant,
+        activity,
+        **kwargs
+    ):
+        """Create a new activity  # noqa: E501
+
+        Add an activity in the repository.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_activity_activities_post(x_tenant, activity, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            activity (Activity):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Activity
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['activity'] = \
+            activity
+        return self.create_activity_activities_post_endpoint.call_with_http_info(**kwargs)
+
+    def get_activities_activities_get(
         self,
         x_tenant,
         resource_id,
         resource_type,
         **kwargs
     ):
-        """Get timelines.  # noqa: E501
+        """Get all activities  # noqa: E501
 
-        Gets all timelines associated with a given tenant and resource. The tenant is identified by its UUID, while the resource is represented by its UUID and resource type.  # noqa: E501
+        Return timeline for specific resources.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_timelines_v1_timelines_get(x_tenant, resource_id, resource_type, async_req=True)
+        >>> thread = api.get_activities_activities_get(x_tenant, resource_id, resource_type, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -178,5 +749,5 @@ class ActivityApi(object):
             resource_id
         kwargs['resource_type'] = \
             resource_type
-        return self.get_timelines_v1_timelines_get_endpoint.call_with_http_info(**kwargs)
+        return self.get_activities_activities_get_endpoint.call_with_http_info(**kwargs)
 

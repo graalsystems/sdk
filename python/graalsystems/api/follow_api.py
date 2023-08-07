@@ -12,8 +12,8 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.api_client import ApiClient, Endpoint as _Endpoint
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.api_client import ApiClient, Endpoint as _Endpoint
+from graalsystems.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -22,8 +22,9 @@ from openapi_client.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from openapi_client.model.http_validation_error import HTTPValidationError
-from openapi_client.model.user1 import User1
+from graalsystems.model.follow import Follow
+from graalsystems.model.http_validation_error import HTTPValidationError
+from graalsystems.model.user1 import User1
 
 
 class FollowApi(object):
@@ -37,242 +38,14 @@ class FollowApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.delete_project_followers_v1_projects_project_id_followers_delete_endpoint = _Endpoint(
+        self.create_project_followers_projects_project_id_followers_post_endpoint = _Endpoint(
             settings={
-                'response_type': None,
+                'response_type': (Follow,),
                 'auth': [
                     'internal'
                 ],
                 'endpoint_path': '/projects/{project_id}/followers',
-                'operation_id': 'delete_project_followers_v1_projects_project_id_followers_delete',
-                'http_method': 'DELETE',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'x_tenant',
-                    'project_id',
-                ],
-                'required': [
-                    'x_tenant',
-                    'project_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'x_tenant':
-                        (str,),
-                    'project_id':
-                        (str,),
-                },
-                'attribute_map': {
-                    'x_tenant': 'x-tenant',
-                    'project_id': 'project_id',
-                },
-                'location_map': {
-                    'x_tenant': 'header',
-                    'project_id': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client
-        )
-        self.delete_user_followers_v1_users_user_id_followers_delete_endpoint = _Endpoint(
-            settings={
-                'response_type': None,
-                'auth': [
-                    'internal'
-                ],
-                'endpoint_path': '/users/{user_id}/followers',
-                'operation_id': 'delete_user_followers_v1_users_user_id_followers_delete',
-                'http_method': 'DELETE',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'x_tenant',
-                    'user_id',
-                ],
-                'required': [
-                    'x_tenant',
-                    'user_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'x_tenant':
-                        (str,),
-                    'user_id':
-                        (str,),
-                },
-                'attribute_map': {
-                    'x_tenant': 'x-tenant',
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'x_tenant': 'header',
-                    'user_id': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client
-        )
-        self.get_project_followers_v1_projects_project_id_followers_get_endpoint = _Endpoint(
-            settings={
-                'response_type': ([User1],),
-                'auth': [
-                    'internal'
-                ],
-                'endpoint_path': '/projects/{project_id}/followers',
-                'operation_id': 'get_project_followers_v1_projects_project_id_followers_get',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'x_tenant',
-                    'project_id',
-                ],
-                'required': [
-                    'x_tenant',
-                    'project_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'x_tenant':
-                        (str,),
-                    'project_id':
-                        (str,),
-                },
-                'attribute_map': {
-                    'x_tenant': 'x-tenant',
-                    'project_id': 'project_id',
-                },
-                'location_map': {
-                    'x_tenant': 'header',
-                    'project_id': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client
-        )
-        self.get_user_followers_v1_followers_get_endpoint = _Endpoint(
-            settings={
-                'response_type': ([User1],),
-                'auth': [
-                    'internal'
-                ],
-                'endpoint_path': '/users/{user_id}/followers',
-                'operation_id': 'get_user_followers_v1_followers_get',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'x_tenant',
-                    'user_id',
-                ],
-                'required': [
-                    'x_tenant',
-                    'user_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'x_tenant':
-                        (str,),
-                    'user_id':
-                        (str,),
-                },
-                'attribute_map': {
-                    'x_tenant': 'X-Tenant',
-                    'user_id': 'user_id',
-                },
-                'location_map': {
-                    'x_tenant': 'header',
-                    'user_id': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client
-        )
-        self.post_project_followers_v1_projects_project_id_followers_post_endpoint = _Endpoint(
-            settings={
-                'response_type': (bool, date, datetime, dict, float, int, list, str, none_type,),
-                'auth': [
-                    'internal'
-                ],
-                'endpoint_path': '/projects/{project_id}/followers',
-                'operation_id': 'post_project_followers_v1_projects_project_id_followers_post',
+                'operation_id': 'create_project_followers_projects_project_id_followers_post',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -322,15 +95,300 @@ class FollowApi(object):
             },
             api_client=api_client
         )
-        self.post_user_followers_v1_users_user_id_followers_post_endpoint = _Endpoint(
+        self.create_user_followers_users_user_id_followers_post_endpoint = _Endpoint(
             settings={
-                'response_type': (bool, date, datetime, dict, float, int, list, str, none_type,),
+                'response_type': (Follow,),
                 'auth': [
                     'internal'
                 ],
                 'endpoint_path': '/users/{user_id}/followers',
-                'operation_id': 'post_user_followers_v1_users_user_id_followers_post',
+                'operation_id': 'create_user_followers_users_user_id_followers_post',
                 'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'user_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'user_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'user_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'user_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.delete_project_followers_projects_project_id_followers_delete_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/following/projects/{project_id}',
+                'operation_id': 'delete_project_followers_projects_project_id_followers_delete',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'project_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'project_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'project_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'project_id': 'project_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'project_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.delete_user_followers_users_user_id_followers_delete_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/following/users/{user_id}',
+                'operation_id': 'delete_user_followers_users_user_id_followers_delete',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'user_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'user_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'user_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'user_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_project_followers_projects_project_id_followers_get_endpoint = _Endpoint(
+            settings={
+                'response_type': ([User1],),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/projects/{project_id}/followers',
+                'operation_id': 'get_project_followers_projects_project_id_followers_get',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'project_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'project_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'project_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'project_id': 'project_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'project_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_user_followers_users_user_id_followers_get_endpoint = _Endpoint(
+            settings={
+                'response_type': ([User1],),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/users/{user_id}/followers',
+                'operation_id': 'get_user_followers_users_user_id_followers_get',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'user_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'user_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'user_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'user_id': 'user_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'user_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_user_following_users_user_id_following_get_endpoint = _Endpoint(
+            settings={
+                'response_type': ([bool, date, datetime, dict, float, int, list, str, none_type],),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/users/{user_id}/following',
+                'operation_id': 'get_user_following_users_user_id_following_get',
+                'http_method': 'GET',
                 'servers': None,
             },
             params_map={
@@ -380,19 +438,169 @@ class FollowApi(object):
             api_client=api_client
         )
 
-    def delete_project_followers_v1_projects_project_id_followers_delete(
+    def create_project_followers_projects_project_id_followers_post(
         self,
         x_tenant,
         project_id,
         **kwargs
     ):
-        """Delete Project Followers  # noqa: E501
+        """Create Project Followers  # noqa: E501
 
-        Add an activity in the Cassandra database.  Parameters ---------- x_tenant : UUID     Tenant ID in the header. x_user : UUID     User ID in the header. project_id : UUID     Project ID. crud : Crud     By default, gets the CRUD instance.  Returns ------- str     Activity correctly inserted.  Raises ------ Exception     Error in the query.  # noqa: E501
+        Add an activity in the repository.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_project_followers_v1_projects_project_id_followers_delete(x_tenant, project_id, async_req=True)
+        >>> thread = api.create_project_followers_projects_project_id_followers_post(x_tenant, project_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            project_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Follow
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['project_id'] = \
+            project_id
+        return self.create_project_followers_projects_project_id_followers_post_endpoint.call_with_http_info(**kwargs)
+
+    def create_user_followers_users_user_id_followers_post(
+        self,
+        x_tenant,
+        user_id,
+        **kwargs
+    ):
+        """Create User Followers  # noqa: E501
+
+        Add an activity in the repository.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_user_followers_users_user_id_followers_post(x_tenant, user_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            user_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Follow
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['user_id'] = \
+            user_id
+        return self.create_user_followers_users_user_id_followers_post_endpoint.call_with_http_info(**kwargs)
+
+    def delete_project_followers_projects_project_id_followers_delete(
+        self,
+        x_tenant,
+        project_id,
+        **kwargs
+    ):
+        """Delete Following User  # noqa: E501
+
+        Add an activity in the repository.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_project_followers_projects_project_id_followers_delete(x_tenant, project_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -453,21 +661,21 @@ class FollowApi(object):
             x_tenant
         kwargs['project_id'] = \
             project_id
-        return self.delete_project_followers_v1_projects_project_id_followers_delete_endpoint.call_with_http_info(**kwargs)
+        return self.delete_project_followers_projects_project_id_followers_delete_endpoint.call_with_http_info(**kwargs)
 
-    def delete_user_followers_v1_users_user_id_followers_delete(
+    def delete_user_followers_users_user_id_followers_delete(
         self,
         x_tenant,
         user_id,
         **kwargs
     ):
-        """Delete User Followers  # noqa: E501
+        """Delete Following User  # noqa: E501
 
-        Add an activity in the Cassandra database.  Parameters ---------- x_tenant : UUID     Tenant ID in the header. x_user : UUID     User ID in the header. user_id : UUID     User ID. crud : Crud     By default, gets the CRUD instance.  Returns ------- str     Activity correctly inserted.  Raises ------ Exception     Error in the query.  # noqa: E501
+        Add an activity in the repository.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_user_followers_v1_users_user_id_followers_delete(x_tenant, user_id, async_req=True)
+        >>> thread = api.delete_user_followers_users_user_id_followers_delete(x_tenant, user_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -528,9 +736,9 @@ class FollowApi(object):
             x_tenant
         kwargs['user_id'] = \
             user_id
-        return self.delete_user_followers_v1_users_user_id_followers_delete_endpoint.call_with_http_info(**kwargs)
+        return self.delete_user_followers_users_user_id_followers_delete_endpoint.call_with_http_info(**kwargs)
 
-    def get_project_followers_v1_projects_project_id_followers_get(
+    def get_project_followers_projects_project_id_followers_get(
         self,
         x_tenant,
         project_id,
@@ -538,11 +746,11 @@ class FollowApi(object):
     ):
         """Get Project Followers  # noqa: E501
 
-        Route to GET user following.  Parameters ---------- x_tenant : UUID     Tenant ID in the header. project_id : UUID     Project ID. crud : Crud     By default, gets the CRUD instance.  Returns ------- timeline : List[Activity]     Query result.  Raises ------ Exception     Error in the query.  # noqa: E501
+        Route to GET user following.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_project_followers_v1_projects_project_id_followers_get(x_tenant, project_id, async_req=True)
+        >>> thread = api.get_project_followers_projects_project_id_followers_get(x_tenant, project_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -603,9 +811,9 @@ class FollowApi(object):
             x_tenant
         kwargs['project_id'] = \
             project_id
-        return self.get_project_followers_v1_projects_project_id_followers_get_endpoint.call_with_http_info(**kwargs)
+        return self.get_project_followers_projects_project_id_followers_get_endpoint.call_with_http_info(**kwargs)
 
-    def get_user_followers_v1_followers_get(
+    def get_user_followers_users_user_id_followers_get(
         self,
         x_tenant,
         user_id,
@@ -613,11 +821,11 @@ class FollowApi(object):
     ):
         """Get User Followers  # noqa: E501
 
-        Route to GET user followers.  Parameters ---------- tenant_id : UUID     Tenant UUID. user_id : UUID     User UUID. crud : Crud     By default, gets the CRUD instance.  Returns ------- timeline : Timeline     Query result.  Raises ------ Exception     Error in the query.  # noqa: E501
+        Route to GET user followers.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_user_followers_v1_followers_get(x_tenant, user_id, async_req=True)
+        >>> thread = api.get_user_followers_users_user_id_followers_get(x_tenant, user_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -678,96 +886,21 @@ class FollowApi(object):
             x_tenant
         kwargs['user_id'] = \
             user_id
-        return self.get_user_followers_v1_followers_get_endpoint.call_with_http_info(**kwargs)
+        return self.get_user_followers_users_user_id_followers_get_endpoint.call_with_http_info(**kwargs)
 
-    def post_project_followers_v1_projects_project_id_followers_post(
-        self,
-        x_tenant,
-        project_id,
-        **kwargs
-    ):
-        """Post Project Followers  # noqa: E501
-
-        Add an activity in the Cassandra database.  Parameters ---------- x_tenant : UUID     Tenant ID in the header. x_user : UUID     User ID in the header. project_id : UUID     Project ID. crud : Crud     By default, gets the CRUD instance.  Returns ------- str     Activity correctly inserted.  Raises ------ Exception     Error in the query.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.post_project_followers_v1_projects_project_id_followers_post(x_tenant, project_id, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            x_tenant (str):
-            project_id (str):
-
-        Keyword Args:
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            bool, date, datetime, dict, float, int, list, str, none_type
-                If the method is called asynchronously, returns the request
-                thread.
-        """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['x_tenant'] = \
-            x_tenant
-        kwargs['project_id'] = \
-            project_id
-        return self.post_project_followers_v1_projects_project_id_followers_post_endpoint.call_with_http_info(**kwargs)
-
-    def post_user_followers_v1_users_user_id_followers_post(
+    def get_user_following_users_user_id_following_get(
         self,
         x_tenant,
         user_id,
         **kwargs
     ):
-        """Post User Followers  # noqa: E501
+        """Get User Following  # noqa: E501
 
-        Add an activity in the Cassandra database.  Parameters ---------- x_tenant : UUID     Tenant ID in the header. x_user : UUID     User ID in the header. user_id : UUID     User ID. crud : Crud     By default, gets the CRUD instance.  Returns ------- str     Activity correctly inserted.  Raises ------ Exception     Error in the query.  # noqa: E501
+        Route to GET user following.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.post_user_followers_v1_users_user_id_followers_post(x_tenant, user_id, async_req=True)
+        >>> thread = api.get_user_following_users_user_id_following_get(x_tenant, user_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -799,7 +932,7 @@ class FollowApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            bool, date, datetime, dict, float, int, list, str, none_type
+            [bool, date, datetime, dict, float, int, list, str, none_type]
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -828,5 +961,5 @@ class FollowApi(object):
             x_tenant
         kwargs['user_id'] = \
             user_id
-        return self.post_user_followers_v1_users_user_id_followers_post_endpoint.call_with_http_info(**kwargs)
+        return self.get_user_following_users_user_id_following_get_endpoint.call_with_http_info(**kwargs)
 

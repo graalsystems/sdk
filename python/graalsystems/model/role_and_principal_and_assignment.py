@@ -12,7 +12,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -27,13 +27,13 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from openapi_client.exceptions import ApiAttributeError
+from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.principal import Principal
-    from openapi_client.model.role import Role
-    from openapi_client.model.role_assignment import RoleAssignment
+    from graalsystems.model.principal import Principal
+    from graalsystems.model.role import Role
+    from graalsystems.model.role_assignment import RoleAssignment
     globals()['Principal'] = Principal
     globals()['Role'] = Role
     globals()['RoleAssignment'] = RoleAssignment

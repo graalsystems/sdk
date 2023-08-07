@@ -12,7 +12,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -27,12 +27,12 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from openapi_client.exceptions import ApiAttributeError
+from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.job1 import Job1
-    from openapi_client.model.user1 import User1
+    from graalsystems.model.job1 import Job1
+    from graalsystems.model.user1 import User1
     globals()['Job1'] = Job1
     globals()['User1'] = User1
 
@@ -62,6 +62,9 @@ class JobActivityAllOf(ModelNormal):
     """
 
     allowed_values = {
+        ('type',): {
+            'JOB': "job",
+        },
     }
 
     validations = {

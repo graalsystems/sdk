@@ -12,7 +12,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -27,28 +27,28 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from openapi_client.exceptions import ApiAttributeError
+from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.airflow_options import AirflowOptions
-    from openapi_client.model.airflow_options_all_of import AirflowOptionsAllOf
-    from openapi_client.model.bash_options import BashOptions
-    from openapi_client.model.dask_options import DaskOptions
-    from openapi_client.model.dbt_options import DbtOptions
-    from openapi_client.model.flink_options import FlinkOptions
-    from openapi_client.model.hadoop_options import HadoopOptions
-    from openapi_client.model.knime_options import KnimeOptions
-    from openapi_client.model.low_code_options import LowCodeOptions
-    from openapi_client.model.mx_net_options import MXNetOptions
-    from openapi_client.model.options import Options
-    from openapi_client.model.py_torch_options import PyTorchOptions
-    from openapi_client.model.python_options import PythonOptions
-    from openapi_client.model.ray_options import RayOptions
-    from openapi_client.model.sas_options import SASOptions
-    from openapi_client.model.spark_options import SparkOptions
-    from openapi_client.model.tensorflow_options import TensorflowOptions
-    from openapi_client.model.xgboost_options import XgboostOptions
+    from graalsystems.model.airflow_options import AirflowOptions
+    from graalsystems.model.airflow_options_all_of import AirflowOptionsAllOf
+    from graalsystems.model.bash_options import BashOptions
+    from graalsystems.model.dask_options import DaskOptions
+    from graalsystems.model.dbt_options import DbtOptions
+    from graalsystems.model.flink_options import FlinkOptions
+    from graalsystems.model.hadoop_options import HadoopOptions
+    from graalsystems.model.knime_options import KnimeOptions
+    from graalsystems.model.low_code_options import LowCodeOptions
+    from graalsystems.model.mx_net_options import MXNetOptions
+    from graalsystems.model.options import Options
+    from graalsystems.model.py_torch_options import PyTorchOptions
+    from graalsystems.model.python_options import PythonOptions
+    from graalsystems.model.ray_options import RayOptions
+    from graalsystems.model.sas_options import SASOptions
+    from graalsystems.model.spark_options import SparkOptions
+    from graalsystems.model.tensorflow_options import TensorflowOptions
+    from graalsystems.model.xgboost_options import XgboostOptions
     globals()['AirflowOptions'] = AirflowOptions
     globals()['AirflowOptionsAllOf'] = AirflowOptionsAllOf
     globals()['BashOptions'] = BashOptions

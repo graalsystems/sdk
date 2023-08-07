@@ -12,7 +12,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -27,24 +27,20 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from openapi_client.exceptions import ApiAttributeError
+from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.activity import Activity
-    from openapi_client.model.job1 import Job1
-    from openapi_client.model.job_activity import JobActivity
-    from openapi_client.model.job_activity_all_of import JobActivityAllOf
-    from openapi_client.model.project_activity import ProjectActivity
-    from openapi_client.model.user1 import User1
-    from openapi_client.model.user_activity import UserActivity
+    from graalsystems.model.activity import Activity
+    from graalsystems.model.job1 import Job1
+    from graalsystems.model.job_activity_all_of import JobActivityAllOf
+    from graalsystems.model.reaction import Reaction
+    from graalsystems.model.user1 import User1
     globals()['Activity'] = Activity
     globals()['Job1'] = Job1
-    globals()['JobActivity'] = JobActivity
     globals()['JobActivityAllOf'] = JobActivityAllOf
-    globals()['ProjectActivity'] = ProjectActivity
+    globals()['Reaction'] = Reaction
     globals()['User1'] = User1
-    globals()['UserActivity'] = UserActivity
 
 
 class JobActivity(ModelComposed):
@@ -72,6 +68,9 @@ class JobActivity(ModelComposed):
     """
 
     allowed_values = {
+        ('type',): {
+            'JOB': "job",
+        },
     }
 
     validations = {
@@ -104,33 +103,26 @@ class JobActivity(ModelComposed):
             'target': (Job1,),  # noqa: E501
             'verb': (str,),  # noqa: E501
             'data': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'type': (str,),  # noqa: E501
             'id': (str,),  # noqa: E501
-            'tenant_id': (str,),  # noqa: E501
             'time': (datetime,),  # noqa: E501
+            'reactions_count': ([Reaction],),  # noqa: E501
+            'type': (str,),  # noqa: E501
         }
 
     @cached_property
     def discriminator():
-        lazy_import()
-        val = {
-            'job': JobActivity,
-            'project': ProjectActivity,
-            'user': UserActivity,
-        }
-        if not val:
-            return None
-        return {'type': val}
+        return None
+
 
     attribute_map = {
         'actor': 'actor',  # noqa: E501
         'target': 'target',  # noqa: E501
         'verb': 'verb',  # noqa: E501
         'data': 'data',  # noqa: E501
-        'type': 'type',  # noqa: E501
         'id': 'id',  # noqa: E501
-        'tenant_id': 'tenant_id',  # noqa: E501
         'time': 'time',  # noqa: E501
+        'reactions_count': 'reactions_count',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     read_only_vars = {
@@ -145,7 +137,6 @@ class JobActivity(ModelComposed):
             actor (User1):
             target (Job1):
             verb (str):
-            data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -176,10 +167,11 @@ class JobActivity(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): [optional] if omitted the server will use the default value of "job"  # noqa: E501
+            data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
-            tenant_id (str): [optional]  # noqa: E501
             time (datetime): [optional]  # noqa: E501
+            reactions_count ([Reaction]): [optional]  # noqa: E501
+            type (str): [optional] if omitted the server will use the default value of "job"  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -252,7 +244,6 @@ class JobActivity(ModelComposed):
             actor (User1):
             target (Job1):
             verb (str):
-            data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}):
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -283,10 +274,11 @@ class JobActivity(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): [optional] if omitted the server will use the default value of "job"  # noqa: E501
+            data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
-            tenant_id (str): [optional]  # noqa: E501
             time (datetime): [optional]  # noqa: E501
+            reactions_count ([Reaction]): [optional]  # noqa: E501
+            type (str): [optional] if omitted the server will use the default value of "job"  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

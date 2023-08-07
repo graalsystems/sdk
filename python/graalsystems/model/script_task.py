@@ -12,7 +12,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -27,15 +27,15 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from openapi_client.exceptions import ApiAttributeError
+from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.job_task import JobTask
-    from openapi_client.model.script_task import ScriptTask
-    from openapi_client.model.script_task_all_of import ScriptTaskAllOf
-    from openapi_client.model.task import Task
-    from openapi_client.model.workflow_task import WorkflowTask
+    from graalsystems.model.job_task import JobTask
+    from graalsystems.model.script_task import ScriptTask
+    from graalsystems.model.script_task_all_of import ScriptTaskAllOf
+    from graalsystems.model.task import Task
+    from graalsystems.model.workflow_task import WorkflowTask
     globals()['JobTask'] = JobTask
     globals()['ScriptTask'] = ScriptTask
     globals()['ScriptTaskAllOf'] = ScriptTaskAllOf

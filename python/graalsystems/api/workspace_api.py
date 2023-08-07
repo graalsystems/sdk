@@ -12,8 +12,8 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.api_client import ApiClient, Endpoint as _Endpoint
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.api_client import ApiClient, Endpoint as _Endpoint
+from graalsystems.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -22,11 +22,11 @@ from openapi_client.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from openapi_client.model.error import Error
-from openapi_client.model.pageable import Pageable
-from openapi_client.model.patch import Patch
-from openapi_client.model.workspace import Workspace
-from openapi_client.model.workspace_page import WorkspacePage
+from graalsystems.model.error import Error
+from graalsystems.model.pageable import Pageable
+from graalsystems.model.patch import Patch
+from graalsystems.model.workspace import Workspace
+from graalsystems.model.workspace_page import WorkspacePage
 
 
 class WorkspaceApi(object):

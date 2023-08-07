@@ -12,7 +12,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from openapi_client.model_utils import (  # noqa: F401
+from graalsystems.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -27,13 +27,13 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from openapi_client.exceptions import ApiAttributeError
+from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.page import Page
-    from openapi_client.model.workspace import Workspace
-    from openapi_client.model.workspace_page_all_of import WorkspacePageAllOf
+    from graalsystems.model.page import Page
+    from graalsystems.model.workspace import Workspace
+    from graalsystems.model.workspace_page_all_of import WorkspacePageAllOf
     globals()['Page'] = Page
     globals()['Workspace'] = Workspace
     globals()['WorkspacePageAllOf'] = WorkspacePageAllOf
