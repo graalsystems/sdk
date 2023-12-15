@@ -20,14 +20,15 @@ import (
 type EtlDagVisitorsEnumsLanguageType string
 
 // List of etl__dag__visitors__enums__LanguageType
-const (
-	PYSPARK EtlDagVisitorsEnumsLanguageType = "pyspark"
-	PANDAS EtlDagVisitorsEnumsLanguageType = "pandas"
-	JAVA EtlDagVisitorsEnumsLanguageType = "java"
-	DASK EtlDagVisitorsEnumsLanguageType = "dask"
-	BEAM EtlDagVisitorsEnumsLanguageType = "beam"
-	FLINK EtlDagVisitorsEnumsLanguageType = "flink"
-)
+// This is commented since those values are already defined in go/model_etl__dag__schemas__enums__language_type.go
+// const (
+// 	PYSPARK EtlDagVisitorsEnumsLanguageType = "pyspark"
+// 	PANDAS EtlDagVisitorsEnumsLanguageType = "pandas"
+// 	JAVA EtlDagVisitorsEnumsLanguageType = "java"
+// 	DASK EtlDagVisitorsEnumsLanguageType = "dask"
+// 	BEAM EtlDagVisitorsEnumsLanguageType = "beam"
+// 	FLINK EtlDagVisitorsEnumsLanguageType = "flink"
+// )
 
 // All allowed values of EtlDagVisitorsEnumsLanguageType enum
 var AllowedEtlDagVisitorsEnumsLanguageTypeEnumValues = []EtlDagVisitorsEnumsLanguageType{
