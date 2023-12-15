@@ -18,37 +18,37 @@ import (
 
 // Right struct for Right
 type Right struct {
-	[]string *[]string
-	string *string
+	Array *[]string
+	String *string
 }
 
 // Unmarshal JSON data into any of the pointers in the struct
 func (dst *Right) UnmarshalJSON(data []byte) error {
 	var err error
 	// try to unmarshal JSON data into []string
-	err = json.Unmarshal(data, &dst.[]string);
+	err = json.Unmarshal(data, &dst.Array);
 	if err == nil {
-		json[]string, _ := json.Marshal(dst.[]string)
-		if string(json[]string) == "{}" { // empty struct
-			dst.[]string = nil
+		json_array, _ := json.Marshal(dst.Array)
+		if string(json_array) == "{}" { // empty struct
+			dst.Array = nil
 		} else {
-			return nil // data stored in dst.[]string, return on the first match
+			return nil // data stored in dst.Array, return on the first match
 		}
 	} else {
-		dst.[]string = nil
+		dst.Array = nil
 	}
 
 	// try to unmarshal JSON data into string
-	err = json.Unmarshal(data, &dst.string);
+	err = json.Unmarshal(data, &dst.String);
 	if err == nil {
-		jsonstring, _ := json.Marshal(dst.string)
+		jsonstring, _ := json.Marshal(dst.String)
 		if string(jsonstring) == "{}" { // empty struct
-			dst.string = nil
+			dst.String = nil
 		} else {
-			return nil // data stored in dst.string, return on the first match
+			return nil // data stored in dst.String, return on the first match
 		}
 	} else {
-		dst.string = nil
+		dst.String = nil
 	}
 
 	return fmt.Errorf("data failed to match schemas in anyOf(Right)")
@@ -56,12 +56,12 @@ func (dst *Right) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src *Right) MarshalJSON() ([]byte, error) {
-	if src.[]string != nil {
-		return json.Marshal(&src.[]string)
+	if src.Array != nil {
+		return json.Marshal(&src.Array)
 	}
 
-	if src.string != nil {
-		return json.Marshal(&src.string)
+	if src.String != nil {
+		return json.Marshal(&src.String)
 	}
 
 	return nil, nil // no data in anyOf schemas
