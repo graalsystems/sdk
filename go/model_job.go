@@ -32,7 +32,7 @@ type Job struct {
 	MaxRetries     *int32                            `json:"max_retries,omitempty"`
 	Secrets        []string                          `json:"secrets,omitempty"`
 	Libraries      []Library                         `json:"libraries,omitempty"`
-	Options        *Options                          `json:"options,omitempty"`
+	Options        *IOptions                         `json:"options,omitempty"`
 	Schedule       *ISchedule                        `json:"schedule,omitempty"`
 	Notifications  *Notifications                    `json:"notifications,omitempty"`
 	Parameters     []string                          `json:"parameters,omitempty"`
@@ -410,7 +410,7 @@ func (o *Job) SetLibraries(v []Library) {
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *Job) GetOptions() Options {
+func (o *Job) GetOptions() IOptions {
 	if o == nil || IsNil(o.Options) {
 		var ret Options
 		return ret
@@ -420,7 +420,7 @@ func (o *Job) GetOptions() Options {
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetOptionsOk() (*Options, bool) {
+func (o *Job) GetOptionsOk() (*IOptions, bool) {
 	if o == nil || IsNil(o.Options) {
 		return nil, false
 	}
@@ -437,7 +437,7 @@ func (o *Job) HasOptions() bool {
 }
 
 // SetOptions gets a reference to the given Options and assigns it to the Options field.
-func (o *Job) SetOptions(v Options) {
+func (o *Job) SetOptions(v IOptions) {
 	o.Options = &v
 }
 
