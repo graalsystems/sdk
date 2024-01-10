@@ -18,8 +18,11 @@ import (
 // checks if the Library type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Library{}
 
+type ILibrary interface{}
+
 // Library struct for Library
 type Library struct {
+	ILibrary
 	Type *string `json:"type,omitempty"`
 }
 
@@ -73,7 +76,7 @@ func (o *Library) SetType(v string) {
 }
 
 func (o Library) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -123,5 +126,3 @@ func (v *NullableLibrary) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

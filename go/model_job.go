@@ -31,7 +31,7 @@ type Job struct {
 	TimeoutSeconds *int32                            `json:"timeout_seconds,omitempty"`
 	MaxRetries     *int32                            `json:"max_retries,omitempty"`
 	Secrets        []string                          `json:"secrets,omitempty"`
-	Libraries      []Library                         `json:"libraries,omitempty"`
+	Libraries      []ILibrary                        `json:"libraries,omitempty"`
 	Options        *IOptions                         `json:"options,omitempty"`
 	Schedule       *ISchedule                        `json:"schedule,omitempty"`
 	Notifications  *Notifications                    `json:"notifications,omitempty"`
@@ -378,9 +378,9 @@ func (o *Job) SetSecrets(v []string) {
 }
 
 // GetLibraries returns the Libraries field value if set, zero value otherwise.
-func (o *Job) GetLibraries() []Library {
+func (o *Job) GetLibraries() []ILibrary {
 	if o == nil || IsNil(o.Libraries) {
-		var ret []Library
+		var ret []ILibrary
 		return ret
 	}
 	return o.Libraries
@@ -388,7 +388,7 @@ func (o *Job) GetLibraries() []Library {
 
 // GetLibrariesOk returns a tuple with the Libraries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetLibrariesOk() ([]Library, bool) {
+func (o *Job) GetLibrariesOk() ([]ILibrary, bool) {
 	if o == nil || IsNil(o.Libraries) {
 		return nil, false
 	}
@@ -405,7 +405,7 @@ func (o *Job) HasLibraries() bool {
 }
 
 // SetLibraries gets a reference to the given []Library and assigns it to the Libraries field.
-func (o *Job) SetLibraries(v []Library) {
+func (o *Job) SetLibraries(v []ILibrary) {
 	o.Libraries = v
 }
 
