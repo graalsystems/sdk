@@ -18,8 +18,11 @@ import (
 // checks if the Schedule type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Schedule{}
 
+type ISchedule interface{}
+
 // Schedule struct for Schedule
 type Schedule struct {
+	ISchedule
 	Type *string `json:"type,omitempty"`
 }
 
@@ -73,7 +76,7 @@ func (o *Schedule) SetType(v string) {
 }
 
 func (o Schedule) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -123,5 +126,3 @@ func (v *NullableSchedule) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
