@@ -18,12 +18,15 @@ import (
 // checks if the Options type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Options{}
 
+type IOptions interface{}
+
 // Options struct for Options
 type Options struct {
-	Env *map[string]string `json:"env,omitempty"`
-	DockerImage *string `json:"docker_image,omitempty"`
-	InstanceType *string `json:"instance_type,omitempty"`
-	Type *string `json:"type,omitempty"`
+	IOptions
+	Env          *map[string]string `json:"env,omitempty"`
+	DockerImage  *string            `json:"docker_image,omitempty"`
+	InstanceType *string            `json:"instance_type,omitempty"`
+	Type         *string            `json:"type,omitempty"`
 }
 
 // NewOptions instantiates a new Options object
@@ -172,7 +175,7 @@ func (o *Options) SetType(v string) {
 }
 
 func (o Options) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -231,5 +234,3 @@ func (v *NullableOptions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

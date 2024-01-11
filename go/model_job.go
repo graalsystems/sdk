@@ -21,23 +21,23 @@ var _ MappedNullable = &Job{}
 
 // Job struct for Job
 type Job struct {
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Description *string `json:"description,omitempty"`
-	ProjectId *string `json:"project_id,omitempty"`
-	IdentityId *string `json:"identity_id,omitempty"`
-	Created *time.Time `json:"created,omitempty"`
-	Updated *time.Time `json:"updated,omitempty"`
-	TimeoutSeconds *int32 `json:"timeout_seconds,omitempty"`
-	MaxRetries *int32 `json:"max_retries,omitempty"`
-	Secrets []string `json:"secrets,omitempty"`
-	Libraries []Library `json:"libraries,omitempty"`
-	Options *Options `json:"options,omitempty"`
-	Schedule *Schedule `json:"schedule,omitempty"`
-	Notifications *Notifications `json:"notifications,omitempty"`
-	Parameters []string `json:"parameters,omitempty"`
-	Labels *map[string]string `json:"labels,omitempty"`
-	Metadata map[string]map[string]interface{} `json:"metadata,omitempty"`
+	Id             *string                           `json:"id,omitempty"`
+	Name           *string                           `json:"name,omitempty"`
+	Description    *string                           `json:"description,omitempty"`
+	ProjectId      *string                           `json:"project_id,omitempty"`
+	IdentityId     *string                           `json:"identity_id,omitempty"`
+	Created        *time.Time                        `json:"created,omitempty"`
+	Updated        *time.Time                        `json:"updated,omitempty"`
+	TimeoutSeconds *int32                            `json:"timeout_seconds,omitempty"`
+	MaxRetries     *int32                            `json:"max_retries,omitempty"`
+	Secrets        []string                          `json:"secrets,omitempty"`
+	Libraries      []ILibrary                        `json:"libraries,omitempty"`
+	Options        *IOptions                         `json:"options,omitempty"`
+	Schedule       *ISchedule                        `json:"schedule,omitempty"`
+	Notifications  *Notifications                    `json:"notifications,omitempty"`
+	Parameters     []string                          `json:"parameters,omitempty"`
+	Labels         *map[string]string                `json:"labels,omitempty"`
+	Metadata       map[string]map[string]interface{} `json:"metadata,omitempty"`
 }
 
 // NewJob instantiates a new Job object
@@ -378,9 +378,9 @@ func (o *Job) SetSecrets(v []string) {
 }
 
 // GetLibraries returns the Libraries field value if set, zero value otherwise.
-func (o *Job) GetLibraries() []Library {
+func (o *Job) GetLibraries() []ILibrary {
 	if o == nil || IsNil(o.Libraries) {
-		var ret []Library
+		var ret []ILibrary
 		return ret
 	}
 	return o.Libraries
@@ -388,7 +388,7 @@ func (o *Job) GetLibraries() []Library {
 
 // GetLibrariesOk returns a tuple with the Libraries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetLibrariesOk() ([]Library, bool) {
+func (o *Job) GetLibrariesOk() ([]ILibrary, bool) {
 	if o == nil || IsNil(o.Libraries) {
 		return nil, false
 	}
@@ -405,12 +405,12 @@ func (o *Job) HasLibraries() bool {
 }
 
 // SetLibraries gets a reference to the given []Library and assigns it to the Libraries field.
-func (o *Job) SetLibraries(v []Library) {
+func (o *Job) SetLibraries(v []ILibrary) {
 	o.Libraries = v
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *Job) GetOptions() Options {
+func (o *Job) GetOptions() IOptions {
 	if o == nil || IsNil(o.Options) {
 		var ret Options
 		return ret
@@ -420,7 +420,7 @@ func (o *Job) GetOptions() Options {
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetOptionsOk() (*Options, bool) {
+func (o *Job) GetOptionsOk() (*IOptions, bool) {
 	if o == nil || IsNil(o.Options) {
 		return nil, false
 	}
@@ -437,12 +437,12 @@ func (o *Job) HasOptions() bool {
 }
 
 // SetOptions gets a reference to the given Options and assigns it to the Options field.
-func (o *Job) SetOptions(v Options) {
+func (o *Job) SetOptions(v IOptions) {
 	o.Options = &v
 }
 
 // GetSchedule returns the Schedule field value if set, zero value otherwise.
-func (o *Job) GetSchedule() Schedule {
+func (o *Job) GetSchedule() ISchedule {
 	if o == nil || IsNil(o.Schedule) {
 		var ret Schedule
 		return ret
@@ -452,7 +452,7 @@ func (o *Job) GetSchedule() Schedule {
 
 // GetScheduleOk returns a tuple with the Schedule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetScheduleOk() (*Schedule, bool) {
+func (o *Job) GetScheduleOk() (*ISchedule, bool) {
 	if o == nil || IsNil(o.Schedule) {
 		return nil, false
 	}
@@ -469,7 +469,7 @@ func (o *Job) HasSchedule() bool {
 }
 
 // SetSchedule gets a reference to the given Schedule and assigns it to the Schedule field.
-func (o *Job) SetSchedule(v Schedule) {
+func (o *Job) SetSchedule(v ISchedule) {
 	o.Schedule = &v
 }
 
@@ -602,7 +602,7 @@ func (o *Job) SetMetadata(v map[string]map[string]interface{}) {
 }
 
 func (o Job) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -700,5 +700,3 @@ func (v *NullableJob) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
