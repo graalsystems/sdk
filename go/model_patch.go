@@ -20,10 +20,10 @@ var _ MappedNullable = &Patch{}
 
 // Patch struct for Patch
 type Patch struct {
-	Op *string `json:"op,omitempty"`
-	From *string `json:"from,omitempty"`
-	Path *string `json:"path,omitempty"`
-	Value map[string]interface{} `json:"value,omitempty"`
+	Op    *string `json:"op,omitempty"`
+	From  *string `json:"from,omitempty"`
+	Path  *string `json:"path,omitempty"`
+	Value *string `json:"value,omitempty"`
 }
 
 // NewPatch instantiates a new Patch object
@@ -140,19 +140,19 @@ func (o *Patch) SetPath(v string) {
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *Patch) GetValue() map[string]interface{} {
+func (o *Patch) GetValue() string {
 	if o == nil || IsNil(o.Value) {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
-	return o.Value
+	return *o.Value
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Patch) GetValueOk() (map[string]interface{}, bool) {
+func (o *Patch) GetValueOk() (*string, bool) {
 	if o == nil || IsNil(o.Value) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Value, true
 }
@@ -167,12 +167,12 @@ func (o *Patch) HasValue() bool {
 }
 
 // SetValue gets a reference to the given map[string]interface{} and assigns it to the Value field.
-func (o *Patch) SetValue(v map[string]interface{}) {
-	o.Value = v
+func (o *Patch) SetValue(v string) {
+	o.Value = &v
 }
 
 func (o Patch) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -231,5 +231,3 @@ func (v *NullablePatch) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
