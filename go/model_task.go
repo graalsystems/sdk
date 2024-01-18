@@ -18,11 +18,14 @@ import (
 // checks if the Task type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Task{}
 
+type ITask interface{}
+
 // Task struct for Task
 type Task struct {
+	ITask
 	Depends []string `json:"depends,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Name    *string  `json:"name,omitempty"`
+	Type    *string  `json:"type,omitempty"`
 }
 
 // NewTask instantiates a new Task object
@@ -139,7 +142,7 @@ func (o *Task) SetType(v string) {
 }
 
 func (o Task) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -195,5 +198,3 @@ func (v *NullableTask) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
