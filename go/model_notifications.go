@@ -20,9 +20,9 @@ var _ MappedNullable = &Notifications{}
 
 // Notifications struct for Notifications
 type Notifications struct {
-	OnStart []Notification `json:"on_start,omitempty"`
-	OnSuccess []Notification `json:"on_success,omitempty"`
-	OnFailure []Notification `json:"on_failure,omitempty"`
+	OnStart   []INotification `json:"on_start,omitempty"`
+	OnSuccess []INotification `json:"on_success,omitempty"`
+	OnFailure []INotification `json:"on_failure,omitempty"`
 }
 
 // NewNotifications instantiates a new Notifications object
@@ -43,9 +43,9 @@ func NewNotificationsWithDefaults() *Notifications {
 }
 
 // GetOnStart returns the OnStart field value if set, zero value otherwise.
-func (o *Notifications) GetOnStart() []Notification {
+func (o *Notifications) GetOnStart() []INotification {
 	if o == nil || IsNil(o.OnStart) {
-		var ret []Notification
+		var ret []INotification
 		return ret
 	}
 	return o.OnStart
@@ -53,7 +53,7 @@ func (o *Notifications) GetOnStart() []Notification {
 
 // GetOnStartOk returns a tuple with the OnStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Notifications) GetOnStartOk() ([]Notification, bool) {
+func (o *Notifications) GetOnStartOk() ([]INotification, bool) {
 	if o == nil || IsNil(o.OnStart) {
 		return nil, false
 	}
@@ -69,15 +69,15 @@ func (o *Notifications) HasOnStart() bool {
 	return false
 }
 
-// SetOnStart gets a reference to the given []Notification and assigns it to the OnStart field.
-func (o *Notifications) SetOnStart(v []Notification) {
+// SetOnStart gets a reference to the given []INotification and assigns it to the OnStart field.
+func (o *Notifications) SetOnStart(v []INotification) {
 	o.OnStart = v
 }
 
 // GetOnSuccess returns the OnSuccess field value if set, zero value otherwise.
-func (o *Notifications) GetOnSuccess() []Notification {
+func (o *Notifications) GetOnSuccess() []INotification {
 	if o == nil || IsNil(o.OnSuccess) {
-		var ret []Notification
+		var ret []INotification
 		return ret
 	}
 	return o.OnSuccess
@@ -85,7 +85,7 @@ func (o *Notifications) GetOnSuccess() []Notification {
 
 // GetOnSuccessOk returns a tuple with the OnSuccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Notifications) GetOnSuccessOk() ([]Notification, bool) {
+func (o *Notifications) GetOnSuccessOk() ([]INotification, bool) {
 	if o == nil || IsNil(o.OnSuccess) {
 		return nil, false
 	}
@@ -101,15 +101,15 @@ func (o *Notifications) HasOnSuccess() bool {
 	return false
 }
 
-// SetOnSuccess gets a reference to the given []Notification and assigns it to the OnSuccess field.
-func (o *Notifications) SetOnSuccess(v []Notification) {
+// SetOnSuccess gets a reference to the given []INotification and assigns it to the OnSuccess field.
+func (o *Notifications) SetOnSuccess(v []INotification) {
 	o.OnSuccess = v
 }
 
 // GetOnFailure returns the OnFailure field value if set, zero value otherwise.
-func (o *Notifications) GetOnFailure() []Notification {
+func (o *Notifications) GetOnFailure() []INotification {
 	if o == nil || IsNil(o.OnFailure) {
-		var ret []Notification
+		var ret []INotification
 		return ret
 	}
 	return o.OnFailure
@@ -117,7 +117,7 @@ func (o *Notifications) GetOnFailure() []Notification {
 
 // GetOnFailureOk returns a tuple with the OnFailure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Notifications) GetOnFailureOk() ([]Notification, bool) {
+func (o *Notifications) GetOnFailureOk() ([]INotification, bool) {
 	if o == nil || IsNil(o.OnFailure) {
 		return nil, false
 	}
@@ -133,13 +133,13 @@ func (o *Notifications) HasOnFailure() bool {
 	return false
 }
 
-// SetOnFailure gets a reference to the given []Notification and assigns it to the OnFailure field.
-func (o *Notifications) SetOnFailure(v []Notification) {
+// SetOnFailure gets a reference to the given []INotification and assigns it to the OnFailure field.
+func (o *Notifications) SetOnFailure(v []INotification) {
 	o.OnFailure = v
 }
 
 func (o Notifications) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -195,5 +195,3 @@ func (v *NullableNotifications) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
