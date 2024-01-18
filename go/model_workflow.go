@@ -21,19 +21,19 @@ var _ MappedNullable = &Workflow{}
 
 // Workflow struct for Workflow
 type Workflow struct {
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Description *string `json:"description,omitempty"`
-	ProjectId *string `json:"project_id,omitempty"`
-	IdentityId *string `json:"identity_id,omitempty"`
-	Created *time.Time `json:"created,omitempty"`
-	Updated *time.Time `json:"updated,omitempty"`
-	Tasks []Task `json:"tasks,omitempty"`
-	Schedule *Schedule `json:"schedule,omitempty"`
-	Notifications *Notifications `json:"notifications,omitempty"`
-	Parameters []string `json:"parameters,omitempty"`
-	Labels *map[string]string `json:"labels,omitempty"`
-	Metadata map[string]map[string]interface{} `json:"metadata,omitempty"`
+	Id            *string                           `json:"id,omitempty"`
+	Name          *string                           `json:"name,omitempty"`
+	Description   *string                           `json:"description,omitempty"`
+	ProjectId     *string                           `json:"project_id,omitempty"`
+	IdentityId    *string                           `json:"identity_id,omitempty"`
+	Created       *time.Time                        `json:"created,omitempty"`
+	Updated       *time.Time                        `json:"updated,omitempty"`
+	Tasks         []ITask                           `json:"tasks,omitempty"`
+	Schedule      *ISchedule                        `json:"schedule,omitempty"`
+	Notifications *Notifications                    `json:"notifications,omitempty"`
+	Parameters    []string                          `json:"parameters,omitempty"`
+	Labels        *map[string]string                `json:"labels,omitempty"`
+	Metadata      map[string]map[string]interface{} `json:"metadata,omitempty"`
 }
 
 // NewWorkflow instantiates a new Workflow object
@@ -278,9 +278,9 @@ func (o *Workflow) SetUpdated(v time.Time) {
 }
 
 // GetTasks returns the Tasks field value if set, zero value otherwise.
-func (o *Workflow) GetTasks() []Task {
+func (o *Workflow) GetTasks() []ITask {
 	if o == nil || IsNil(o.Tasks) {
-		var ret []Task
+		var ret []ITask
 		return ret
 	}
 	return o.Tasks
@@ -288,7 +288,7 @@ func (o *Workflow) GetTasks() []Task {
 
 // GetTasksOk returns a tuple with the Tasks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Workflow) GetTasksOk() ([]Task, bool) {
+func (o *Workflow) GetTasksOk() ([]ITask, bool) {
 	if o == nil || IsNil(o.Tasks) {
 		return nil, false
 	}
@@ -305,14 +305,14 @@ func (o *Workflow) HasTasks() bool {
 }
 
 // SetTasks gets a reference to the given []Task and assigns it to the Tasks field.
-func (o *Workflow) SetTasks(v []Task) {
+func (o *Workflow) SetTasks(v []ITask) {
 	o.Tasks = v
 }
 
 // GetSchedule returns the Schedule field value if set, zero value otherwise.
-func (o *Workflow) GetSchedule() Schedule {
+func (o *Workflow) GetSchedule() ISchedule {
 	if o == nil || IsNil(o.Schedule) {
-		var ret Schedule
+		var ret ISchedule
 		return ret
 	}
 	return *o.Schedule
@@ -320,7 +320,7 @@ func (o *Workflow) GetSchedule() Schedule {
 
 // GetScheduleOk returns a tuple with the Schedule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Workflow) GetScheduleOk() (*Schedule, bool) {
+func (o *Workflow) GetScheduleOk() (*ISchedule, bool) {
 	if o == nil || IsNil(o.Schedule) {
 		return nil, false
 	}
@@ -337,7 +337,7 @@ func (o *Workflow) HasSchedule() bool {
 }
 
 // SetSchedule gets a reference to the given Schedule and assigns it to the Schedule field.
-func (o *Workflow) SetSchedule(v Schedule) {
+func (o *Workflow) SetSchedule(v ISchedule) {
 	o.Schedule = &v
 }
 
@@ -470,7 +470,7 @@ func (o *Workflow) SetMetadata(v map[string]map[string]interface{}) {
 }
 
 func (o Workflow) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -556,5 +556,3 @@ func (v *NullableWorkflow) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
