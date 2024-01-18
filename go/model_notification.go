@@ -18,8 +18,11 @@ import (
 // checks if the Notification type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Notification{}
 
+type INotification interface{}
+
 // Notification struct for Notification
 type Notification struct {
+	INotification
 	Type *string `json:"type,omitempty"`
 }
 
@@ -73,7 +76,7 @@ func (o *Notification) SetType(v string) {
 }
 
 func (o Notification) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -123,5 +126,3 @@ func (v *NullableNotification) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
