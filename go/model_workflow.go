@@ -31,7 +31,7 @@ type Workflow struct {
 	Tasks         []ITask                           `json:"tasks,omitempty"`
 	Schedule      *ISchedule                        `json:"schedule,omitempty"`
 	Notifications *Notifications                    `json:"notifications,omitempty"`
-	Parameters    []string                          `json:"parameters,omitempty"`
+	Parameters    *map[string]string                `json:"parameters,omitempty"`
 	Labels        *map[string]string                `json:"labels,omitempty"`
 	Metadata      map[string]map[string]interface{} `json:"metadata,omitempty"`
 }
@@ -374,21 +374,21 @@ func (o *Workflow) SetNotifications(v Notifications) {
 }
 
 // GetParameters returns the Parameters field value if set, zero value otherwise.
-func (o *Workflow) GetParameters() []string {
+func (o *Workflow) GetParameters() map[string]string {
 	if o == nil || IsNil(o.Parameters) {
-		var ret []string
+		var ret map[string]string
 		return ret
 	}
-	return o.Parameters
+	return *o.Parameters
 }
 
 // GetParametersOk returns a tuple with the Parameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Workflow) GetParametersOk() ([]string, bool) {
+func (o *Workflow) GetParametersOk() (map[string]string, bool) {
 	if o == nil || IsNil(o.Parameters) {
 		return nil, false
 	}
-	return o.Parameters, true
+	return *o.Parameters, true
 }
 
 // HasParameters returns a boolean if a field has been set.
@@ -401,8 +401,8 @@ func (o *Workflow) HasParameters() bool {
 }
 
 // SetParameters gets a reference to the given []string and assigns it to the Parameters field.
-func (o *Workflow) SetParameters(v []string) {
-	o.Parameters = v
+func (o *Workflow) SetParameters(v map[string]string) {
+	o.Parameters = &v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
