@@ -3,6 +3,8 @@ package graal.systems.sdk.yarn.rpc;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.UnknownFieldSet;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.classification.InterfaceAudience.Private;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.yarn.exceptions.YarnRuntimeException;
@@ -17,7 +19,8 @@ import java.util.concurrent.ConcurrentMap;
 
 @Private
 public class GraalRecordFactoryPBImpl implements RecordFactory {
-
+    private static final Log LOG = LogFactory
+            .getLog(GraalRecordFactoryPBImpl.class);
     private static final String PB_IMPL_PACKAGE_SUFFIX = "impl.pb";
     private static final String PB_IMPL_CLASS_SUFFIX = "PBImpl";
 
@@ -60,44 +63,64 @@ public class GraalRecordFactoryPBImpl implements RecordFactory {
 
             Class<?> pbClazz = localConf.getClassByName(pbImplClassName);
 
+            LOG.error("Using:class: " + pbClazz);
             if (pbImplClassName.endsWith("RequestPBImpl")) {
 
-                String tenantId = System.getenv().get("GRAAL_TENANT");
-                String bridgeId = System.getenv().get("GRAAL_BRIDGE");
-                String projectId = System.getenv().get("GRAAL_PROJECT");
-                String jobId = System.getenv().get("GRAAL_JOB");
-                String runId = System.getenv().get("GRAAL_RUN");
+                String tenantId = localConf.get("graalsystems.tenant");
+                String bridgeId = localConf.get("graalsystems.bridge");
+                String projectId = localConf.get("graalsystems.project");
+                String infrastructureId = localConf.get("graalsystems.infrastructure");
+                String appKey = localConf.get("graalsystems.application.key");
+                String appSecret = localConf.get("graalsystems.application.secret");
 
-                if (StringUtils.isNotBlank(tenantId)) {
-                    UnknownFieldSet.Builder builder1 = UnknownFieldSet.newBuilder();
-                    builder1 = builder1.addField(100,
+                String jobId = localConf.get("graalsystems.job");
+                String runId = localConf.get("graalsystems.run");
+
+                LOG.error("Using:\ntenant: " + tenantId + "\nbridge: " + bridgeId + "\nproject: " + projectId + "\njob: " + jobId + "\nrun: " + runId + "\ninfrastructure: " + infrastructureId);
+
+                UnknownFieldSet.Builder builder1 = UnknownFieldSet.newBuilder();
+                builder1 = builder1.addField(97,
+                        UnknownFieldSet.Field.newBuilder()
+                                .addLengthDelimited(ByteString.copyFromUtf8(appKey))
+                                .build());
+                builder1 = builder1.addField(98,
+                        UnknownFieldSet.Field.newBuilder()
+                                .addLengthDelimited(ByteString.copyFromUtf8(appSecret))
+                                .build());
+
+                builder1 = builder1.addField(100,
+                        UnknownFieldSet.Field.newBuilder()
+                                .addLengthDelimited(ByteString.copyFromUtf8(tenantId))
+                                .build());
+                builder1 = builder1.addField(101,
+                        UnknownFieldSet.Field.newBuilder()
+                                .addLengthDelimited(ByteString.copyFromUtf8(bridgeId))
+                                .build());
+
+                if (StringUtils.isNotBlank(infrastructureId)) {
+                    builder1 = builder1.addField(99,
                             UnknownFieldSet.Field.newBuilder()
-                                    .addLengthDelimited(ByteString.copyFromUtf8(tenantId))
+                                    .addLengthDelimited(ByteString.copyFromUtf8(infrastructureId))
                                     .build());
-                    if (StringUtils.isNotBlank(bridgeId)) {
-                        builder1 = builder1.addField(101,
+                    if (StringUtils.isNotBlank(projectId)) {
+                        builder1 = builder1.addField(102,
                                 UnknownFieldSet.Field.newBuilder()
-                                        .addLengthDelimited(ByteString.copyFromUtf8(bridgeId))
+                                        .addLengthDelimited(ByteString.copyFromUtf8(projectId))
                                         .build());
-                        if (StringUtils.isNotBlank(projectId)) {
-                            builder1 = builder1.addField(102,
+                        if (StringUtils.isNotBlank(jobId)) {
+                            builder1 = builder1.addField(103,
                                     UnknownFieldSet.Field.newBuilder()
-                                            .addLengthDelimited(ByteString.copyFromUtf8(projectId))
+                                            .addLengthDelimited(ByteString.copyFromUtf8(jobId))
                                             .build());
-                            if (StringUtils.isNotBlank(jobId)) {
-                                builder1 = builder1.addField(103,
+                            if (StringUtils.isNotBlank(runId)) {
+                                builder1 = builder1.addField(104,
                                         UnknownFieldSet.Field.newBuilder()
-                                                .addLengthDelimited(ByteString.copyFromUtf8(jobId))
+                                                .addLengthDelimited(ByteString.copyFromUtf8(runId))
                                                 .build());
-                                if (StringUtils.isNotBlank(runId)) {
-                                    builder1 = builder1.addField(104,
-                                            UnknownFieldSet.Field.newBuilder()
-                                                    .addLengthDelimited(ByteString.copyFromUtf8(runId))
-                                                    .build());
-                                }
                             }
                         }
                     }
+                    
                     UnknownFieldSet unknownFields = builder1.build();
 
                     Field field = pbClazz.getDeclaredField("builder");
