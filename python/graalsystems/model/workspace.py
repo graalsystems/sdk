@@ -95,6 +95,7 @@ class Workspace(ModelNormal):
             'status': (str,),  # noqa: E501
             'created': (datetime,),  # noqa: E501
             'updated': (datetime,),  # noqa: E501
+            'labels': ({str: (str,)},),  # noqa: E501
             'metadata': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
         }
 
@@ -117,6 +118,7 @@ class Workspace(ModelNormal):
         'status': 'status',  # noqa: E501
         'created': 'created',  # noqa: E501
         'updated': 'updated',  # noqa: E501
+        'labels': 'labels',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
     }
 
@@ -174,6 +176,7 @@ class Workspace(ModelNormal):
             status (str): [optional]  # noqa: E501
             created (datetime): [optional]  # noqa: E501
             updated (datetime): [optional]  # noqa: E501
+            labels ({str: (str,)}): [optional]  # noqa: E501
             metadata ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
         """
 
@@ -269,6 +272,7 @@ class Workspace(ModelNormal):
             status (str): [optional]  # noqa: E501
             created (datetime): [optional]  # noqa: E501
             updated (datetime): [optional]  # noqa: E501
+            labels ({str: (str,)}): [optional]  # noqa: E501
             metadata ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
         """
 

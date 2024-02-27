@@ -89,6 +89,7 @@ class User(ModelNormal):
             'email': (str,),  # noqa: E501
             'description': (str,),  # noqa: E501
             'password': (str,),  # noqa: E501
+            'origin': (str,),  # noqa: E501
             'created': (datetime,),  # noqa: E501
             'updated': (datetime,),  # noqa: E501
             'metadata': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
@@ -108,6 +109,7 @@ class User(ModelNormal):
         'email': 'email',  # noqa: E501
         'description': 'description',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'origin': 'origin',  # noqa: E501
         'created': 'created',  # noqa: E501
         'updated': 'updated',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
@@ -162,6 +164,7 @@ class User(ModelNormal):
             email (str): [optional]  # noqa: E501
             description (str): [optional]  # noqa: E501
             password (str): [optional]  # noqa: E501
+            origin (str): [optional]  # noqa: E501
             created (datetime): [optional]  # noqa: E501
             updated (datetime): [optional]  # noqa: E501
             metadata ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
@@ -254,6 +257,7 @@ class User(ModelNormal):
             email (str): [optional]  # noqa: E501
             description (str): [optional]  # noqa: E501
             password (str): [optional]  # noqa: E501
+            origin (str): [optional]  # noqa: E501
             created (datetime): [optional]  # noqa: E501
             updated (datetime): [optional]  # noqa: E501
             metadata ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501

@@ -82,15 +82,7 @@ class Table(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (str,),  # noqa: E501
-            'technical_name': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
-            'uri': (str,),  # noqa: E501
-            'public_uri': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'created': (datetime,),  # noqa: E501
-            'updated': (datetime,),  # noqa: E501
-            'metadata': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
         }
 
     @cached_property
@@ -99,15 +91,7 @@ class Table(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'technical_name': 'technical_name',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'uri': 'uri',  # noqa: E501
-        'public_uri': 'public_uri',  # noqa: E501
-        'description': 'description',  # noqa: E501
-        'created': 'created',  # noqa: E501
-        'updated': 'updated',  # noqa: E501
-        'metadata': 'metadata',  # noqa: E501
     }
 
     read_only_vars = {
@@ -151,15 +135,7 @@ class Table(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): [optional]  # noqa: E501
-            technical_name (str): [optional]  # noqa: E501
             name (str): [optional]  # noqa: E501
-            uri (str): [optional]  # noqa: E501
-            public_uri (str): [optional]  # noqa: E501
-            description (str): [optional]  # noqa: E501
-            created (datetime): [optional]  # noqa: E501
-            updated (datetime): [optional]  # noqa: E501
-            metadata ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -241,15 +217,7 @@ class Table(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): [optional]  # noqa: E501
-            technical_name (str): [optional]  # noqa: E501
             name (str): [optional]  # noqa: E501
-            uri (str): [optional]  # noqa: E501
-            public_uri (str): [optional]  # noqa: E501
-            description (str): [optional]  # noqa: E501
-            created (datetime): [optional]  # noqa: E501
-            updated (datetime): [optional]  # noqa: E501
-            metadata ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

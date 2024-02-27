@@ -91,7 +91,7 @@ class Activity(ModelNormal):
             'data': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'id': (str,),  # noqa: E501
             'time': (datetime,),  # noqa: E501
-            'reactions_count': ([Reaction],),  # noqa: E501
+            'reaction_count': ([Reaction],),  # noqa: E501
         }
 
     @cached_property
@@ -103,7 +103,7 @@ class Activity(ModelNormal):
         'data': 'data',  # noqa: E501
         'id': 'id',  # noqa: E501
         'time': 'time',  # noqa: E501
-        'reactions_count': 'reactions_count',  # noqa: E501
+        'reaction_count': 'reaction_count',  # noqa: E501
     }
 
     read_only_vars = {
@@ -150,7 +150,7 @@ class Activity(ModelNormal):
             data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             time (datetime): [optional]  # noqa: E501
-            reactions_count ([Reaction]): [optional]  # noqa: E501
+            reaction_count ([Reaction]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -235,7 +235,7 @@ class Activity(ModelNormal):
             data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             time (datetime): [optional]  # noqa: E501
-            reactions_count ([Reaction]): [optional]  # noqa: E501
+            reaction_count ([Reaction]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

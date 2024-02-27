@@ -34,8 +34,10 @@ def lazy_import():
     from graalsystems.model.airflow_options import AirflowOptions
     from graalsystems.model.bash_options import BashOptions
     from graalsystems.model.dask_options import DaskOptions
+    from graalsystems.model.database_migration_options import DatabaseMigrationOptions
     from graalsystems.model.dbt_options import DbtOptions
     from graalsystems.model.dbt_options_all_of import DbtOptionsAllOf
+    from graalsystems.model.docker_options import DockerOptions
     from graalsystems.model.flink_options import FlinkOptions
     from graalsystems.model.hadoop_options import HadoopOptions
     from graalsystems.model.knime_options import KnimeOptions
@@ -52,8 +54,10 @@ def lazy_import():
     globals()['AirflowOptions'] = AirflowOptions
     globals()['BashOptions'] = BashOptions
     globals()['DaskOptions'] = DaskOptions
+    globals()['DatabaseMigrationOptions'] = DatabaseMigrationOptions
     globals()['DbtOptions'] = DbtOptions
     globals()['DbtOptionsAllOf'] = DbtOptionsAllOf
+    globals()['DockerOptions'] = DockerOptions
     globals()['FlinkOptions'] = FlinkOptions
     globals()['HadoopOptions'] = HadoopOptions
     globals()['KnimeOptions'] = KnimeOptions
@@ -125,6 +129,8 @@ class DbtOptions(ModelComposed):
             'type': (str,),  # noqa: E501
             'profile': (str,),  # noqa: E501
             'adapter': (str,),  # noqa: E501
+            'command': (str,),  # noqa: E501
+            'target': (str,),  # noqa: E501
             'env': ({str: (str,)},),  # noqa: E501
             'docker_image': (str,),  # noqa: E501
             'instance_type': (str,),  # noqa: E501
@@ -137,7 +143,9 @@ class DbtOptions(ModelComposed):
             'airflow': AirflowOptions,
             'bash': BashOptions,
             'dask': DaskOptions,
+            'database-migration': DatabaseMigrationOptions,
             'dbt': DbtOptions,
+            'docker': DockerOptions,
             'flink': FlinkOptions,
             'hadoop': HadoopOptions,
             'knime': KnimeOptions,
@@ -159,6 +167,8 @@ class DbtOptions(ModelComposed):
         'type': 'type',  # noqa: E501
         'profile': 'profile',  # noqa: E501
         'adapter': 'adapter',  # noqa: E501
+        'command': 'command',  # noqa: E501
+        'target': 'target',  # noqa: E501
         'env': 'env',  # noqa: E501
         'docker_image': 'docker_image',  # noqa: E501
         'instance_type': 'instance_type',  # noqa: E501
@@ -206,6 +216,8 @@ class DbtOptions(ModelComposed):
             type (str): [optional] if omitted the server will use the default value of "dbt"  # noqa: E501
             profile (str): [optional]  # noqa: E501
             adapter (str): [optional]  # noqa: E501
+            command (str): [optional]  # noqa: E501
+            target (str): [optional]  # noqa: E501
             env ({str: (str,)}): [optional]  # noqa: E501
             docker_image (str): [optional]  # noqa: E501
             instance_type (str): [optional]  # noqa: E501
@@ -311,6 +323,8 @@ class DbtOptions(ModelComposed):
             type (str): [optional] if omitted the server will use the default value of "dbt"  # noqa: E501
             profile (str): [optional]  # noqa: E501
             adapter (str): [optional]  # noqa: E501
+            command (str): [optional]  # noqa: E501
+            target (str): [optional]  # noqa: E501
             env ({str: (str,)}): [optional]  # noqa: E501
             docker_image (str): [optional]  # noqa: E501
             instance_type (str): [optional]  # noqa: E501

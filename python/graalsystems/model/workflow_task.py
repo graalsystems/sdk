@@ -31,13 +31,19 @@ from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from graalsystems.model.end_task import EndTask
+    from graalsystems.model.error_task import ErrorTask
     from graalsystems.model.job_task import JobTask
     from graalsystems.model.script_task import ScriptTask
+    from graalsystems.model.start_task import StartTask
     from graalsystems.model.task import Task
     from graalsystems.model.workflow_task import WorkflowTask
     from graalsystems.model.workflow_task_all_of import WorkflowTaskAllOf
+    globals()['EndTask'] = EndTask
+    globals()['ErrorTask'] = ErrorTask
     globals()['JobTask'] = JobTask
     globals()['ScriptTask'] = ScriptTask
+    globals()['StartTask'] = StartTask
     globals()['Task'] = Task
     globals()['WorkflowTask'] = WorkflowTask
     globals()['WorkflowTaskAllOf'] = WorkflowTaskAllOf
@@ -106,8 +112,11 @@ class WorkflowTask(ModelComposed):
     def discriminator():
         lazy_import()
         val = {
+            'end': EndTask,
+            'error': ErrorTask,
             'job': JobTask,
             'script': ScriptTask,
+            'start': StartTask,
             'workflow': WorkflowTask,
         }
         if not val:

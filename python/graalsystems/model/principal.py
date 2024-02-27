@@ -106,6 +106,7 @@ class Principal(ModelComposed):
             'lastname': (str,),  # noqa: E501
             'email': (str,),  # noqa: E501
             'password': (str,),  # noqa: E501
+            'origin': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -130,6 +131,7 @@ class Principal(ModelComposed):
         'lastname': 'lastname',  # noqa: E501
         'email': 'email',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'origin': 'origin',  # noqa: E501
     }
 
     read_only_vars = {
@@ -187,6 +189,7 @@ class Principal(ModelComposed):
             lastname (str): [optional]  # noqa: E501
             email (str): [optional]  # noqa: E501
             password (str): [optional]  # noqa: E501
+            origin (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -302,6 +305,7 @@ class Principal(ModelComposed):
             lastname (str): [optional]  # noqa: E501
             email (str): [optional]  # noqa: E501
             password (str): [optional]  # noqa: E501
+            origin (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

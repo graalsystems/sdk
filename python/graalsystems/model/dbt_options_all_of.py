@@ -85,6 +85,8 @@ class DbtOptionsAllOf(ModelNormal):
             'type': (str,),  # noqa: E501
             'profile': (str,),  # noqa: E501
             'adapter': (str,),  # noqa: E501
+            'command': (str,),  # noqa: E501
+            'target': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -96,6 +98,8 @@ class DbtOptionsAllOf(ModelNormal):
         'type': 'type',  # noqa: E501
         'profile': 'profile',  # noqa: E501
         'adapter': 'adapter',  # noqa: E501
+        'command': 'command',  # noqa: E501
+        'target': 'target',  # noqa: E501
     }
 
     read_only_vars = {
@@ -142,6 +146,8 @@ class DbtOptionsAllOf(ModelNormal):
             type (str): [optional] if omitted the server will use the default value of "dbt"  # noqa: E501
             profile (str): [optional]  # noqa: E501
             adapter (str): [optional]  # noqa: E501
+            command (str): [optional]  # noqa: E501
+            target (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -226,6 +232,8 @@ class DbtOptionsAllOf(ModelNormal):
             type (str): [optional] if omitted the server will use the default value of "dbt"  # noqa: E501
             profile (str): [optional]  # noqa: E501
             adapter (str): [optional]  # noqa: E501
+            command (str): [optional]  # noqa: E501
+            target (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

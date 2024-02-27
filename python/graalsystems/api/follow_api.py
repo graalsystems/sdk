@@ -38,14 +38,185 @@ class FollowApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_project_followers_projects_project_id_followers_post_endpoint = _Endpoint(
+        self.create_catalog_follower_endpoint = _Endpoint(
+            settings={
+                'response_type': (Follow,),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/catalogs/{catalog_id}/followers',
+                'operation_id': 'create_catalog_follower',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'catalog_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'catalog_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'catalog_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'catalog_id': 'catalog_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'catalog_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.create_database_follower_endpoint = _Endpoint(
+            settings={
+                'response_type': (Follow,),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/databases/{database_id}/followers',
+                'operation_id': 'create_database_follower',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'database_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'database_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'database_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'database_id': 'database_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'database_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.create_job_follower_endpoint = _Endpoint(
+            settings={
+                'response_type': (Follow,),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/jobs/{job_id}/followers',
+                'operation_id': 'create_job_follower',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'job_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'job_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'job_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'job_id': 'job_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'job_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.create_project_follower_endpoint = _Endpoint(
             settings={
                 'response_type': (Follow,),
                 'auth': [
                     'internal'
                 ],
                 'endpoint_path': '/projects/{project_id}/followers',
-                'operation_id': 'create_project_followers_projects_project_id_followers_post',
+                'operation_id': 'create_project_follower',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -95,14 +266,71 @@ class FollowApi(object):
             },
             api_client=api_client
         )
-        self.create_user_followers_users_user_id_followers_post_endpoint = _Endpoint(
+        self.create_table_follower_endpoint = _Endpoint(
+            settings={
+                'response_type': (Follow,),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/tables/{table_id}/followers',
+                'operation_id': 'create_table_follower',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'table_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'table_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'table_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'table_id': 'table_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'table_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.create_user_follower_endpoint = _Endpoint(
             settings={
                 'response_type': (Follow,),
                 'auth': [
                     'internal'
                 ],
                 'endpoint_path': '/users/{user_id}/followers',
-                'operation_id': 'create_user_followers_users_user_id_followers_post',
+                'operation_id': 'create_user_follower',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -152,14 +380,242 @@ class FollowApi(object):
             },
             api_client=api_client
         )
-        self.delete_project_followers_projects_project_id_followers_delete_endpoint = _Endpoint(
+        self.create_workflow_follower_endpoint = _Endpoint(
+            settings={
+                'response_type': (Follow,),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/workflows/{workflow_id}/followers',
+                'operation_id': 'create_workflow_follower',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'workflow_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'workflow_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'workflow_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'workflow_id': 'workflow_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'workflow_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.delete_following_catalog_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/following/catalogs/{catalog_id}',
+                'operation_id': 'delete_following_catalog',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'catalog_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'catalog_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'catalog_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'catalog_id': 'catalog_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'catalog_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.delete_following_database_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/following/databases/{database_id}',
+                'operation_id': 'delete_following_database',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'database_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'database_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'database_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'database_id': 'database_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'database_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.delete_following_job_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/following/jobs/{job_id}',
+                'operation_id': 'delete_following_job',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'job_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'job_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'job_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'job_id': 'job_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'job_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.delete_following_project_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
                     'internal'
                 ],
                 'endpoint_path': '/following/projects/{project_id}',
-                'operation_id': 'delete_project_followers_projects_project_id_followers_delete',
+                'operation_id': 'delete_following_project',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -209,14 +665,71 @@ class FollowApi(object):
             },
             api_client=api_client
         )
-        self.delete_user_followers_users_user_id_followers_delete_endpoint = _Endpoint(
+        self.delete_following_table_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/following/tables/{table_id}',
+                'operation_id': 'delete_following_table',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'table_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'table_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'table_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'table_id': 'table_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'table_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.delete_following_user_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
                     'internal'
                 ],
                 'endpoint_path': '/following/users/{user_id}',
-                'operation_id': 'delete_user_followers_users_user_id_followers_delete',
+                'operation_id': 'delete_following_user',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -266,14 +779,242 @@ class FollowApi(object):
             },
             api_client=api_client
         )
-        self.get_project_followers_projects_project_id_followers_get_endpoint = _Endpoint(
+        self.delete_following_workflow_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/following/workflows/{workflow_id}',
+                'operation_id': 'delete_following_workflow',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'workflow_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'workflow_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'workflow_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'workflow_id': 'workflow_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'workflow_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_catalog_followers_endpoint = _Endpoint(
+            settings={
+                'response_type': ([User1],),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/catalogs/{catalog_id}/followers',
+                'operation_id': 'get_catalog_followers',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'catalog_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'catalog_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'catalog_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'catalog_id': 'catalog_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'catalog_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_database_followers_endpoint = _Endpoint(
+            settings={
+                'response_type': ([User1],),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/databases/{database_id}/followers',
+                'operation_id': 'get_database_followers',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'database_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'database_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'database_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'database_id': 'database_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'database_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_job_followers_endpoint = _Endpoint(
+            settings={
+                'response_type': ([User1],),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/jobs/{job_id}/followers',
+                'operation_id': 'get_job_followers',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'job_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'job_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'job_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'job_id': 'job_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'job_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_project_followers_endpoint = _Endpoint(
             settings={
                 'response_type': ([User1],),
                 'auth': [
                     'internal'
                 ],
                 'endpoint_path': '/projects/{project_id}/followers',
-                'operation_id': 'get_project_followers_projects_project_id_followers_get',
+                'operation_id': 'get_project_followers',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -323,14 +1064,71 @@ class FollowApi(object):
             },
             api_client=api_client
         )
-        self.get_user_followers_users_user_id_followers_get_endpoint = _Endpoint(
+        self.get_table_followers_endpoint = _Endpoint(
+            settings={
+                'response_type': ([User1],),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/tables/{table_id}/followers',
+                'operation_id': 'get_table_followers',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'table_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'table_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'table_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'table_id': 'table_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'table_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_user_followers_endpoint = _Endpoint(
             settings={
                 'response_type': ([User1],),
                 'auth': [
                     'internal'
                 ],
                 'endpoint_path': '/users/{user_id}/followers',
-                'operation_id': 'get_user_followers_users_user_id_followers_get',
+                'operation_id': 'get_user_followers',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -380,14 +1178,14 @@ class FollowApi(object):
             },
             api_client=api_client
         )
-        self.get_user_following_users_user_id_following_get_endpoint = _Endpoint(
+        self.get_user_following_endpoint = _Endpoint(
             settings={
                 'response_type': ([bool, date, datetime, dict, float, int, list, str, none_type],),
                 'auth': [
                     'internal'
                 ],
                 'endpoint_path': '/users/{user_id}/following',
-                'operation_id': 'get_user_following_users_user_id_following_get',
+                'operation_id': 'get_user_following',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -425,6 +1223,63 @@ class FollowApi(object):
                 'location_map': {
                     'x_tenant': 'header',
                     'user_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_workflow_followers_endpoint = _Endpoint(
+            settings={
+                'response_type': ([User1],),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/workflows/{workflow_id}/followers',
+                'operation_id': 'get_workflow_followers',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'workflow_id',
+                ],
+                'required': [
+                    'x_tenant',
+                    'workflow_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'workflow_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'x-tenant',
+                    'workflow_id': 'workflow_id',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'workflow_id': 'path',
                 },
                 'collection_format_map': {
                 }
@@ -438,7 +1293,232 @@ class FollowApi(object):
             api_client=api_client
         )
 
-    def create_project_followers_projects_project_id_followers_post(
+    def create_catalog_follower(
+        self,
+        x_tenant,
+        catalog_id,
+        **kwargs
+    ):
+        """Create Catalog Followers  # noqa: E501
+
+        Create a new follow relationship between a catalog and an user.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_catalog_follower(x_tenant, catalog_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            catalog_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Follow
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['catalog_id'] = \
+            catalog_id
+        return self.create_catalog_follower_endpoint.call_with_http_info(**kwargs)
+
+    def create_database_follower(
+        self,
+        x_tenant,
+        database_id,
+        **kwargs
+    ):
+        """Create Database Followers  # noqa: E501
+
+        Create a new follow relationship between a database and an user.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_database_follower(x_tenant, database_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            database_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Follow
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['database_id'] = \
+            database_id
+        return self.create_database_follower_endpoint.call_with_http_info(**kwargs)
+
+    def create_job_follower(
+        self,
+        x_tenant,
+        job_id,
+        **kwargs
+    ):
+        """Create Job Followers  # noqa: E501
+
+        Create a new follow relationship between a job and an user.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_job_follower(x_tenant, job_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            job_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Follow
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['job_id'] = \
+            job_id
+        return self.create_job_follower_endpoint.call_with_http_info(**kwargs)
+
+    def create_project_follower(
         self,
         x_tenant,
         project_id,
@@ -446,11 +1526,11 @@ class FollowApi(object):
     ):
         """Create Project Followers  # noqa: E501
 
-        Add an activity in the repository.  # noqa: E501
+        Create a new follow relationship between a project and an user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_project_followers_projects_project_id_followers_post(x_tenant, project_id, async_req=True)
+        >>> thread = api.create_project_follower(x_tenant, project_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -511,9 +1591,84 @@ class FollowApi(object):
             x_tenant
         kwargs['project_id'] = \
             project_id
-        return self.create_project_followers_projects_project_id_followers_post_endpoint.call_with_http_info(**kwargs)
+        return self.create_project_follower_endpoint.call_with_http_info(**kwargs)
 
-    def create_user_followers_users_user_id_followers_post(
+    def create_table_follower(
+        self,
+        x_tenant,
+        table_id,
+        **kwargs
+    ):
+        """Create Table Followers  # noqa: E501
+
+        Create a new follow relationship between a table and an user.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_table_follower(x_tenant, table_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            table_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Follow
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['table_id'] = \
+            table_id
+        return self.create_table_follower_endpoint.call_with_http_info(**kwargs)
+
+    def create_user_follower(
         self,
         x_tenant,
         user_id,
@@ -521,11 +1676,11 @@ class FollowApi(object):
     ):
         """Create User Followers  # noqa: E501
 
-        Add an activity in the repository.  # noqa: E501
+        Create a new follow relationship between a two users.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_user_followers_users_user_id_followers_post(x_tenant, user_id, async_req=True)
+        >>> thread = api.create_user_follower(x_tenant, user_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -586,21 +1741,321 @@ class FollowApi(object):
             x_tenant
         kwargs['user_id'] = \
             user_id
-        return self.create_user_followers_users_user_id_followers_post_endpoint.call_with_http_info(**kwargs)
+        return self.create_user_follower_endpoint.call_with_http_info(**kwargs)
 
-    def delete_project_followers_projects_project_id_followers_delete(
+    def create_workflow_follower(
+        self,
+        x_tenant,
+        workflow_id,
+        **kwargs
+    ):
+        """Create Workflow Followers  # noqa: E501
+
+        Create a new follow relationship between a workflow and an user.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_workflow_follower(x_tenant, workflow_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            workflow_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Follow
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['workflow_id'] = \
+            workflow_id
+        return self.create_workflow_follower_endpoint.call_with_http_info(**kwargs)
+
+    def delete_following_catalog(
+        self,
+        x_tenant,
+        catalog_id,
+        **kwargs
+    ):
+        """Delete Following Catalog  # noqa: E501
+
+        Delete the follow relationship between a catalog and an user.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_following_catalog(x_tenant, catalog_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            catalog_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['catalog_id'] = \
+            catalog_id
+        return self.delete_following_catalog_endpoint.call_with_http_info(**kwargs)
+
+    def delete_following_database(
+        self,
+        x_tenant,
+        database_id,
+        **kwargs
+    ):
+        """Delete Following Database  # noqa: E501
+
+        Delete the follow relationship between a database and an user.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_following_database(x_tenant, database_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            database_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['database_id'] = \
+            database_id
+        return self.delete_following_database_endpoint.call_with_http_info(**kwargs)
+
+    def delete_following_job(
+        self,
+        x_tenant,
+        job_id,
+        **kwargs
+    ):
+        """Delete Following Job  # noqa: E501
+
+        Delete the follow relationship between a job and an user.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_following_job(x_tenant, job_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            job_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['job_id'] = \
+            job_id
+        return self.delete_following_job_endpoint.call_with_http_info(**kwargs)
+
+    def delete_following_project(
         self,
         x_tenant,
         project_id,
         **kwargs
     ):
-        """Delete Following User  # noqa: E501
+        """Delete Following Project  # noqa: E501
 
-        Add an activity in the repository.  # noqa: E501
+        Delete the follow relationship between a project and an user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_project_followers_projects_project_id_followers_delete(x_tenant, project_id, async_req=True)
+        >>> thread = api.delete_following_project(x_tenant, project_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -661,9 +2116,84 @@ class FollowApi(object):
             x_tenant
         kwargs['project_id'] = \
             project_id
-        return self.delete_project_followers_projects_project_id_followers_delete_endpoint.call_with_http_info(**kwargs)
+        return self.delete_following_project_endpoint.call_with_http_info(**kwargs)
 
-    def delete_user_followers_users_user_id_followers_delete(
+    def delete_following_table(
+        self,
+        x_tenant,
+        table_id,
+        **kwargs
+    ):
+        """Delete Following Table  # noqa: E501
+
+        Delete the follow relationship between a table and an user.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_following_table(x_tenant, table_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            table_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['table_id'] = \
+            table_id
+        return self.delete_following_table_endpoint.call_with_http_info(**kwargs)
+
+    def delete_following_user(
         self,
         x_tenant,
         user_id,
@@ -671,11 +2201,11 @@ class FollowApi(object):
     ):
         """Delete Following User  # noqa: E501
 
-        Add an activity in the repository.  # noqa: E501
+        Delete the follow relationship between two users.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_user_followers_users_user_id_followers_delete(x_tenant, user_id, async_req=True)
+        >>> thread = api.delete_following_user(x_tenant, user_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -736,9 +2266,309 @@ class FollowApi(object):
             x_tenant
         kwargs['user_id'] = \
             user_id
-        return self.delete_user_followers_users_user_id_followers_delete_endpoint.call_with_http_info(**kwargs)
+        return self.delete_following_user_endpoint.call_with_http_info(**kwargs)
 
-    def get_project_followers_projects_project_id_followers_get(
+    def delete_following_workflow(
+        self,
+        x_tenant,
+        workflow_id,
+        **kwargs
+    ):
+        """Delete Following User  # noqa: E501
+
+        Delete the follow relationship between a workflow and a user.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_following_workflow(x_tenant, workflow_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            workflow_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['workflow_id'] = \
+            workflow_id
+        return self.delete_following_workflow_endpoint.call_with_http_info(**kwargs)
+
+    def get_catalog_followers(
+        self,
+        x_tenant,
+        catalog_id,
+        **kwargs
+    ):
+        """Get Catalog Followers  # noqa: E501
+
+        Route to GET all users following a given catalog.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_catalog_followers(x_tenant, catalog_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            catalog_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [User1]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['catalog_id'] = \
+            catalog_id
+        return self.get_catalog_followers_endpoint.call_with_http_info(**kwargs)
+
+    def get_database_followers(
+        self,
+        x_tenant,
+        database_id,
+        **kwargs
+    ):
+        """Get Database Followers  # noqa: E501
+
+        Route to GET all users following a given database.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_database_followers(x_tenant, database_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            database_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [User1]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['database_id'] = \
+            database_id
+        return self.get_database_followers_endpoint.call_with_http_info(**kwargs)
+
+    def get_job_followers(
+        self,
+        x_tenant,
+        job_id,
+        **kwargs
+    ):
+        """Get Job Followers  # noqa: E501
+
+        Route to GET all users following a given job.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_job_followers(x_tenant, job_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            job_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [User1]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['job_id'] = \
+            job_id
+        return self.get_job_followers_endpoint.call_with_http_info(**kwargs)
+
+    def get_project_followers(
         self,
         x_tenant,
         project_id,
@@ -746,11 +2576,11 @@ class FollowApi(object):
     ):
         """Get Project Followers  # noqa: E501
 
-        Route to GET user following.  # noqa: E501
+        Route to GET all users following a given project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_project_followers_projects_project_id_followers_get(x_tenant, project_id, async_req=True)
+        >>> thread = api.get_project_followers(x_tenant, project_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -811,9 +2641,84 @@ class FollowApi(object):
             x_tenant
         kwargs['project_id'] = \
             project_id
-        return self.get_project_followers_projects_project_id_followers_get_endpoint.call_with_http_info(**kwargs)
+        return self.get_project_followers_endpoint.call_with_http_info(**kwargs)
 
-    def get_user_followers_users_user_id_followers_get(
+    def get_table_followers(
+        self,
+        x_tenant,
+        table_id,
+        **kwargs
+    ):
+        """Get Table Followers  # noqa: E501
+
+        Route to GET all users following a given table.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_table_followers(x_tenant, table_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            table_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [User1]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['table_id'] = \
+            table_id
+        return self.get_table_followers_endpoint.call_with_http_info(**kwargs)
+
+    def get_user_followers(
         self,
         x_tenant,
         user_id,
@@ -821,11 +2726,11 @@ class FollowApi(object):
     ):
         """Get User Followers  # noqa: E501
 
-        Route to GET user followers.  # noqa: E501
+        Route to GET all followers of a given user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_user_followers_users_user_id_followers_get(x_tenant, user_id, async_req=True)
+        >>> thread = api.get_user_followers(x_tenant, user_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -886,9 +2791,9 @@ class FollowApi(object):
             x_tenant
         kwargs['user_id'] = \
             user_id
-        return self.get_user_followers_users_user_id_followers_get_endpoint.call_with_http_info(**kwargs)
+        return self.get_user_followers_endpoint.call_with_http_info(**kwargs)
 
-    def get_user_following_users_user_id_following_get(
+    def get_user_following(
         self,
         x_tenant,
         user_id,
@@ -896,11 +2801,11 @@ class FollowApi(object):
     ):
         """Get User Following  # noqa: E501
 
-        Route to GET user following.  # noqa: E501
+        Route to GET all users following a given user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_user_following_users_user_id_following_get(x_tenant, user_id, async_req=True)
+        >>> thread = api.get_user_following(x_tenant, user_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -961,5 +2866,80 @@ class FollowApi(object):
             x_tenant
         kwargs['user_id'] = \
             user_id
-        return self.get_user_following_users_user_id_following_get_endpoint.call_with_http_info(**kwargs)
+        return self.get_user_following_endpoint.call_with_http_info(**kwargs)
+
+    def get_workflow_followers(
+        self,
+        x_tenant,
+        workflow_id,
+        **kwargs
+    ):
+        """Get Workflow Followers  # noqa: E501
+
+        Route to GET all users following a given workflow.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_workflow_followers(x_tenant, workflow_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            workflow_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [User1]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['workflow_id'] = \
+            workflow_id
+        return self.get_workflow_followers_endpoint.call_with_http_info(**kwargs)
 

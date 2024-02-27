@@ -31,14 +31,20 @@ from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from graalsystems.model.end_task import EndTask
+    from graalsystems.model.error_task import ErrorTask
     from graalsystems.model.job_task import JobTask
     from graalsystems.model.script_task import ScriptTask
     from graalsystems.model.script_task_all_of import ScriptTaskAllOf
+    from graalsystems.model.start_task import StartTask
     from graalsystems.model.task import Task
     from graalsystems.model.workflow_task import WorkflowTask
+    globals()['EndTask'] = EndTask
+    globals()['ErrorTask'] = ErrorTask
     globals()['JobTask'] = JobTask
     globals()['ScriptTask'] = ScriptTask
     globals()['ScriptTaskAllOf'] = ScriptTaskAllOf
+    globals()['StartTask'] = StartTask
     globals()['Task'] = Task
     globals()['WorkflowTask'] = WorkflowTask
 
@@ -106,8 +112,11 @@ class ScriptTask(ModelComposed):
     def discriminator():
         lazy_import()
         val = {
+            'end': EndTask,
+            'error': ErrorTask,
             'job': JobTask,
             'script': ScriptTask,
+            'start': StartTask,
             'workflow': WorkflowTask,
         }
         if not val:
@@ -160,7 +169,7 @@ class ScriptTask(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): [optional] if omitted the server will use the default value of "job"  # noqa: E501
+            type (str): [optional] if omitted the server will use the default value of "script"  # noqa: E501
             script (str): [optional]  # noqa: E501
             depends ([str]): [optional]  # noqa: E501
             name (str): [optional]  # noqa: E501
@@ -263,7 +272,7 @@ class ScriptTask(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): [optional] if omitted the server will use the default value of "job"  # noqa: E501
+            type (str): [optional] if omitted the server will use the default value of "script"  # noqa: E501
             script (str): [optional]  # noqa: E501
             depends ([str]): [optional]  # noqa: E501
             name (str): [optional]  # noqa: E501

@@ -33,12 +33,14 @@ from graalsystems.exceptions import ApiAttributeError
 def lazy_import():
     from graalsystems.model.cran_library import CranLibrary
     from graalsystems.model.file_library import FileLibrary
+    from graalsystems.model.git_library import GitLibrary
     from graalsystems.model.library import Library
     from graalsystems.model.maven_library import MavenLibrary
     from graalsystems.model.maven_library_all_of import MavenLibraryAllOf
     from graalsystems.model.py_pi_library import PyPiLibrary
     globals()['CranLibrary'] = CranLibrary
     globals()['FileLibrary'] = FileLibrary
+    globals()['GitLibrary'] = GitLibrary
     globals()['Library'] = Library
     globals()['MavenLibrary'] = MavenLibrary
     globals()['MavenLibraryAllOf'] = MavenLibraryAllOf
@@ -109,6 +111,7 @@ class MavenLibrary(ModelComposed):
         val = {
             'cran': CranLibrary,
             'file': FileLibrary,
+            'git': GitLibrary,
             'maven': MavenLibrary,
             'pypi': PyPiLibrary,
         }

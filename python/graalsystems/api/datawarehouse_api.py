@@ -22,11 +22,13 @@ from graalsystems.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from graalsystems.model.change_page import ChangePage
 from graalsystems.model.data_warehouse import DataWarehouse
 from graalsystems.model.data_warehouse_page import DataWarehousePage
 from graalsystems.model.error import Error
-from graalsystems.model.pageable import Pageable
+from graalsystems.model.log_entry import LogEntry
 from graalsystems.model.patch import Patch
+from graalsystems.model.table import Table
 
 
 class DatawarehouseApi(object):
@@ -155,6 +157,73 @@ class DatawarehouseApi(object):
             },
             api_client=api_client
         )
+        self.find_changes_endpoint = _Endpoint(
+            settings={
+                'response_type': (ChangePage,),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/datawarehouses/{datawarehouseId}/changes',
+                'operation_id': 'find_changes',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'datawarehouse_id',
+                    'page',
+                    'size',
+                ],
+                'required': [
+                    'x_tenant',
+                    'datawarehouse_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'datawarehouse_id':
+                        (str,),
+                    'page':
+                        (int,),
+                    'size':
+                        (int,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'X-Tenant',
+                    'datawarehouse_id': 'datawarehouseId',
+                    'page': 'page',
+                    'size': 'size',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'datawarehouse_id': 'path',
+                    'page': 'query',
+                    'size': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/vnd.graal.systems.v1.change+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
         self.find_data_warehouse_by_id_endpoint = _Endpoint(
             settings={
                 'response_type': (DataWarehouse,),
@@ -227,7 +296,8 @@ class DatawarehouseApi(object):
             params_map={
                 'all': [
                     'x_tenant',
-                    'pageable',
+                    'page',
+                    'size',
                 ],
                 'required': [
                     'x_tenant',
@@ -247,16 +317,20 @@ class DatawarehouseApi(object):
                 'openapi_types': {
                     'x_tenant':
                         (str,),
-                    'pageable':
-                        (Pageable,),
+                    'page':
+                        (int,),
+                    'size':
+                        (int,),
                 },
                 'attribute_map': {
                     'x_tenant': 'X-Tenant',
-                    'pageable': 'pageable',
+                    'page': 'page',
+                    'size': 'size',
                 },
                 'location_map': {
                     'x_tenant': 'header',
-                    'pageable': 'query',
+                    'page': 'query',
+                    'size': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -264,6 +338,136 @@ class DatawarehouseApi(object):
             headers_map={
                 'accept': [
                     'application/vnd.graal.systems.v1.datawarehouse+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.find_tables_endpoint = _Endpoint(
+            settings={
+                'response_type': ([Table],),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/datawarehouses/{datawarehouseId}/tables',
+                'operation_id': 'find_tables',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'datawarehouse_id',
+                    'page',
+                    'size',
+                ],
+                'required': [
+                    'x_tenant',
+                    'datawarehouse_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'datawarehouse_id':
+                        (str,),
+                    'page':
+                        (int,),
+                    'size':
+                        (int,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'X-Tenant',
+                    'datawarehouse_id': 'datawarehouseId',
+                    'page': 'page',
+                    'size': 'size',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'datawarehouse_id': 'path',
+                    'page': 'query',
+                    'size': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/vnd.graal.systems.v1.table+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_logs_for_datawarehouse_endpoint = _Endpoint(
+            settings={
+                'response_type': ([LogEntry],),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/datawarehouses/{datawarehouseId}/logs',
+                'operation_id': 'get_logs_for_datawarehouse',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'datawarehouse_id',
+                    'cursor',
+                ],
+                'required': [
+                    'x_tenant',
+                    'datawarehouse_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'datawarehouse_id':
+                        (str,),
+                    'cursor':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'X-Tenant',
+                    'datawarehouse_id': 'datawarehouseId',
+                    'cursor': 'cursor',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'datawarehouse_id': 'path',
+                    'cursor': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/vnd.graal.systems.v1.log+json',
+                    'application/vnd.graal.systems.v1.error+json'
                 ],
                 'content_type': [],
             },
@@ -483,6 +687,82 @@ class DatawarehouseApi(object):
             datawarehouse_id
         return self.delete_data_warehouse_by_id_endpoint.call_with_http_info(**kwargs)
 
+    def find_changes(
+        self,
+        x_tenant,
+        datawarehouse_id,
+        **kwargs
+    ):
+        """Find changes by datawarehouse id  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.find_changes(x_tenant, datawarehouse_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            datawarehouse_id (str): Id of the datawarehouse
+
+        Keyword Args:
+            page (int): [optional] if omitted the server will use the default value of 0
+            size (int): [optional] if omitted the server will use the default value of 200
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ChangePage
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['datawarehouse_id'] = \
+            datawarehouse_id
+        return self.find_changes_endpoint.call_with_http_info(**kwargs)
+
     def find_data_warehouse_by_id(
         self,
         x_tenant,
@@ -574,7 +854,8 @@ class DatawarehouseApi(object):
             x_tenant (str):
 
         Keyword Args:
-            pageable (Pageable): [optional]
+            page (int): [optional] if omitted the server will use the default value of 0
+            size (int): [optional] if omitted the server will use the default value of 200
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -627,6 +908,157 @@ class DatawarehouseApi(object):
         kwargs['x_tenant'] = \
             x_tenant
         return self.find_data_warehouses_endpoint.call_with_http_info(**kwargs)
+
+    def find_tables(
+        self,
+        x_tenant,
+        datawarehouse_id,
+        **kwargs
+    ):
+        """Find tables by datawarehouse id  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.find_tables(x_tenant, datawarehouse_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            datawarehouse_id (str): Id of the datawarehouse
+
+        Keyword Args:
+            page (int): [optional] if omitted the server will use the default value of 0
+            size (int): [optional] if omitted the server will use the default value of 200
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [Table]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['datawarehouse_id'] = \
+            datawarehouse_id
+        return self.find_tables_endpoint.call_with_http_info(**kwargs)
+
+    def get_logs_for_datawarehouse(
+        self,
+        x_tenant,
+        datawarehouse_id,
+        **kwargs
+    ):
+        """Get logs  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_logs_for_datawarehouse(x_tenant, datawarehouse_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            datawarehouse_id (str): Id of the datawarehouse
+
+        Keyword Args:
+            cursor (str): The cursor. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [LogEntry]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['datawarehouse_id'] = \
+            datawarehouse_id
+        return self.get_logs_for_datawarehouse_endpoint.call_with_http_info(**kwargs)
 
     def update_data_warehouse(
         self,

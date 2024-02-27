@@ -137,7 +137,7 @@ class ScriptTaskAllOf(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): [optional] if omitted the server will use the default value of "job"  # noqa: E501
+            type (str): [optional] if omitted the server will use the default value of "script"  # noqa: E501
             script (str): [optional]  # noqa: E501
         """
 
@@ -220,7 +220,7 @@ class ScriptTaskAllOf(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): [optional] if omitted the server will use the default value of "job"  # noqa: E501
+            type (str): [optional] if omitted the server will use the default value of "script"  # noqa: E501
             script (str): [optional]  # noqa: E501
         """
 

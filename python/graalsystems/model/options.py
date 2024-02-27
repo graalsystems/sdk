@@ -34,7 +34,9 @@ def lazy_import():
     from graalsystems.model.airflow_options import AirflowOptions
     from graalsystems.model.bash_options import BashOptions
     from graalsystems.model.dask_options import DaskOptions
+    from graalsystems.model.database_migration_options import DatabaseMigrationOptions
     from graalsystems.model.dbt_options import DbtOptions
+    from graalsystems.model.docker_options import DockerOptions
     from graalsystems.model.flink_options import FlinkOptions
     from graalsystems.model.hadoop_options import HadoopOptions
     from graalsystems.model.knime_options import KnimeOptions
@@ -50,7 +52,9 @@ def lazy_import():
     globals()['AirflowOptions'] = AirflowOptions
     globals()['BashOptions'] = BashOptions
     globals()['DaskOptions'] = DaskOptions
+    globals()['DatabaseMigrationOptions'] = DatabaseMigrationOptions
     globals()['DbtOptions'] = DbtOptions
+    globals()['DockerOptions'] = DockerOptions
     globals()['FlinkOptions'] = FlinkOptions
     globals()['HadoopOptions'] = HadoopOptions
     globals()['KnimeOptions'] = KnimeOptions
@@ -131,7 +135,9 @@ class Options(ModelNormal):
             'AirflowOptions': AirflowOptions,
             'BashOptions': BashOptions,
             'DaskOptions': DaskOptions,
+            'DatabaseMigrationOptions': DatabaseMigrationOptions,
             'DbtOptions': DbtOptions,
+            'DockerOptions': DockerOptions,
             'FlinkOptions': FlinkOptions,
             'HadoopOptions': HadoopOptions,
             'KnimeOptions': KnimeOptions,
@@ -147,7 +153,9 @@ class Options(ModelNormal):
             'airflow': AirflowOptions,
             'bash': BashOptions,
             'dask': DaskOptions,
+            'database-migration': DatabaseMigrationOptions,
             'dbt': DbtOptions,
+            'docker': DockerOptions,
             'flink': FlinkOptions,
             'hadoop': HadoopOptions,
             'knime': KnimeOptions,

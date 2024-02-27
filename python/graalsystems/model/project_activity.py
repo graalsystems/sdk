@@ -105,7 +105,7 @@ class ProjectActivity(ModelComposed):
             'data': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'id': (str,),  # noqa: E501
             'time': (datetime,),  # noqa: E501
-            'reactions_count': ([Reaction],),  # noqa: E501
+            'reaction_count': ([Reaction],),  # noqa: E501
             'type': (str,),  # noqa: E501
         }
 
@@ -121,7 +121,7 @@ class ProjectActivity(ModelComposed):
         'data': 'data',  # noqa: E501
         'id': 'id',  # noqa: E501
         'time': 'time',  # noqa: E501
-        'reactions_count': 'reactions_count',  # noqa: E501
+        'reaction_count': 'reaction_count',  # noqa: E501
         'type': 'type',  # noqa: E501
     }
 
@@ -170,7 +170,7 @@ class ProjectActivity(ModelComposed):
             data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             time (datetime): [optional]  # noqa: E501
-            reactions_count ([Reaction]): [optional]  # noqa: E501
+            reaction_count ([Reaction]): [optional]  # noqa: E501
             type (str): [optional] if omitted the server will use the default value of "project"  # noqa: E501
         """
 
@@ -277,7 +277,7 @@ class ProjectActivity(ModelComposed):
             data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             id (str): [optional]  # noqa: E501
             time (datetime): [optional]  # noqa: E501
-            reactions_count ([Reaction]): [optional]  # noqa: E501
+            reaction_count ([Reaction]): [optional]  # noqa: E501
             type (str): [optional] if omitted the server will use the default value of "project"  # noqa: E501
         """
 

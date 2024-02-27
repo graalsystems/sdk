@@ -24,6 +24,7 @@ from graalsystems.model_utils import (  # noqa: F401
 )
 from graalsystems.model.error import Error
 from graalsystems.model.job import Job
+from graalsystems.model.job_page import JobPage
 from graalsystems.model.metric import Metric
 from graalsystems.model.patch import Patch
 from graalsystems.model.project import Project
@@ -350,7 +351,7 @@ class ProjectApi(object):
         )
         self.find_jobs_by_project_id_endpoint = _Endpoint(
             settings={
-                'response_type': ([Job],),
+                'response_type': (JobPage,),
                 'auth': [
                     'internal'
                 ],
@@ -363,6 +364,9 @@ class ProjectApi(object):
                 'all': [
                     'x_tenant',
                     'project_id',
+                    'type',
+                    'page',
+                    'size',
                 ],
                 'required': [
                     'x_tenant',
@@ -385,14 +389,26 @@ class ProjectApi(object):
                         (str,),
                     'project_id':
                         (str,),
+                    'type':
+                        (str,),
+                    'page':
+                        (int,),
+                    'size':
+                        (int,),
                 },
                 'attribute_map': {
                     'x_tenant': 'X-Tenant',
                     'project_id': 'projectId',
+                    'type': 'type',
+                    'page': 'page',
+                    'size': 'size',
                 },
                 'location_map': {
                     'x_tenant': 'header',
                     'project_id': 'path',
+                    'type': 'query',
+                    'page': 'query',
+                    'size': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -1296,6 +1312,9 @@ class ProjectApi(object):
             project_id (str): Id of the project
 
         Keyword Args:
+            type (str): [optional]
+            page (int): [optional] if omitted the server will use the default value of 0
+            size (int): [optional] if omitted the server will use the default value of 200
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1320,7 +1339,7 @@ class ProjectApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            [Job]
+            JobPage
                 If the method is called asynchronously, returns the request
                 thread.
         """

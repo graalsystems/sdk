@@ -24,6 +24,7 @@ from graalsystems.model_utils import (  # noqa: F401
 )
 from graalsystems.model.error import Error
 from graalsystems.model.job import Job
+from graalsystems.model.job_page import JobPage
 from graalsystems.model.metric import Metric
 from graalsystems.model.patch import Patch
 from graalsystems.model.run_stats import RunStats
@@ -157,7 +158,7 @@ class JobApi(object):
         )
         self.find_jobs_endpoint = _Endpoint(
             settings={
-                'response_type': ([Job],),
+                'response_type': (JobPage,),
                 'auth': [
                     'internal'
                 ],
@@ -169,6 +170,9 @@ class JobApi(object):
             params_map={
                 'all': [
                     'x_tenant',
+                    'type',
+                    'page',
+                    'size',
                 ],
                 'required': [
                     'x_tenant',
@@ -188,12 +192,24 @@ class JobApi(object):
                 'openapi_types': {
                     'x_tenant':
                         (str,),
+                    'type':
+                        (str,),
+                    'page':
+                        (int,),
+                    'size':
+                        (int,),
                 },
                 'attribute_map': {
                     'x_tenant': 'X-Tenant',
+                    'type': 'type',
+                    'page': 'page',
+                    'size': 'size',
                 },
                 'location_map': {
                     'x_tenant': 'header',
+                    'type': 'query',
+                    'page': 'query',
+                    'size': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -569,6 +585,9 @@ class JobApi(object):
             x_tenant (str):
 
         Keyword Args:
+            type (str): [optional]
+            page (int): [optional] if omitted the server will use the default value of 0
+            size (int): [optional] if omitted the server will use the default value of 200
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -593,7 +612,7 @@ class JobApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            [Job]
+            JobPage
                 If the method is called asynchronously, returns the request
                 thread.
         """

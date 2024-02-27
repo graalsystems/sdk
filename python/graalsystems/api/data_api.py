@@ -43,7 +43,7 @@ class DataApi(object):
                 'auth': [
                     'internal'
                 ],
-                'endpoint_path': '/data',
+                'endpoint_path': '/buckets/{bucketId}/data',
                 'operation_id': 'delete_files',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -51,10 +51,12 @@ class DataApi(object):
             params_map={
                 'all': [
                     'x_tenant',
+                    'bucket_id',
                     'path',
                 ],
                 'required': [
                     'x_tenant',
+                    'bucket_id',
                     'path',
                 ],
                 'nullable': [
@@ -72,15 +74,19 @@ class DataApi(object):
                 'openapi_types': {
                     'x_tenant':
                         (str,),
+                    'bucket_id':
+                        (str,),
                     'path':
                         ([str],),
                 },
                 'attribute_map': {
                     'x_tenant': 'X-Tenant',
+                    'bucket_id': 'bucketId',
                     'path': 'path',
                 },
                 'location_map': {
                     'x_tenant': 'header',
+                    'bucket_id': 'path',
                     'path': 'query',
                 },
                 'collection_format_map': {
@@ -101,7 +107,7 @@ class DataApi(object):
                 'auth': [
                     'internal'
                 ],
-                'endpoint_path': '/data?download',
+                'endpoint_path': '/buckets/{bucketId}/data?download',
                 'operation_id': 'download_file',
                 'http_method': 'GET',
                 'servers': None,
@@ -109,10 +115,12 @@ class DataApi(object):
             params_map={
                 'all': [
                     'x_tenant',
+                    'bucket_id',
                     'path',
                 ],
                 'required': [
                     'x_tenant',
+                    'bucket_id',
                     'path',
                 ],
                 'nullable': [
@@ -130,15 +138,19 @@ class DataApi(object):
                 'openapi_types': {
                     'x_tenant':
                         (str,),
+                    'bucket_id':
+                        (str,),
                     'path':
                         (str,),
                 },
                 'attribute_map': {
                     'x_tenant': 'X-Tenant',
+                    'bucket_id': 'bucketId',
                     'path': 'path',
                 },
                 'location_map': {
                     'x_tenant': 'header',
+                    'bucket_id': 'path',
                     'path': 'query',
                 },
                 'collection_format_map': {
@@ -159,7 +171,7 @@ class DataApi(object):
                 'auth': [
                     'internal'
                 ],
-                'endpoint_path': '/data',
+                'endpoint_path': '/buckets/{bucketId}/data',
                 'operation_id': 'get_data_files',
                 'http_method': 'GET',
                 'servers': None,
@@ -167,10 +179,12 @@ class DataApi(object):
             params_map={
                 'all': [
                     'x_tenant',
+                    'bucket_id',
                     'path',
                 ],
                 'required': [
                     'x_tenant',
+                    'bucket_id',
                     'path',
                 ],
                 'nullable': [
@@ -188,15 +202,19 @@ class DataApi(object):
                 'openapi_types': {
                     'x_tenant':
                         (str,),
+                    'bucket_id':
+                        (str,),
                     'path':
                         (str,),
                 },
                 'attribute_map': {
                     'x_tenant': 'X-Tenant',
+                    'bucket_id': 'bucketId',
                     'path': 'path',
                 },
                 'location_map': {
                     'x_tenant': 'header',
+                    'bucket_id': 'path',
                     'path': 'query',
                 },
                 'collection_format_map': {
@@ -217,7 +235,7 @@ class DataApi(object):
                 'auth': [
                     'internal'
                 ],
-                'endpoint_path': '/data',
+                'endpoint_path': '/buckets/{bucketId}/data',
                 'operation_id': 'upload_file',
                 'http_method': 'POST',
                 'servers': None,
@@ -225,11 +243,13 @@ class DataApi(object):
             params_map={
                 'all': [
                     'x_tenant',
+                    'bucket_id',
                     'path',
                     'filename',
                 ],
                 'required': [
                     'x_tenant',
+                    'bucket_id',
                 ],
                 'nullable': [
                 ],
@@ -246,6 +266,8 @@ class DataApi(object):
                 'openapi_types': {
                     'x_tenant':
                         (str,),
+                    'bucket_id':
+                        (str,),
                     'path':
                         (str,),
                     'filename':
@@ -253,11 +275,13 @@ class DataApi(object):
                 },
                 'attribute_map': {
                     'x_tenant': 'X-Tenant',
+                    'bucket_id': 'bucketId',
                     'path': 'path',
                     'filename': 'filename',
                 },
                 'location_map': {
                     'x_tenant': 'header',
+                    'bucket_id': 'path',
                     'path': 'query',
                     'filename': 'form',
                 },
@@ -277,6 +301,7 @@ class DataApi(object):
     def delete_files(
         self,
         x_tenant,
+        bucket_id,
         path,
         **kwargs
     ):
@@ -285,11 +310,12 @@ class DataApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_files(x_tenant, path, async_req=True)
+        >>> thread = api.delete_files(x_tenant, bucket_id, path, async_req=True)
         >>> result = thread.get()
 
         Args:
             x_tenant (str):
+            bucket_id (str): Id of the bucket
             path ([str]): path
 
         Keyword Args:
@@ -344,6 +370,8 @@ class DataApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['x_tenant'] = \
             x_tenant
+        kwargs['bucket_id'] = \
+            bucket_id
         kwargs['path'] = \
             path
         return self.delete_files_endpoint.call_with_http_info(**kwargs)
@@ -351,6 +379,7 @@ class DataApi(object):
     def download_file(
         self,
         x_tenant,
+        bucket_id,
         path,
         **kwargs
     ):
@@ -359,11 +388,12 @@ class DataApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.download_file(x_tenant, path, async_req=True)
+        >>> thread = api.download_file(x_tenant, bucket_id, path, async_req=True)
         >>> result = thread.get()
 
         Args:
             x_tenant (str):
+            bucket_id (str): Id of the bucket
             path (str): path
 
         Keyword Args:
@@ -418,6 +448,8 @@ class DataApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['x_tenant'] = \
             x_tenant
+        kwargs['bucket_id'] = \
+            bucket_id
         kwargs['path'] = \
             path
         return self.download_file_endpoint.call_with_http_info(**kwargs)
@@ -425,6 +457,7 @@ class DataApi(object):
     def get_data_files(
         self,
         x_tenant,
+        bucket_id,
         path,
         **kwargs
     ):
@@ -433,11 +466,12 @@ class DataApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_data_files(x_tenant, path, async_req=True)
+        >>> thread = api.get_data_files(x_tenant, bucket_id, path, async_req=True)
         >>> result = thread.get()
 
         Args:
             x_tenant (str):
+            bucket_id (str): Id of the bucket
             path (str): path
 
         Keyword Args:
@@ -492,6 +526,8 @@ class DataApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['x_tenant'] = \
             x_tenant
+        kwargs['bucket_id'] = \
+            bucket_id
         kwargs['path'] = \
             path
         return self.get_data_files_endpoint.call_with_http_info(**kwargs)
@@ -499,6 +535,7 @@ class DataApi(object):
     def upload_file(
         self,
         x_tenant,
+        bucket_id,
         **kwargs
     ):
         """Upload a file  # noqa: E501
@@ -506,11 +543,12 @@ class DataApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.upload_file(x_tenant, async_req=True)
+        >>> thread = api.upload_file(x_tenant, bucket_id, async_req=True)
         >>> result = thread.get()
 
         Args:
             x_tenant (str):
+            bucket_id (str): Id of the bucket
 
         Keyword Args:
             path (str): path. [optional]
@@ -566,5 +604,7 @@ class DataApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['x_tenant'] = \
             x_tenant
+        kwargs['bucket_id'] = \
+            bucket_id
         return self.upload_file_endpoint.call_with_http_info(**kwargs)
 

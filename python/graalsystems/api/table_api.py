@@ -24,7 +24,7 @@ from graalsystems.model_utils import (  # noqa: F401
 )
 from graalsystems.model.error import Error
 from graalsystems.model.patch import Patch
-from graalsystems.model.table import Table
+from graalsystems.model.table1 import Table1
 
 
 class TableApi(object):
@@ -40,7 +40,7 @@ class TableApi(object):
         self.api_client = api_client
         self.create_table_endpoint = _Endpoint(
             settings={
-                'response_type': (Table,),
+                'response_type': (Table1,),
                 'auth': [
                     'internal'
                 ],
@@ -54,13 +54,13 @@ class TableApi(object):
                     'x_tenant',
                     'layer_name',
                     'database_name',
-                    'table',
+                    'table1',
                 ],
                 'required': [
                     'x_tenant',
                     'layer_name',
                     'database_name',
-                    'table',
+                    'table1',
                 ],
                 'nullable': [
                 ],
@@ -81,8 +81,8 @@ class TableApi(object):
                         (str,),
                     'database_name':
                         (str,),
-                    'table':
-                        (Table,),
+                    'table1':
+                        (Table1,),
                 },
                 'attribute_map': {
                     'x_tenant': 'X-Tenant',
@@ -93,7 +93,7 @@ class TableApi(object):
                     'x_tenant': 'header',
                     'layer_name': 'path',
                     'database_name': 'path',
-                    'table': 'body',
+                    'table1': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -179,7 +179,7 @@ class TableApi(object):
         )
         self.find_table_by_id_endpoint = _Endpoint(
             settings={
-                'response_type': (Table,),
+                'response_type': (Table1,),
                 'auth': [
                     'internal'
                 ],
@@ -247,14 +247,14 @@ class TableApi(object):
             },
             api_client=api_client
         )
-        self.find_tables_endpoint = _Endpoint(
+        self.find_tables1_endpoint = _Endpoint(
             settings={
-                'response_type': ([Table],),
+                'response_type': ([Table1],),
                 'auth': [
                     'internal'
                 ],
                 'endpoint_path': '/layers/{layer_name}/databases/{database_name}/tables',
-                'operation_id': 'find_tables',
+                'operation_id': 'find_tables1',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -312,7 +312,7 @@ class TableApi(object):
         )
         self.update_table_endpoint = _Endpoint(
             settings={
-                'response_type': (Table,),
+                'response_type': (Table1,),
                 'auth': [
                     'internal'
                 ],
@@ -393,7 +393,7 @@ class TableApi(object):
         x_tenant,
         layer_name,
         database_name,
-        table,
+        table1,
         **kwargs
     ):
         """Create a table  # noqa: E501
@@ -401,14 +401,14 @@ class TableApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_table(x_tenant, layer_name, database_name, table, async_req=True)
+        >>> thread = api.create_table(x_tenant, layer_name, database_name, table1, async_req=True)
         >>> result = thread.get()
 
         Args:
             x_tenant (str):
             layer_name (str): Name of the layer
             database_name (str): Name of the database
-            table (Table): The database to be created
+            table1 (Table1): The database to be created
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -435,7 +435,7 @@ class TableApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            Table
+            Table1
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -466,8 +466,8 @@ class TableApi(object):
             layer_name
         kwargs['database_name'] = \
             database_name
-        kwargs['table'] = \
-            table
+        kwargs['table1'] = \
+            table1
         return self.create_table_endpoint.call_with_http_info(**kwargs)
 
     def delete_table_by_id(
@@ -599,7 +599,7 @@ class TableApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            Table
+            Table1
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -634,7 +634,7 @@ class TableApi(object):
             table_name
         return self.find_table_by_id_endpoint.call_with_http_info(**kwargs)
 
-    def find_tables(
+    def find_tables1(
         self,
         x_tenant,
         layer_name,
@@ -646,7 +646,7 @@ class TableApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_tables(x_tenant, layer_name, database_name, async_req=True)
+        >>> thread = api.find_tables1(x_tenant, layer_name, database_name, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -679,7 +679,7 @@ class TableApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            [Table]
+            [Table1]
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -710,7 +710,7 @@ class TableApi(object):
             layer_name
         kwargs['database_name'] = \
             database_name
-        return self.find_tables_endpoint.call_with_http_info(**kwargs)
+        return self.find_tables1_endpoint.call_with_http_info(**kwargs)
 
     def update_table(
         self,
@@ -761,7 +761,7 @@ class TableApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            Table
+            Table1
                 If the method is called asynchronously, returns the request
                 thread.
         """

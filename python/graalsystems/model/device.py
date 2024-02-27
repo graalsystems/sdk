@@ -98,6 +98,8 @@ class Device(ModelNormal):
             'updated': (datetime,),  # noqa: E501
             'target': (Target,),  # noqa: E501
             'allowed_instance_types': ([str],),  # noqa: E501
+            'labels': ({str: (str,)},),  # noqa: E501
+            'properties': ({str: (str,)},),  # noqa: E501
             'metadata': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
         }
 
@@ -117,6 +119,8 @@ class Device(ModelNormal):
         'updated': 'updated',  # noqa: E501
         'target': 'target',  # noqa: E501
         'allowed_instance_types': 'allowed_instance_types',  # noqa: E501
+        'labels': 'labels',  # noqa: E501
+        'properties': 'properties',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
     }
 
@@ -171,6 +175,8 @@ class Device(ModelNormal):
             updated (datetime): [optional]  # noqa: E501
             target (Target): [optional]  # noqa: E501
             allowed_instance_types ([str]): [optional]  # noqa: E501
+            labels ({str: (str,)}): [optional]  # noqa: E501
+            properties ({str: (str,)}): [optional]  # noqa: E501
             metadata ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
         """
 
@@ -263,6 +269,8 @@ class Device(ModelNormal):
             updated (datetime): [optional]  # noqa: E501
             target (Target): [optional]  # noqa: E501
             allowed_instance_types ([str]): [optional]  # noqa: E501
+            labels ({str: (str,)}): [optional]  # noqa: E501
+            properties ({str: (str,)}): [optional]  # noqa: E501
             metadata ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
         """
 

@@ -31,14 +31,8 @@ from graalsystems.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from graalsystems.model.credit_card_payment_method import CreditCardPaymentMethod
-    from graalsystems.model.external_payment_method import ExternalPaymentMethod
-    from graalsystems.model.sepa_payment_method import SepaPaymentMethod
-    from graalsystems.model.trial_payment_method import TrialPaymentMethod
-    globals()['CreditCardPaymentMethod'] = CreditCardPaymentMethod
-    globals()['ExternalPaymentMethod'] = ExternalPaymentMethod
-    globals()['SepaPaymentMethod'] = SepaPaymentMethod
-    globals()['TrialPaymentMethod'] = TrialPaymentMethod
+    from graalsystems.model.details1 import Details1
+    globals()['Details1'] = Details1
 
 
 class PaymentMethod(ModelNormal):
@@ -94,28 +88,32 @@ class PaymentMethod(ModelNormal):
         """
         lazy_import()
         return {
-            'type': (str,),  # noqa: E501
+            'id': (str,),  # noqa: E501
+            'details': (Details1,),  # noqa: E501
+            'provider': (str,),  # noqa: E501
+            'status': (str,),  # noqa: E501
+            'remote_payment_method_id': (str,),  # noqa: E501
+            'favorite': (bool,),  # noqa: E501
+            'metadata': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
+            'created': (datetime,),  # noqa: E501
+            'updated': (datetime,),  # noqa: E501
         }
 
     @cached_property
     def discriminator():
-        lazy_import()
-        val = {
-            'CreditCardPaymentMethod': CreditCardPaymentMethod,
-            'ExternalPaymentMethod': ExternalPaymentMethod,
-            'SepaPaymentMethod': SepaPaymentMethod,
-            'TrialPaymentMethod': TrialPaymentMethod,
-            'credit_card': CreditCardPaymentMethod,
-            'external': ExternalPaymentMethod,
-            'sepa': SepaPaymentMethod,
-            'trial': TrialPaymentMethod,
-        }
-        if not val:
-            return None
-        return {'type': val}
+        return None
+
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'details': 'details',  # noqa: E501
+        'provider': 'provider',  # noqa: E501
+        'status': 'status',  # noqa: E501
+        'remote_payment_method_id': 'remote_payment_method_id',  # noqa: E501
+        'favorite': 'favorite',  # noqa: E501
+        'metadata': 'metadata',  # noqa: E501
+        'created': 'created',  # noqa: E501
+        'updated': 'updated',  # noqa: E501
     }
 
     read_only_vars = {
@@ -159,7 +157,15 @@ class PaymentMethod(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): [optional]  # noqa: E501
+            id (str): [optional]  # noqa: E501
+            details (Details1): [optional]  # noqa: E501
+            provider (str): [optional]  # noqa: E501
+            status (str): [optional]  # noqa: E501
+            remote_payment_method_id (str): [optional]  # noqa: E501
+            favorite (bool): [optional]  # noqa: E501
+            metadata ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
+            created (datetime): [optional]  # noqa: E501
+            updated (datetime): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -241,7 +247,15 @@ class PaymentMethod(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): [optional]  # noqa: E501
+            id (str): [optional]  # noqa: E501
+            details (Details1): [optional]  # noqa: E501
+            provider (str): [optional]  # noqa: E501
+            status (str): [optional]  # noqa: E501
+            remote_payment_method_id (str): [optional]  # noqa: E501
+            favorite (bool): [optional]  # noqa: E501
+            metadata ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
+            created (datetime): [optional]  # noqa: E501
+            updated (datetime): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

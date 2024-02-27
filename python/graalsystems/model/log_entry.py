@@ -85,6 +85,7 @@ class LogEntry(ModelNormal):
             'at': (datetime,),  # noqa: E501
             'message': (str,),  # noqa: E501
             'source': (str,),  # noqa: E501
+            'level': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -96,6 +97,7 @@ class LogEntry(ModelNormal):
         'at': 'at',  # noqa: E501
         'message': 'message',  # noqa: E501
         'source': 'source',  # noqa: E501
+        'level': 'level',  # noqa: E501
     }
 
     read_only_vars = {
@@ -142,6 +144,7 @@ class LogEntry(ModelNormal):
             at (datetime): [optional]  # noqa: E501
             message (str): [optional]  # noqa: E501
             source (str): [optional]  # noqa: E501
+            level (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -226,6 +229,7 @@ class LogEntry(ModelNormal):
             at (datetime): [optional]  # noqa: E501
             message (str): [optional]  # noqa: E501
             source (str): [optional]  # noqa: E501
+            level (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

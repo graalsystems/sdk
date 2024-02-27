@@ -23,7 +23,7 @@ from graalsystems.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from graalsystems.model.error import Error
-from graalsystems.model.pageable import Pageable
+from graalsystems.model.log_entry import LogEntry
 from graalsystems.model.patch import Patch
 from graalsystems.model.workspace import Workspace
 from graalsystems.model.workspace_page import WorkspacePage
@@ -227,7 +227,8 @@ class WorkspaceApi(object):
             params_map={
                 'all': [
                     'x_tenant',
-                    'pageable',
+                    'page',
+                    'size',
                 ],
                 'required': [
                     'x_tenant',
@@ -247,16 +248,20 @@ class WorkspaceApi(object):
                 'openapi_types': {
                     'x_tenant':
                         (str,),
-                    'pageable':
-                        (Pageable,),
+                    'page':
+                        (int,),
+                    'size':
+                        (int,),
                 },
                 'attribute_map': {
                     'x_tenant': 'X-Tenant',
-                    'pageable': 'pageable',
+                    'page': 'page',
+                    'size': 'size',
                 },
                 'location_map': {
                     'x_tenant': 'header',
-                    'pageable': 'query',
+                    'page': 'query',
+                    'size': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -264,6 +269,69 @@ class WorkspaceApi(object):
             headers_map={
                 'accept': [
                     'application/vnd.graal.systems.v1.workspace+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_logs_for_workspace_endpoint = _Endpoint(
+            settings={
+                'response_type': ([LogEntry],),
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/workspaces/{workspaceId}/logs',
+                'operation_id': 'get_logs_for_workspace',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'workspace_id',
+                    'cursor',
+                ],
+                'required': [
+                    'x_tenant',
+                    'workspace_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'workspace_id':
+                        (str,),
+                    'cursor':
+                        (str,),
+                },
+                'attribute_map': {
+                    'x_tenant': 'X-Tenant',
+                    'workspace_id': 'workspaceId',
+                    'cursor': 'cursor',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'workspace_id': 'path',
+                    'cursor': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/vnd.graal.systems.v1.log+json',
+                    'application/vnd.graal.systems.v1.error+json'
                 ],
                 'content_type': [],
             },
@@ -330,6 +398,74 @@ class WorkspaceApi(object):
                 ],
                 'content_type': [
                     'application/json-patch+json;charset=UTF-8'
+                ]
+            },
+            api_client=api_client
+        )
+        self.upload_file_in_workspace_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'internal'
+                ],
+                'endpoint_path': '/workspaces/{workspaceId}/files',
+                'operation_id': 'upload_file_in_workspace',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'x_tenant',
+                    'workspace_id',
+                    'path',
+                    'filename',
+                ],
+                'required': [
+                    'x_tenant',
+                    'workspace_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'x_tenant':
+                        (str,),
+                    'workspace_id':
+                        (str,),
+                    'path':
+                        (str,),
+                    'filename':
+                        ([file_type],),
+                },
+                'attribute_map': {
+                    'x_tenant': 'X-Tenant',
+                    'workspace_id': 'workspaceId',
+                    'path': 'path',
+                    'filename': 'filename',
+                },
+                'location_map': {
+                    'x_tenant': 'header',
+                    'workspace_id': 'path',
+                    'path': 'query',
+                    'filename': 'form',
+                },
+                'collection_format_map': {
+                    'filename': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [],
+                'content_type': [
+                    'multipart/form-data'
                 ]
             },
             api_client=api_client
@@ -574,7 +710,8 @@ class WorkspaceApi(object):
             x_tenant (str):
 
         Keyword Args:
-            pageable (Pageable): [optional]
+            page (int): [optional] if omitted the server will use the default value of 0
+            size (int): [optional] if omitted the server will use the default value of 200
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -627,6 +764,81 @@ class WorkspaceApi(object):
         kwargs['x_tenant'] = \
             x_tenant
         return self.find_workspaces_endpoint.call_with_http_info(**kwargs)
+
+    def get_logs_for_workspace(
+        self,
+        x_tenant,
+        workspace_id,
+        **kwargs
+    ):
+        """Get logs  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_logs_for_workspace(x_tenant, workspace_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            workspace_id (str): Id of the workspace
+
+        Keyword Args:
+            cursor (str): The cursor. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [LogEntry]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['workspace_id'] = \
+            workspace_id
+        return self.get_logs_for_workspace_endpoint.call_with_http_info(**kwargs)
 
     def update_workspace(
         self,
@@ -705,4 +917,80 @@ class WorkspaceApi(object):
         kwargs['patch'] = \
             patch
         return self.update_workspace_endpoint.call_with_http_info(**kwargs)
+
+    def upload_file_in_workspace(
+        self,
+        x_tenant,
+        workspace_id,
+        **kwargs
+    ):
+        """Upload files in a workspace  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.upload_file_in_workspace(x_tenant, workspace_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            x_tenant (str):
+            workspace_id (str): Id of the bucket
+
+        Keyword Args:
+            path (str): path. [optional]
+            filename ([file_type]): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['x_tenant'] = \
+            x_tenant
+        kwargs['workspace_id'] = \
+            workspace_id
+        return self.upload_file_in_workspace_endpoint.call_with_http_info(**kwargs)
 

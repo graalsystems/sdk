@@ -56,13 +56,6 @@ class InlineResponse200(ModelNormal):
     """
 
     allowed_values = {
-        ('status',): {
-            'NOT_FOUND': "NOT_FOUND",
-            'SUCCESS': "SUCCESS",
-            'WRONG': "WRONG",
-            'EXPIRED': "EXPIRED",
-            'UPPER_LIMIT': "UPPER_LIMIT",
-        },
     }
 
     validations = {
@@ -89,7 +82,7 @@ class InlineResponse200(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'status': (str,),  # noqa: E501
+            'client_secret': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -98,7 +91,7 @@ class InlineResponse200(ModelNormal):
 
 
     attribute_map = {
-        'status': 'status',  # noqa: E501
+        'client_secret': 'client_secret',  # noqa: E501
     }
 
     read_only_vars = {
@@ -142,7 +135,7 @@ class InlineResponse200(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            status (str): [optional]  # noqa: E501
+            client_secret (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -224,7 +217,7 @@ class InlineResponse200(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            status (str): [optional]  # noqa: E501
+            client_secret (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

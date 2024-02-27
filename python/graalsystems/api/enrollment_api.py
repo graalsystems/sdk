@@ -25,7 +25,6 @@ from graalsystems.model_utils import (  # noqa: F401
 from graalsystems.model.enrollment import Enrollment
 from graalsystems.model.enrollment_page import EnrollmentPage
 from graalsystems.model.error import Error
-from graalsystems.model.pageable import Pageable
 
 
 class EnrollmentApi(object):
@@ -226,7 +225,8 @@ class EnrollmentApi(object):
             params_map={
                 'all': [
                     'x_tenant',
-                    'pageable',
+                    'page',
+                    'size',
                 ],
                 'required': [
                     'x_tenant',
@@ -246,16 +246,20 @@ class EnrollmentApi(object):
                 'openapi_types': {
                     'x_tenant':
                         (str,),
-                    'pageable':
-                        (Pageable,),
+                    'page':
+                        (int,),
+                    'size':
+                        (int,),
                 },
                 'attribute_map': {
                     'x_tenant': 'X-Tenant',
-                    'pageable': 'pageable',
+                    'page': 'page',
+                    'size': 'size',
                 },
                 'location_map': {
                     'x_tenant': 'header',
-                    'pageable': 'query',
+                    'page': 'query',
+                    'size': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -508,7 +512,8 @@ class EnrollmentApi(object):
             x_tenant (str):
 
         Keyword Args:
-            pageable (Pageable): [optional]
+            page (int): [optional] if omitted the server will use the default value of 0
+            size (int): [optional] if omitted the server will use the default value of 200
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
