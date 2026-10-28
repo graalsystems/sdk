@@ -1,5 +1,7 @@
 module github.com/graalsystems/sdk
 
-go 1.19
+go 1.24.0
 
-require golang.org/x/oauth2 v0.0.0-20210218202405-ba52d332ba99
+toolchain go1.24.7
+
+require golang.org/x/oauth2 v0.34.0
